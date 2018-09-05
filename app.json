@@ -1,11 +1,7 @@
 {
   "expo": {
     "name": "UrbanShelter",
-<<<<<<< HEAD
-    "description": "This project is really great.",
-=======
     "description": "UrbanShelter mobile app",
->>>>>>> bc0d64668d5b2d103b7bf13ee9d62ab2082b231a
     "slug": "urbanshelter",
     "privacy": "public",
     "sdkVersion": "29.0.0",
