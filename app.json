@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "musicApp",
+    "name": "UrbanShelter",
     "description": "This project is really great.",
-    "slug": "musicapp",
+    "slug": "urbanshelter",
     "privacy": "public",
     "sdkVersion": "29.0.0",
     "platforms": [
