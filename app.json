@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "musicApp",
-    "description": "This project is really great.",
-    "slug": "musicapp",
+    "name": "UrbanShelter",
+    "description": "UrbanShelter mobile app",
+    "slug": "urbanshelter",
     "privacy": "public",
     "sdkVersion": "29.0.0",
     "platforms": [
@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.urbanshelter.aria"
+    },
+    "android": {
+      "package": "com.urbanshelter.aria"
     }
   }
 }
