@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": "https://y6-445.soutik.jimmy-app-react.exp.direct",
-  "packagerNgrokUrl": "https://packager.y6-445.soutik.jimmy-app-react.exp.direct",
-  "ngrokPid": 384
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
