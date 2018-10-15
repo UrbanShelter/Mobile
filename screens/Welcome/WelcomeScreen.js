@@ -31,7 +31,7 @@ class WelcomeScreen extends Component {
 		return (
 			<Container>
                                  <View style={styles.logwrap}> 
-                                        <TouchableOpacity  onPress={this.onPress} ><Text style={styles.loginbtn} uppercase={true}> LOG IN </Text></TouchableOpacity>                                                  
+                                        <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Login")} ><Text style={styles.loginbtn} uppercase={true}> LOG IN </Text></TouchableOpacity>                                                  
                                    </View> 
 				<StatusBar backgroundColor='#fff' barStyle="light-content" />
 				<Swiper style={styles.wrapper} showsButtons={false} loop={false} activeDotColor="#98A8BD" paginationStyle={{bottom: 80}} dot={<View style={{backgroundColor: '#eee', width:5, height:5, borderRadius:100,marginLeft: 7, marginRight: 7}} />}>  
@@ -70,7 +70,7 @@ class WelcomeScreen extends Component {
                                             <View style={styles.inslide}>
                                                 <Image style={styles.iconlogo} source={require("../../assets/images/logonew.png")}/>
                                                 
-                                                <TouchableOpacity  style={styles.signbtn}    onPress={this.onPress} >
+                                                <TouchableOpacity  style={styles.signbtn}   onPress={()=>this.props.navigation.navigate("Signup")}>
                                                      <Image style={styles.btnimg} source={require("../../assets/images/btnimg.png")}/> 
                                                 </TouchableOpacity>
                                             </View>
