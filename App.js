@@ -33,6 +33,8 @@ export default class App extends React.Component {
     }
   }
 
+
+
   _loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
@@ -41,6 +43,8 @@ export default class App extends React.Component {
       ]),
       Font.loadAsync({
         'AvenirLTStd-Book': require('./assets/fonts/AvenirLTStd-Book.otf'),
+        'Raleway-regular-webfont': require('./assets/fonts/Lato-Regular.ttf'),
+        'Lato-regular-webfont': require('./assets/fonts/Raleway-Regular.ttf'),
         'AvenirLTStd-Heavy': require('./assets/fonts/AvenirLTStd-Heavy.otf'),
         'AvenirLTStd-Light': require('./assets/fonts/AvenirLTStd-Light.otf'),
         'Gotham-book': require('./assets/fonts/ufonts.com_gotham-book.ttf'),

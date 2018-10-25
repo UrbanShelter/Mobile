@@ -5,7 +5,11 @@ import { createSwitchNavigator, createStackNavigator, DrawerNavigator } from 're
 import MainTabNavigator from './MainTabNavigator';
 import WelcomeScreen from '../screens/Welcome/WelcomeScreen';
 import SignupScreen from '../screens/Signup/SignupScreen';
+import SignupScreenTwo from '../screens/Signup/SignupScreenTwo';
+import SignupScreenThree from '../screens/Signup/SignupScreenThree';
 import LoginScreen from '../screens/Signup/LoginScreen';
+import LoginScreenTwo from '../screens/Signup/LoginScreenTwo';
+import LoginScreenThree from '../screens/Signup/LoginScreenThree';
 
 import HomeScreen from '../screens/Account/HomeScreen';
 import YourMusic from '../screens/Account/YourMusic';
@@ -24,7 +28,13 @@ import LoginPasswordScreen from '../screens/Login/PasswordScreen';
 const WelcomeStack = createStackNavigator({
 	Welcome: WelcomeScreen,
 	Signup: SignupScreen,
-	Login: LoginScreen
+	SignupTwo: SignupScreenTwo,
+	SignupThree: SignupScreenThree,
+	Login: LoginScreen,
+	LoginTwo: LoginScreenTwo,
+	LoginThree: LoginScreenThree,
+	
+	
 	/*Name : NameScreen,
 	Email : EmailScreen,
 	Phone : PhoneScreen,
@@ -41,8 +51,16 @@ const AccountStack = createStackNavigator({
 });
 
 export default createSwitchNavigator({
+	
+	
 	Welcome: WelcomeStack,
-	Home: AccountStack
+	Login: LoginScreen,
+	LoginTwo: LoginScreenTwo,
+	LoginThree: LoginScreenThree,
+	Home: AccountStack,
+	Signup: SignupScreen,
+	SignupTwo: SignupScreenTwo,
+	SignupThree: SignupScreenThree,
 });
 
 

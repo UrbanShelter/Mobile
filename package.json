@@ -19,6 +19,7 @@
     "react-native-form-validator": "^0.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.7.1",
     "react-native-loading-spinner-overlay": "^0.5.2",
+    "react-native-popup-dialog": "^0.15.1",
     "react-native-swiper": "^1.5.13",
     "react-navigation": "^2.12.1",
     "redux": "^4.0.0"
