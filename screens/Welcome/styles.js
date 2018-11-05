@@ -46,7 +46,7 @@ export default {
      fontSize:20,
      marginBottom:10,
      textAlign:'center',
-     fontFamily:'Raleway-regular-webfont',
+     fontFamily:'Raleway-Black',
       fontWeight:'300'
   },
   paragraph:{
@@ -100,8 +100,7 @@ export default {
   loginbtn:{       
       backgroundColor:'transparent', 
       color:'#F55057',
-      fontFamily:'Lato-regular-webfont',
-      fontWeight:'700',
+      fontFamily:'Lato-Bold',
       fontSize:14     
   },
   bottomwrp:{
@@ -127,7 +126,8 @@ export default {
       color:'#F55057',
       fontSize:14,
       opacity:0.5,
-       lineHeight:30
+       lineHeight:30,
+       fontFamily: 'Lato-Bold'
   },
   nextbtntxt:{
       textAlign:'center',
@@ -135,7 +135,8 @@ export default {
       fontSize:14,
        lineHeight:30,
         borderLeftWidth:1,
-      borderColor:'#e6ecf0'
+      borderColor:'#e6ecf0',
+      fontFamily: 'Lato-Bold'
   },
   WebViewStyle:
     {
