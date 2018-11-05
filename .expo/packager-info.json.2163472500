@@ -1,9 +1,9 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 9948,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
   "devToolsPort": 19002,
   "expoServerNgrokUrl": "https://3h-wcj.soutik.new.exp.direct",
   "packagerNgrokUrl": "https://packager.3h-wcj.soutik.new.exp.direct",
-  "ngrokPid": 7500
+  "ngrokPid": 8700
 }

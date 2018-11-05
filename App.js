@@ -44,6 +44,8 @@ export default class App extends React.Component {
       Font.loadAsync({
         'AvenirLTStd-Book': require('./assets/fonts/AvenirLTStd-Book.otf'),
         'Raleway-regular-webfont': require('./assets/fonts/Lato-Regular.ttf'),
+        'Raleway-Black': require('./assets/fonts/Raleway-ExtraBold.ttf'),
+        'Lato-Bold': require('./assets/fonts/Lato-Bold.ttf'),
         'Lato-regular-webfont': require('./assets/fonts/Raleway-Regular.ttf'),
         'AvenirLTStd-Heavy': require('./assets/fonts/AvenirLTStd-Heavy.otf'),
         'AvenirLTStd-Light': require('./assets/fonts/AvenirLTStd-Light.otf'),
