@@ -13,6 +13,9 @@ import LoginScreenThree from '../screens/Signup/LoginScreenThree';
 
 import HomeScreen from '../screens/Account/HomeScreen';
 import YourMusic from '../screens/Account/YourMusic';
+import ListingPage from '../screens/Account/ListingPage';
+import ExploreScreen from '../screens/Account/ExploreScreen';
+import TourScreen from '../screens/Account/TourScreen';
 
 /*import NameScreen from '../screens/Signup/NameScreen';
 import EmailScreen from '../screens/Signup/EmailScreen';
@@ -46,21 +49,27 @@ const WelcomeStack = createStackNavigator({
 );
 const AccountStack = createStackNavigator({
 	Home: HomeScreen,
+	Listing: ListingPage,
 	Music: YourMusic
 
 });
 
 export default createSwitchNavigator({
-	
+
+
 	
 	Welcome: WelcomeStack,
+	SignupThree: SignupScreenThree,	
 	Login: LoginScreen,
 	LoginTwo: LoginScreenTwo,
-	LoginThree: LoginScreenThree,
-	Home: AccountStack,
+	LoginThree: LoginScreenThree,	
 	Signup: SignupScreen,
 	SignupTwo: SignupScreenTwo,
-	SignupThree: SignupScreenThree,
+	Home: AccountStack,
+	Listing: ListingPage,
+	Tour: TourScreen,
+	Explore: ExploreScreen,
+	
 });
 
 

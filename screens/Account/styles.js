@@ -5,332 +5,485 @@ const { StyleSheet, Dimensions, Platform } = React;
 const deviceHeight = Dimensions.get("window").height;
 
 export default {
-  bodyContainer: {
-    backgroundColor:'rgb(242,242,242)',
-    flex: 1,    
-    padding: 20
-  }, 
-  current:{
-    height:271, 
-    position:'relative' ,
+  HomeScreen:{
+    flex: 1,
+    padding: 20,
+    paddingTop: 25,
+    backgroundColor: '#fff'
   },
-  imagebg:{
-    width:'100%',
-    height:231,
+  ExploreScreen:{
+    flex: 1,
+    paddingTop: 25,
+    backgroundColor: '#fff'
   },
-  imageCover:{
-    position:'absolute',
-    top:0,
-    left:0,
-    width:'100%',
-    height:231,
-    backgroundColor:'rgba(48,55,71,.80)',
+  ListScreen:{
+    flex: 1,
+    backgroundColor: '#fff'
   },
-  homeHeader:{
-    position:'absolute',
-    top:20,
-    left:0,
-    flex: 1, 
+  relativeHeader:{
+    backgroundColor:'#fff',
+    paddingLeft:0,
+    paddingRight:0,
+    borderWidth:0,
+    marginTop:0,
+    flex: 0,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding:20,
-    width:'100%',
-    zIndex:9
-  },
-  hearderImg:{
-    width:30,
-    height:30,
-  },
-  hearderText:{
-    color:'#fff',
-    fontFamily:'AvenirLTStd-Book',
-    fontSize:15,
-    lineHeight:30
-  },
-  musicScrollImg:{
-    width:140,
-    height:140,
-  },
-  scrollMusic:{
-    position:'absolute',
-    top:90,
-    left:0,
-    paddingLeft:20,
-    paddingRight:20,
-    width:'100%',
-  },
-  musicScrollbg:{
-    backgroundColor:'#ffffff',
-    marginRight:6,
-    width:142.50,
-    borderWidth:1,
-    borderColor:'#ffffff',
-  },
-  musicScrollTitle:{
-    fontSize:10,
-    color:'rgb(64,64,64)',
-    paddingLeft:10,
-    paddingRight:10,
-    lineHeight:32,
-  },
-  listimage:{
-    width:40,
-    height:40,
-  },
-  listheading:{
-    fontFamily:'AvenirLTStd-Book',
-    fontSize:13,
-    color:'rgb(94,94,94)',
-  },
-  listnote:{
-    fontFamily:'AvenirLTStd-Book',
-    fontSize:10,
-    color:'#8e8e8e',
-  },
-  border:{
-    borderBottomWidth:0
-  },
-  arrow:{
-    color:'rgb(138,138,138)',
-    fontSize:20,
-  },
-  payingHeader:{
-    borderBottomWidth:1,
-    borderColor:'#dddddd',
-    flex: 1, 
-    flexDirection: 'row',
+    justifyContent:'space-between',
     paddingTop:10,
     paddingBottom:10,
-    position:'relative'
+    height:50,
+    alignItems:'center'
   },
-  payingHeaderPadding:{
-    paddingLeft:20,
-    paddingRight:20,
-  },
-  payingBorder:{
-    width:20,
-    height:3,
-    backgroundColor:'rgb(232,74,18)',
+  absoluteHeader:{
     position:'absolute',
-    bottom:-3,
-    left:10
-  },
-  payingText:{
-    fontSize:10,
-    color:'#797979',
-    marginRight:10,
-  },
-  loaction:{
-    fontSize:14,
-    color:'rgb(138,138,138)',
-    marginRight:5
-  },
-  avatarPadding:{
-    paddingLeft:2,
-    paddingRight:3,
-    paddingTop:5,
-    paddingBottom:5,
-  },
-  requestSong:{
-    flex: 1, 
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor:'#ffffff',
-    padding:20,
-    paddingTop:15,
-    paddingBottom:15
-  },
-  plus:{
-    width:25,
-    height:25,
-  },
-  requestText:{
-    fontFamily:'Gotham-book',
-    color:'rgb(81,81,81)',
-    fontSize:13,
-    lineHeight:25
-  },
-  scrollMusicBottom:{    
     paddingLeft:20,
     paddingRight:20,
+    zIndex:9999,
+    top:20,
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent:'space-between',
     width:'100%',
+    borderWidth:0,
+    height:50,
+    alignItems:'center'
+
   },
-  musicScrollbgBottom:{
-    backgroundColor:'#ffffff',
-    marginRight:10,
-    width:148.5,
-    borderWidth:3,
-    borderColor:'#ffffff',
+  flexOneline:{
+    flex: 0,
+    flexDirection: 'row',
   },
-   musicScrollImgBottom:{
-    width:142,
-    height:142,
+  headerImg:{
+    width:23,
+    height:22,
   },
-  playlist:{
-    paddingTop:10,
-    paddingBottom:10
+  headtext:{
+    color: '#000',
+    fontSize: 22,
+    marginBottom: 10,
+    textAlign: 'left',
+    fontFamily: 'Raleway-Black',
+    marginTop: 10,
   },
-  musicScrollTitleBottom:{
-     fontSize:15,
-    color:'rgb(64,64,64)',
+  homeCategoryBox:{
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
+  homeCategoryButton:{
+    color: '#4A4A4A',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 12,
+    borderWidth:1,
+    borderColor: 'rgba(189,189,189,.5)', 
+    lineHeight:30,
     paddingLeft:10,
     paddingRight:10,
-    lineHeight:32,
+    borderRadius:3,
+    marginRight:5,
+    marginBottom:5
   },
-  createPlaylist:{
-    flex: 1, 
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop:15,
-    paddingBottom:15,
-    paddingLeft:40
+  homeCategorylebel:{
+    color: '#4A4A4A',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 10,
+    borderWidth:1,
+    borderColor: 'rgba(189,189,189,.5)', 
+    lineHeight:18,
+    paddingLeft:5,
+    paddingRight:5,
+    borderRadius:10,
+    marginRight:5,
+    marginBottom:5
   },
-  CreatePlaylistText:{
-    color:'rgb(81,81,81)',
-    fontSize:13,
-    textDecorationLine: "underline",
+  homeImgCat:{
+    position: 'relative',
+    marginTop:15
   },
-  or:{
-    fontSize:10,
-    color:'rgb(64,64,64)',
-    marginTop:10,
-    marginBottom:10
+  homeImg:{
+    width:'100%',
+    height:200,
+    borderRadius:5
   },
-  buttonfont:{
-    fontFamily:'HelveticaNeue',
-    fontSize:15,
-    fontWeight:'400',
-    paddingLeft:10,
-    paddingRight:0,
-  },
-  playlistImg:{
-    width:21,
-    height:21,
-  },
-  connect:{
-    backgroundColor:'rgb(29,185,84)',
-    paddingLeft:15,
-    paddingRight:15,
-    width:240
-  },
-  connectApple:{
-    backgroundColor:'#000000',
-    paddingLeft:15,
-    paddingRight:15,
-    width:240,
-    marginTop:10
-  },
-  InnerHeader:{
-    position:'absolute',
-    top:0,
-    left:0,
-    flex: 1, 
+  propertDesOuter:{
+    flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingLeft:20,
-    paddingRight:20,
-    width:'100%',
-    backgroundColor:'#ffffff',
-    paddingTop:30,
-    height:80,
-    borderBottomWidth:1,
-    borderColor:'rgb(224,224,224)',
-    zIndex:999,
-  }, 
-  hearderTextInner:{
-    color:'rgb(94,94,94)',
-    fontFamily:'AvenirLTStd-Book',
-    fontSize:15,
-    lineHeight:20,    
+    alignItems:'flex-end',
+    marginBottom:15,
   },
-   avatarPaddingMyMusic:{
-    paddingLeft:2,
-    paddingRight:3,
-    paddingTop:5,
-    paddingBottom:5,
-    borderBottomWidth:1,
-    borderColor:'#dddddd',
+  homePropertyName:{
+    color: '#000',
+    fontSize: 20,
+    textAlign: 'left',
+    fontFamily: 'Raleway-Black',
+    marginTop: 10,
   },
-  listheadingRed:{
-    color:'rgb(254,83,57)',
-    fontFamily:'Gotham-book',
-    fontSize:13,
-    fontWeight:'500'
+  homePropertyDes:{
+    color: '#000',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 12,
   },
-  createPlaylistNew:{
-    marginTop:'60%',
-    flex: 1, 
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop:15,
-    paddingBottom:15
+  price:{
+    color:'#fff',
+    fontFamily: 'Lato-Bold',
+    fontSize: 14,
+    textAlign:'center',
+    lineHeight: 35,
   },
-   imagebgSidebar:{
-    width:'100%',
-    height:deviceHeight,
+  permonth:{
+    fontSize: 12,
+    fontFamily: 'Lato-regular-webfont',
+    color:'#fff',
+    marginTop:10,
+    borderTopWidth:1
   },
-  imageCoverSidebar:{
-    position:'absolute',
-    top:0,
-    left:0,
-    width:'100%',
-    height:deviceHeight,
-    backgroundColor:'rgba(48,55,71,.80)',
-  },
-  sidebarAbsolute:{
-    position:'absolute',
-    width:'100%',
-    height:'100%',
-    top:0,
-    left:0,
-  },
-  sidebarHead:{
-    flexDirection:'row',
+  priceButton:{
+    height:38,
+    backgroundColor:'#FC5148',
+    borderRadius:5,
+    flex: 0,
+    flexDirection: 'row',
+    alignItems:'center',
     justifyContent:'center',
-    marginTop:60,
-    flex:0
+    paddingLeft:5,
+    paddingRight:5
   },
-  sidebaraccount:{
-    width:75,
-    height:75,
-    borderRadius:75/2,
+  ratings:{
+    flex: 0,
+    flexDirection: 'row',
+    alignItems:'center',
+    width:'auto'
+  },
+  countText:{
+    color: '#585858',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 12,
+    marginLeft:3
+  },
+  homeFacilityImg:{
+    width:15,
+    height:15
+  },
+  homeFacilityOuter:{
+    flex: 1,
+    flexDirection: 'row',
+    alignItems:'center',
+    flexWrap: 'wrap',
+    justifyContent:'space-between',
+    marginTop:10,
+  },
+  homeFacilityFlex:{
+    flex: 0,
+    flexDirection: 'row',
+    alignItems:'center',
+    width:'auto'
+  },
+  imgeOver:{
+    position:'absolute',
+    zIndex:9,
+    top:15,
+    right:15,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems:'center',
+  },
+  privateRoom:{
+    backgroundColor: 'rgba(0,0,0,.5)', 
+    paddingLeft:15,
+    paddingRight:15,
+    borderRadius:10,
+    marginRight:5,
+    marginBottom:5,    
+  },
+  privateRoomText:{
+    color: '#fff',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 10,
+    lineHeight:22, 
+  },
+  heartImg:{
+    width:25,
+    height:22,
+    marginLeft:10
+  },
+  listingHeader:{
+    width:'100%',
+    height:250,
+  },
+  tourOuter:{
+    bottom:20,
+    right:20,
+    zIndex:999,
+    position:'absolute'
+  },
+  tour:{    
+    width:181,
+    height:40,
+  },
+  listBody:{
+    paddingLeft:20,
+    paddingRight:20
+  },
+  map:{
+    width:'100%',
+    height:200
+  },
+  mapExplore:{
+    width:206,
+    height:37,
+    position:'absolute',
+    bottom:20,
+    left:10
+  },
+  hrBox:{
+    paddingTop:15,
+    paddingBottom:15,
+    borderBottomWidth: 1,
+    borderBottomColor:'rgba(0, 0, 0, 0.2)'
+  },
+  listText:{
+    fontSize: 14,
+    fontFamily: 'Lato-regular-webfont',
+    color:'#484848',
+  },
+  AvailablityBox:{
+    width: 141,
+    height: 124,
     borderWidth:1,
-    borderColor:'#dddddd'
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderRadius:5,
+    padding:20, 
+    marginRight:15  
   },
-  sidebarTitle:{
-    color:'rgb(255,255,255)',
-    fontFamily:'Gotham-book',
-    fontSize:15,
-    textAlign: 'center',
-    lineHeight:35,
-    marginBottom:20
+  AvailablityBoxActive:{
+    borderColor: 'rgba(0, 0, 0, 0.5)'
   },
-  lftIcon:{
+  hrBoxHeading:{
+    color: '#000',
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: 'left',
+    fontFamily: 'Lato-Bold',
+  },
+  AvailablityImgHolder:{
+    flex:0,
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    alignItems:'center'
+  },
+  AvailablityImg:{
     width:25,
     height:25,
   },
-  leftText:{
-    color:'rgb(255,255,255)',
-    fontFamily:'Gotham-book',
-    fontSize:18,
-    lineHeight:30,
-    marginLeft:15,
-    paddingRight:5,
+  AvailablityImgText:{
+    fontSize: 12,
+    fontFamily: 'Lato-regular-webfont',
+    color:'#4A4A4A',
+    marginLeft:5,
   },
-  lftlist:{
-    flex: 1, 
-    flexDirection: 'row',
-    alignItems: 'center',
+  AvailablitySubHead:{
+    color: '#4A4A4A',
+    fontSize: 14,
+    marginTop: 15,
+    textAlign: 'left',
+    fontFamily: 'Lato-Bold',
+    marginBottom: 5,
+  },
+  aminitiesBox:{
+    backgroundColor:'#F4F4F4',
+    borderRadius:5,
+    padding:20,
+    flex:0,
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    flexWrap:'wrap'
+  },
+  aminitiesBoxImg:{
+    width:15,
+    height:15
+  },
+  aminitiesText:{
+    color: '#4A4A4A',
+    fontSize: 12,
+    textAlign: 'left',
+    fontFamily: 'Lato-Bold',
+    marginLeft: 5,
+  },
+  aminitiesBoxHoolder:{
+    flex:0,
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    alignItems:'center',
+    width:'50%',
+    marginTop:5,
+    marginBottom:5,
+  },
+  PrecautionsImg:{
+    width:20,
+    height:20,
+    marginRight:10
+  },
+  PrecautionsText:{
+    color: '#000',
+    fontSize: 12,
+    textAlign: 'left',
+    fontFamily: 'Lato-regular-webfont',
+  },
+  PrecautionsTextBold:{
+    color: '#000',
+    fontSize: 12,
+    marginBottom: 10,
+    textAlign: 'left',
+    fontFamily: 'Lato-Bold',
+  },
+  reviewsBox:{
+    flex:0,
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    alignItems:'center',
+    marginBottom:15,
+  },
+  reviewsBoxImg:{
+    width:50,
+    height:50,
+    borderRadius: 50/2,
+    marginRight:15
+  },
+  reviewRating:{
+    flex:1,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginTop:10,
+  },
+  redText:{
+    fontSize: 14,
+    fontFamily: 'Lato-regular-webfont',
+    color:'#EF4F67',
+  },
+  media:{
+    flex:0,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center',
     padding:10,
-    paddingLeft:20
+    paddingLeft:20,
+    paddingRight:20,
+    borderBottomWidth:1,
+    borderBottomColor: '#e3e3e3',
+    borderTopWidth:1,
+    borderTopColor: '#e3e3e3'
   },
-  setting:{
-    position:'absolute',
-    top:50,
-    right:20,
+  mediaImage:{
+    width:50,
+    height:50,
+    borderRadius:3,
+  },
+  mediaPropertyName:{
+    color: '#000',
+    fontSize: 18,
+    textAlign: 'left',
+    fontFamily: 'Raleway-Black',
+  },
+  mediaPropertyDes:{
+    color: '#000',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 10,
+  },
+  mediaprice:{
+    color:'#fff',
+    fontFamily: 'Lato-Bold',
+    fontSize: 12,
+    textAlign:'center',
+    lineHeight: 35,   
+  },
+  permonth:{
+    fontSize: 8,
+    fontFamily: 'Lato-Bold',
+    color:'#fff',
+  },
+  mediapriceButton:{
+    height:38,
+    backgroundColor:'#FC5148',
+    borderRadius:5,
+    flex:0,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    paddingLeft:10,
+    paddingRight:10,
+  },
+  explorePadding:{
+    padding:20
+  },
+  tabList:{
+    padding:20,
+    paddingTop:10,
+    paddingBottom:10,
+    borderBottomWidth:1,
+    borderBottomColor:'#e3e3e3',
+    flex:0,
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    alignItems:'flex-start',
+    backgroundColor:'#F7F7F7'
+  },
+  tabImg:{
+    width:16,
+    height:16,
+    marginRight:15,
+  },
+  TabHead:{
+    fontSize:16, fontFamily: 'Lato-Bold', color: '#000'
+  },
+  TabDes:{
+    color: '#000',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 14,
+    opacity:.8,
+    marginBottom:5
+  },
+  tabListActive:{
+    borderLeftWidth:3,
+    borderLeftColor:'#FC5148',
+    backgroundColor:'#fff'
+  },
+  tourPadding:{
+    padding:20,
+    paddingTop:0,
+    paddingBottom:15
+  },
+  tourImg:{
+    width:'100%',
+    height:200,
+    marginTop:15,
+    borderRadius:5,
+  },
+  availablity:{
+    padding:20,
+    flex:0,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    borderTopWidth:2,
+    borderTopColor:'#F7F7F7',
+    alignItems:'center',
+    paddingTop:15,
+    paddingBottom:15
+  },
+  availablityMonth:{
+    fontSize:18, 
+    fontFamily: 'Lato-Bold',
+  },
+  availablityPrefix:{
+    fontSize:12, 
+    fontFamily: 'Lato-Bold',
+  },
+  flexBox:{
+    flex:0,
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    alignItems:'flex-end'
   }
+
 
 };

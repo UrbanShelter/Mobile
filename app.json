@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "UrbanShelter",
-    "description": "UrbanShelter mobile app",
-    "slug": "urbanshelter",
+    "name": "UrbanShelterUi",
+    "description": "This project is really great.",
+    "slug": "urbanshelterui",
     "privacy": "public",
     "sdkVersion": "29.0.0",
     "platforms": [
@@ -24,11 +24,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.urbanshelter.aria"
-    },
-    "android": {
-      "package": "com.urbanshelter.aria"
+      "supportsTablet": true
     }
   }
 }

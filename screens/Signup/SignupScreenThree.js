@@ -31,15 +31,15 @@ class SignupScreenThree extends Component {
 							<Input style={[styles.inputStyle,styles.SearchStyle]} placeholder='Try "Waterloo"' keyboardType="email-address" placeholderTextColor="#9b9b9b" />
 						</Item>					
 					</View>
-					<ScrollView style={{marginTop:20}}>
-						<Text style={styles.headescriptionText}>Popular cities near your</Text>
-						<View style={styles.city}>
+					<ScrollView style={{marginTop:20}} showsVerticalScrollIndicator={false}>
+						<Text style={styles.headescriptionText}>POPULAR CITIES NEAR YOUR</Text>
+						<TouchableOpacity style={styles.city} onPress={()=>this.props.navigation.navigate("Home")}>
 							<Image style={styles.cityImg} source={require("../../assets/images/photo.png")}/>
 							<View style={styles.citypostion}>
 								<Text style={styles.cityText}>Montreal</Text>
 								<Text style={styles.cityTextTwo}>City in Québec</Text>
 							</View>
-						</View>
+						</TouchableOpacity>
 						<View style={styles.cityTwo}>
 							<View style={[styles.city, styles.cityHalf]}>
 								<Image style={styles.cityImg} source={require("../../assets/images/photoone.png")}/>
@@ -56,7 +56,6 @@ class SignupScreenThree extends Component {
 								</View>
 							</View>
 						</View>
-						
 					</ScrollView>
 				</View>
 		);
