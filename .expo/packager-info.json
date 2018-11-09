@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 2766,
+  "expoServerNgrokUrl": "https://6y-z4z.kazi.mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.6y-z4z.kazi.mobile.exp.direct",
+  "ngrokPid": 2804
 }

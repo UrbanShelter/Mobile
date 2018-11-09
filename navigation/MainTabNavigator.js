@@ -1,22 +1,41 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator, createDrawerNavigator } from 'react-navigation';
-
-import HomeScreen from '../screens/Account/HomeScreen';
-import YourMusic from '../screens/Account/YourMusic';
-
-
-// const HomeStack = createStackNavigator({
-//   Home: HomeScreen,
-//   YourMusic: YourMusic
-// });
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import MainScreen from '../screens/Account/MainScreen';
+import ListScreen from '../screens/Account/ListScreen';
+import ViewScreen from '../screens/Account/ViewScreen';
+import ExploreScreen from '../screens/Account/ExploreScreen';
+import TourScreen from '../screens/Account/TourScreen';
 
 
-const MainTabNavigator = createDrawerNavigator({
-  Home: HomeScreen,
-  YourMusic:YourMusic
-}, {
-  initialRouteName: 'Home'
+const MainStack = createStackNavigator({
+    Search: MainScreen,
+    List: ListScreen,
+    Tour: TourScreen,
+    Explore: ExploreScreen,
+    View: ViewScreen
+  
+    },{
+        initialRouteName: 'Search',
+    }
+);
+
+
+MainStack.navigationOptions = ({ navigation }) => {
+
+    let tabBarVisible = false;
+
+    let routeName = navigation.state.routes[navigation.state.index].routeName
+
+    if ( routeName == 'List' ) {
+        tabBarVisible = true
+    }
+
+    return {
+        tabBarVisible,
+    }
+}
+
+const MainTabNavigator = createBottomTabNavigator({
+    Main :MainStack
 })
 
 export default MainTabNavigator;

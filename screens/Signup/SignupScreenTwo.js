@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import { Image, View, ScrollView, StatusBar, TouchableOpacity, ImageBackground, KeyboardAvoidingView, TextInput, ToastAndroid, AsyncStorage } from "react-native";
-import { Container, Button, H3, Text, Header, Title, Body, Left, Right, Content, Item, Input } from "native-base";
-import Swiper from 'react-native-swiper';
+import { Image, View, StatusBar, TouchableOpacity} from "react-native";
+import {Text, Item, Input } from "native-base";
 import styles from "./styles";
-import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
-import {
-	customerLogin
-} from "../../js/api/commonApi";
+import {saveData, storeItem} from '../../service/service';
+// import {saveData} from '../../service/auth';
 
 class SignupScreenTwo extends Component {
 	static navigationOptions = {
@@ -15,27 +12,67 @@ class SignupScreenTwo extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			
+			uid : this.props.navigation.getParam('uid'),
+			firstName : '',
+			lastName : ''
+		}
+
+	}
+
+	saveDetails = async () => {
+		var obj = {
+			firstName : this.state.firstName,
+			lastName : this.state.lastName
+		}
+		var storeObj = {
+			uId : this.state.uid
+		}
+		// let response = storeItem('user', storeObj);
+		// console.log(response);
+
+		await Expo.SecureStore.setItemAsync('userDetails', storeObj)
+
+		var data = await saveData("users",this.state.uid,obj);
+		if(data == true) {
+			this.props.navigation.navigate("Main");
 		}
 	}
 
 
+	
+
+
 	render() {
+		
+
 		return (
 				<View style={styles.signinbg}>					
 					<StatusBar backgroundColor={'transparent'} translucent />
 					<Text style={styles.headtext}>Continue Signing Up</Text>
 					<View style={{width:'100%',marginBottom:15}}>
-						<Text style={styles.labeltext}>FULL NAME</Text>
+						<Text style={styles.labeltext}>FIRST NAME</Text>
 						<Item style={styles.borderInput}>							
-							<Input style={styles.inputStyle} placeholder="Full Name" placeholderTextColor="#9b9b9b" />
+							<Input onChangeText={(text)=>{this.setState({firstName:text})}} style={styles.inputStyle} placeholder="First Name" placeholderTextColor="#9b9b9b" />
 						</Item>
-						
+					</View>
+					<View style={{width:'100%',marginBottom:15}}>
+						<Text style={styles.labeltext}>LAST NAME</Text>
+						<Item style={styles.borderInput}>							
+							<Input onChangeText={(text)=>{this.setState({lastName:text})}} style={styles.inputStyle} placeholder="Last Name" placeholderTextColor="#9b9b9b" />
+						</Item>
 					</View>
 					<View style={{width:'100%',height:90}}>
 						<Text style={styles.labeltext}>DATE OF BIRTH</Text>
 
 						<View style={styles.monthYear}>
+						{/* <Picker
+							selectedValue={this.state.language}
+							style={[styles.borderInputWidth]}
+							>
+							<Picker.Item label="Java" value="java" />
+							<Picker.Item label="JavaScript" value="js" />
+						</Picker> */}
+
 							<Item style={[styles.borderInputWidth]}>							
 								<Input style={styles.inputStyle} placeholder="Day" placeholderTextColor="#9b9b9b" />
 							</Item>
@@ -49,7 +86,7 @@ class SignupScreenTwo extends Component {
 						
 						
 					</View>
-					<View style={{width:'100%',height:90}}>
+					{/* <View style={{width:'100%',height:90}}>
 						<Text style={styles.labeltext}>GENDER</Text>
 
 						<View style={styles.monthYear}>
@@ -65,8 +102,8 @@ class SignupScreenTwo extends Component {
 						</View>
 						
 						
-					</View>
-					<TouchableOpacity  style={styles.btnOptionLogin}  onPress={()=>this.props.navigation.navigate("SignupThree")} >
+					</View> */}
+					<TouchableOpacity  style={styles.btnOptionLogin}  onPress={this.saveDetails} >
 						<Image style={styles.btnimg} source={require("../../assets/images/next.png")}/> 
 					</TouchableOpacity>
 

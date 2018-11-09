@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -9,9 +10,12 @@ export default class App extends React.Component {
       'Setting a timer'
     ];
   }
+  
+
   state = {
     isLoadingComplete: false,
   };
+  
   
 
   render() {
@@ -44,6 +48,8 @@ export default class App extends React.Component {
       Font.loadAsync({
         'AvenirLTStd-Book': require('./assets/fonts/AvenirLTStd-Book.otf'),
         'Raleway-regular-webfont': require('./assets/fonts/Lato-Regular.ttf'),
+        'Raleway-Black': require('./assets/fonts/Raleway-ExtraBold.ttf'),
+        'Lato-Bold': require('./assets/fonts/Lato-Bold.ttf'),
         'Lato-regular-webfont': require('./assets/fonts/Raleway-Regular.ttf'),
         'AvenirLTStd-Heavy': require('./assets/fonts/AvenirLTStd-Heavy.otf'),
         'AvenirLTStd-Light': require('./assets/fonts/AvenirLTStd-Light.otf'),

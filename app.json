@@ -2,7 +2,7 @@
   "expo": {
     "name": "UrbanShelter",
     "description": "UrbanShelter mobile app",
-    "slug": "urbanshelter",
+    "slug": "urbanshelter-dev",
     "privacy": "public",
     "sdkVersion": "29.0.0",
     "platforms": [
