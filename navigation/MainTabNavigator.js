@@ -14,7 +14,7 @@ const MainStack = createStackNavigator({
     View: ViewScreen
   
     },{
-        initialRouteName: 'Search',
+        initialRouteName: 'List',
     }
 );
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar, TouchableOpacity, ImageBackground, StyleSheet, ActivityIndicator} from "react-native";
 import {Text, Icon } from "native-base";
 import styles from "./styles";
+import {MapView} from 'expo';
 import {db} from '../../service/auth';
 
 class ListingPage extends Component {
@@ -22,7 +23,6 @@ class ListingPage extends Component {
 	async componentDidMount() {
 		var property = {}; 
 		await db.collection("property").doc(this.state.propertyId).get().then((querySnapshot) => {
-			console.log( querySnapshot.data());
 			this.setState({property : querySnapshot.data()});
 		}).catch(function(error) {
 			console.log("Error getting documents: ", error);
@@ -70,18 +70,34 @@ class ListingPage extends Component {
 								<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Private Room</Text></View>
 							</View>
 							<View>
-								<Image style={styles.map} source={require("../../assets/images/map.png")}/>
+								
+							<MapView
+								style={styles.map}
+								initialRegion={{
+								latitude: property.location.geopoint.latitude,
+								longitude: property.location.geopoint.longitude,
+								latitudeDelta: 0.0922,
+								longitudeDelta: 0.0421,
+								}}
+							>
+							<MapView.Marker
+								coordinate={{latitude: property.location.geopoint.latitude,
+								longitude: property.location.geopoint.longitude,}}
+								title={"marker.title"}
+							/>
+							</MapView>
+								{/* <Image style={styles.map} source={require("../../assets/images/map.png")}/> */}
 								<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Explore")} >
 									<Image style={styles.mapExplore} source={require("../../assets/images/explore.png")}/>
 								</TouchableOpacity>
 							</View>
 							<View style={[styles.homeFacilityOuter,{justifyContent:'flex-start',flex:0}]}>
 							{
-								property.amenities.room.map( (roomaminity , aminityKey) => {
+								property.amenities.inSuite.map( (roomaminity , aminityKey) => {
 									return (
 										<View key = {aminityKey} style={[styles.homeFacilityFlex,{marginRight:10}]}>
 											<Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/>
-											<Text style={styles.countText}>{roomaminity.name}</Text>
+											<Text style={styles.countText}>{roomaminity}</Text>
 										</View>
 									)
 								})
@@ -119,8 +135,8 @@ class ListingPage extends Component {
 									property.amenities.inBuilding.map( (animity , animityKey) => {
 										return (
 											<View key = {animityKey} style={styles.aminitiesBoxHoolder}>
-												<Image style={styles.aminitiesBoxImg} source={{uri : animity.icon}}/>
-												<Text style={styles.aminitiesText}>{animity.name}</Text>
+												{/* <Image style={styles.aminitiesBoxImg} source={{uri : animity.icon}}/> */}
+												<Text style={styles.aminitiesText}>{animity}</Text>
 											</View>
 										)
 									})

@@ -16,8 +16,7 @@ class HomeScreen extends Component {
 		}		
 	}
 
-	async componentWillUnmount() {
-		var that = this;  
+	async componentWillMount() {
 		var properties = [];
 		var MainData = {};
 		await db.collection("property").get().then((querySnapshot) => {
@@ -29,14 +28,12 @@ class HomeScreen extends Component {
 		}).catch(function(error) {
 			console.log("Error getting documents: ", error);
 		});
-		
 		this.setState({properties : properties });
 		this.setState({loading : false });
 	}
 
 
 	render() {
-
 		if(this.state.loading == true ) {
 			return (
 				<View style={[style.container, style.horizontal]}>
@@ -81,8 +78,8 @@ class HomeScreen extends Component {
 							<Image style={styles.homeImg} source={{uri:data.image}}/>							
 							<View style={styles.propertDesOuter}>
 								<View>
-									<Text style={styles.homePropertyName}>{data.address}</Text>
-									<Text style={styles.homePropertyDes}>{data.city}, {data.state}, {data.countryCode} </Text>
+									<Text style={styles.homePropertyName}>{data.location.address}</Text>
+									<Text style={styles.homePropertyDes}>{data.location.city}, {data.location.state}, {data.location.countryCode} </Text>
 								</View>
 								<View style={styles.priceButton}>
 									<Text style={styles.price}>${data.rent}/</Text><Text style={styles.permonth}>{data.rentUnit}</Text>									
@@ -91,9 +88,9 @@ class HomeScreen extends Component {
 							<View style={styles.homeCategoryBox}>
 							{
 								data.tags.map( (tag, tagKey) => {
-								return <Text key={tagKey} style={styles.homeCategorylebel}>{tag}</Text>
-								}
-							)}
+									return <Text key={tagKey} style={styles.homeCategorylebel}>{tag}</Text>
+								})
+							}
 							</View>
 							<View style={styles.homeFacilityOuter}>
 								<View style={styles.ratings}>
@@ -105,10 +102,10 @@ class HomeScreen extends Component {
 									<View><Text style={styles.countText}>(86)</Text></View>
 								</View>
 								{
-									data.amenities.room.map( (roomaminity , aminityKey) => {
+									data.amenities.inBuilding.map( (roomaminity , aminityKey) => {
 										return (
 											<View key = {aminityKey} style={styles.homeFacilityFlex}>
-												<Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/>
+												{/* <Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/> */}
 												<Text style={styles.countText}>{roomaminity.name}</Text>
 											</View>
 										)
