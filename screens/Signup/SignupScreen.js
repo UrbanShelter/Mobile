@@ -107,7 +107,7 @@ class LoginScreen extends Component {
 						</Item>
 					</View>
 					<TouchableOpacity  style={styles.btnOptionLogin} onPress = {this.signUpBtnHandler} >
-						<Image style={styles.btnimg} source={require("../../assets/images/btnimg.png")}/> 
+						<Image style={[styles.btnimg]} source={require("../../assets/images/btnimg.png")}/> 
 					</TouchableOpacity>
 
 					<View style={styles.orholder}>
@@ -116,9 +116,9 @@ class LoginScreen extends Component {
 					<TouchableOpacity  style={styles.btnOptionLogin} onPress={() => logIn()} >
 						<Image style={styles.btnimg} source={require("../../assets/images/signfacebook.png")}/> 
 					</TouchableOpacity>
-					<TouchableOpacity  style={styles.btnOptionLogin} onPress={this.onPress} >
+					{/* <TouchableOpacity  style={styles.btnOptionLogin} onPress={this.onPress} >
 						<Image style={styles.btnimg} source={require("../../assets/images/signtele.png")}/> 
-					</TouchableOpacity>
+					</TouchableOpacity> */}
 					<TouchableOpacity  style={styles.btnOptionLogin} onPress={this.signIn} >
 						<Image style={styles.btnimg} source={require("../../assets/images/signgoogle.png")}/> 
 					</TouchableOpacity>
@@ -131,7 +131,8 @@ class LoginScreen extends Component {
 						<View style={{flex:1,justifyContent:'center',alignItems:'center',padding:15,paddingTop:25}}>							 
 							<Text style={styles.recovery}>TERMS & CONDITIONS</Text>
 							<Text style={styles.recoveryDes}>
-								By clicking ‘accept’ button you agree to the UrbanShelter Terms and Conditions and Privacy Policy 
+								By clicking ‘accept’ button you agree to the UrbanShelter <Text style={styles.btex}> Terms and Conditions</Text>  
+								 and  <Text style={styles.btex}> Privacy Policy </Text>
 							</Text>
 						</View>
 						<View style={{flex: 1, flexDirection: 'row',marginTop:16}}>

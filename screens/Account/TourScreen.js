@@ -79,16 +79,16 @@ class TourScreen extends Component {
 								<Text style={styles.availablityPrefix}>Month</Text>
 							</View>
 							<View style={styles.ratings}>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>									
-								<Icon name='ios-star-half' style={{fontSize: 14, color: '#EF4F67'}}/>
+								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+								<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
 								<View><Text style={styles.countText}>(86)</Text></View>
 							</View>
 						</View>
 						<View style={[styles.priceButton,{height:'auto'}]}>
-							<Text style={[styles.price,{lineHeight:50,paddingLeft:15,paddingRight:15}]}>Check Availablity</Text>									
+							<Text style={[styles.price,{lineHeight:50,paddingLeft:15,paddingRight:15,color:'#fff'}]}>Check Availablity</Text>									
 						</View>
 
 					</View>

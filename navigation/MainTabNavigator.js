@@ -17,6 +17,50 @@ const MainStack = createStackNavigator({
         initialRouteName: 'List',
     }
 );
+const SaveStack = createStackNavigator({
+    Search: MainScreen,
+    List: ListScreen,
+    Tour: TourScreen,
+    Explore: ExploreScreen,
+    View: ViewScreen
+  
+    },{
+        initialRouteName: 'List',
+    }
+);
+const ProfileStack = createStackNavigator({
+    Search: MainScreen,
+    List: ListScreen,
+    Tour: TourScreen,
+    Explore: ExploreScreen,
+    View: ViewScreen
+  
+    },{
+        initialRouteName: 'List',
+    }
+);
+const StayStack = createStackNavigator({
+    Search: MainScreen,
+    List: ListScreen,
+    Tour: TourScreen,
+    Explore: ExploreScreen,
+    View: ViewScreen
+  
+    },{
+        initialRouteName: 'List',
+    }
+);
+const MessageStack = createStackNavigator({
+    Search: MainScreen,
+    List: ListScreen,
+    Tour: TourScreen,
+    Explore: ExploreScreen,
+    View: ViewScreen
+  
+    },{
+        initialRouteName: 'List',
+    }
+);
 
 
 MainStack.navigationOptions = ({ navigation }) => {
@@ -35,7 +79,11 @@ MainStack.navigationOptions = ({ navigation }) => {
 }
 
 const MainTabNavigator = createBottomTabNavigator({
-    Main :MainStack
+    EXPLORE :MainStack,
+    SAVED:SaveStack,
+    STAY:StayStack,
+    MESSAGES:MessageStack,
+    PROFILE:ProfileStack,
 })
 
 export default MainTabNavigator;

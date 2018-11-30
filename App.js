@@ -45,20 +45,18 @@ export default class App extends React.Component {
         /*require('./assets/images/robot-dev.png'),
         require('./assets/images/robot-prod.png'),*/
       ]),
-      Font.loadAsync({
-        'AvenirLTStd-Book': require('./assets/fonts/AvenirLTStd-Book.otf'),
-        'Raleway-regular-webfont': require('./assets/fonts/Lato-Regular.ttf'),
+      Font.loadAsync({        
+        'Raleway-regular-webfont': require('./assets/fonts/Raleway-Regular.ttf'),
         'Raleway-Black': require('./assets/fonts/Raleway-ExtraBold.ttf'),
+        'MontserratAlternates': require('./assets/fonts/MontserratAlternates-Light.ttf'),
+        'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
+        'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+        'Montserrat-SemiBold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
         'Lato-Bold': require('./assets/fonts/Lato-Bold.ttf'),
-        'Lato-regular-webfont': require('./assets/fonts/Raleway-Regular.ttf'),
-        'AvenirLTStd-Heavy': require('./assets/fonts/AvenirLTStd-Heavy.otf'),
-        'AvenirLTStd-Light': require('./assets/fonts/AvenirLTStd-Light.otf'),
-        'Gotham-book': require('./assets/fonts/ufonts.com_gotham-book.ttf'),
-        'HelveticaNeue': require('./assets/fonts/HelveticaNeue-Light.otf'),
+        'Lato-regular-webfont': require('./assets/fonts/Lato-Regular.ttf'),
         'Roboto': require("native-base/Fonts/Roboto.ttf"),
         'Roboto_medium': require("native-base/Fonts/Roboto_medium.ttf"),
-        'Ionicons': require("native-base/Fonts/Ionicons.ttf"),
-                
+        'Ionicons': require("native-base/Fonts/Ionicons.ttf"),                
       }),
     ]);
   };

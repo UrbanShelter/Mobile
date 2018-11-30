@@ -19,6 +19,7 @@
     "react-native-dialog": "^5.1.0",
     "react-native-fbsdk": "^0.8.0",
     "react-native-form-validator": "^0.2.0",
+    "react-native-keyboard-avoid": "^1.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.7.1",
     "react-native-loading-spinner-overlay": "^0.5.2",
     "react-native-paper": "^2.2.0",

@@ -50,25 +50,26 @@ export default {
 
   },
   flexOneline:{
-    flex: 0,
+    flex:0,
     flexDirection: 'row',
   },
   headerImg:{
     width:23,
     height:22,
   },
-  headtext:{
+  headtext1:{
     color: '#000',
-    fontSize: 22,
+    fontSize: 20,
     marginBottom: 10,
     textAlign: 'left',
-    fontFamily: 'Raleway-Black',
+    fontFamily: 'Montserrat-SemiBold',
     marginTop: 10,
   },
   homeCategoryBox:{
     flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    marginBottom: 10,
   },
   homeCategoryButton:{
     color: '#4A4A4A',
@@ -113,34 +114,33 @@ export default {
     marginBottom:15,
   },
   homePropertyName:{
-    color: '#000',
+    color: '#2A283B',
     fontSize: 20,
     textAlign: 'left',
-    fontFamily: 'Raleway-Black',
-    marginTop: 10,
+    fontFamily: 'Montserrat-Regular',   
   },
   homePropertyDes:{
-    color: '#000',
-    fontFamily: 'Lato-regular-webfont',
-    fontSize: 12,
+    color: '#2A283B',
+    fontSize: 18,
+    textAlign: 'left',
+    fontFamily: 'Montserrat-Regular',   
   },
-  price:{
-    color:'#fff',
-    fontFamily: 'Lato-Bold',
-    fontSize: 14,
-    textAlign:'center',
+  priceName:{
+    color:'#7F7D8A',
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 13,    
     lineHeight: 35,
   },
   permonth:{
     fontSize: 12,
     fontFamily: 'Lato-regular-webfont',
-    color:'#fff',
+    color:'#2A283B',
     marginTop:10,
     borderTopWidth:1
-  },
+  },  
   priceButton:{
     height:38,
-    backgroundColor:'#FC5148',
+    backgroundColor:'#4F3BF6',
     borderRadius:5,
     flex: 0,
     flexDirection: 'row',
@@ -359,7 +359,7 @@ export default {
   redText:{
     fontSize: 14,
     fontFamily: 'Lato-regular-webfont',
-    color:'#EF4F67',
+    color:'#4F3BF6',
   },
   media:{
     flex:0,
@@ -404,7 +404,7 @@ export default {
   },
   mediapriceButton:{
     height:38,
-    backgroundColor:'#FC5148',
+    backgroundColor:'#4F3BF6',
     borderRadius:5,
     flex:0,
     flexDirection:'row',
@@ -445,7 +445,7 @@ export default {
   },
   tabListActive:{
     borderLeftWidth:3,
-    borderLeftColor:'#FC5148',
+    borderLeftColor:'#4F3BF6',
     backgroundColor:'#fff'
   },
   tourPadding:{
@@ -562,6 +562,29 @@ export default {
     marginLeft:0,
     paddingLeft:0    
   },
-  
+  searchbar:{    
+    flex:1,
+    flexDirection:'row',
+    padding:5,    
+    backgroundColor:'#F5F5F5',
+    alignItems:'center', 
+    borderRadius:4,
+    maxWidth:'95%'   
+  },
+  // whiteshadow:{
+  //   position:'absolute',
+  //   left:0,
+  //   top:180,
+  //   height:200,
+  //   right:0,
+  //   shadowColor: 'rgba(0, 0, 0, 0.15)',    
+  //   borderRradius: 15,
+  //   shadowOffset: { width: 0, height: 2 },
+  //   shadowOpacity: 1,
+  //   shadowRadius: 22, 
+  //   elevation: 5, 
+  //   backgroundColor:'#fff',
+  //   width:'90%'
+  // }
 
 };

@@ -18,27 +18,56 @@ export default {
     width:'100%',
     height:46 ,
     borderRadius:3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 2, 
+    elevation: 5,  
  },
  headtext:{  
   color:'#000',
   fontSize:24,
   marginBottom:10,
   textAlign:'left',
-  fontFamily:'Raleway-regular-webfont',
-   fontWeight:'300'
+  fontFamily:'Montserrat-Bold',
+   fontWeight:'bold'
   },
   headescriptionText:{  
     fontSize:12,
     color:'#000000',
     fontWeight:'700',
-    fontFamily:'Lato-regular-webfont',
+    fontFamily:'Montserrat-SemiBold',
+    textAlign:'left',
+    lineHeight:20,
+    marginBottom:5
+  },
+  headtext2:{
+    color:'#000',
+    fontSize:24,
+    marginBottom:10,
+    textAlign:'left',
+    fontFamily:'Lato-Bold',
+     fontWeight:'bold'
+  },
+  headescriptionText2:{
+    fontSize:12,
+    color:'#000000',
+    fontWeight:'700',
+    fontFamily:'Lato-Bold',
     textAlign:'left',
     lineHeight:20,
     marginBottom:5
   },
   footerbtn:{       
-    color:'#F55057',
-    fontFamily:'Lato-regular-webfont',
+    color:'#4F3BF6',
+    fontFamily:'Montserrat-SemiBold',
+    fontWeight:'700',
+    fontSize:14,
+    textAlign:'center',
+  },
+  footerbtn2:{       
+    color:'#4F3BF6',
+    fontFamily:'Lato-Bold',
     fontWeight:'700',
     fontSize:14,
     textAlign:'center',
@@ -52,17 +81,19 @@ export default {
   },
   notRegister:{
     textAlign:'center',
-    fontFamily:'Raleway-regular-webfont',
+    fontFamily:'Lato-regular-webfont',
     fontWeight:'300',
     fontSize:14,
     marginBottom: 10,
+    color:'#000000'
   },
   inputStyle:{
     borderWidth:1,
-    borderColor:'#d3d4d8',
+    borderColor:'#D3D4D8',
     borderRadius:3,
     fontSize:13,
-    paddingLeft:15
+    paddingLeft:15,
+    
   },
   borderInput:{
     borderBottomWidth:0,
@@ -84,8 +115,14 @@ export default {
     fontSize:14,
     color:'#000000',
     fontWeight:'700',
-    fontFamily:'Lato-regular-webfont',
+    fontFamily:'Lato-Bold',
     marginBottom:10,
+  },
+  btex:{
+    color:'#98a8bd',
+    fontFamily:'Lato-Bold',
+    fontWeight:'bold',
+    fontSize:12,   
   },
   recoveryDes:{
     color:'#98a8bd',
@@ -113,7 +150,7 @@ export default {
     fontSize:12,
     color:'#000000',
     fontWeight:'700',
-    fontFamily:'Lato-regular-webfont',
+    fontFamily:'Montserrat-SemiBold',
     textAlign:'left',
     lineHeight:16
 },

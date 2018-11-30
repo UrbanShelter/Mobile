@@ -18,7 +18,7 @@ export default {
   },
   icontop3:{
      marginBottom:20,
-     width:105,
+     width:136,
      height:120
   },
   icontop4:{
@@ -46,8 +46,8 @@ export default {
      fontSize:20,
      marginBottom:10,
      textAlign:'center',
-     fontFamily:'Raleway-regular-webfont',
-      fontWeight:'300'
+     fontFamily:'Montserrat-Bold',
+      fontWeight:'bold'
   },
   paragraph:{
      fontSize:14,
@@ -84,12 +84,26 @@ export default {
   },
   btnimg:{
       marginTop:30,
-      width:300,
-      height:46 
+      width:320,
+      height:46 ,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.9,
+      shadowRadius: 2, 
+      elevation: 5, 
+  },
+  homelogo:{
+    width:117,
+    height:146
   },
   iconlogo:{      
       width:150,
       height:52
+  },
+  logoname:{
+    fontSize:26,
+    color:'#000',
+    fontFamily:'MontserratAlternates'
   },
   logwrap:{
       position:'absolute',
@@ -99,8 +113,8 @@ export default {
   },
   loginbtn:{       
       backgroundColor:'transparent', 
-      color:'#F55057',
-      fontFamily:'Lato-regular-webfont',
+      color:'#4F3BF6',
+      fontFamily:'Montserrat-SemiBold',
       fontWeight:'700',
       fontSize:14     
   },
@@ -124,18 +138,20 @@ export default {
   },
   skipbtntxt:{
       textAlign:'center',
-      color:'#F55057',
+      color:'#4F3BF6',
       fontSize:14,
       opacity:0.5,
-       lineHeight:30
+       lineHeight:30,
+       fontFamily:'Montserrat-SemiBold'
   },
   nextbtntxt:{
       textAlign:'center',
-      color:'#F55057',
+      color:'#4F3BF6',
       fontSize:14,
        lineHeight:30,
         borderLeftWidth:1,
-      borderColor:'#e6ecf0'
+      borderColor:'#e6ecf0',
+      fontFamily:'Montserrat-SemiBold'
   },
   WebViewStyle:
     {

@@ -24,14 +24,15 @@ class LoginScreen extends Component {
 		return (
 				<View style={styles.signinbg}>
 					<StatusBar backgroundColor={'transparent'} translucent />
-					<Text style={styles.headtext}>Log In</Text>
-					<Text style={styles.headescriptionText}>LOG IN TO START FINDING HOMES!</Text>
+					<View style={styles.arrowBtn}></View>
+					<Text style={styles.headtext2}>Log In</Text>
+					<Text style={styles.headescriptionText2}>LOG IN TO START FINDING HOMES!</Text>
 					<TouchableOpacity  style={styles.btnOptionLogin} onPress={this.onPress} >
 						<Image style={styles.btnimg} source={require("../../assets/images/facebook.png")}/> 
 					</TouchableOpacity>
-					<TouchableOpacity  style={styles.btnOptionLogin} onPress={this.onPress} >
+					{/* <TouchableOpacity  style={styles.btnOptionLogin} onPress={this.onPress} >
 						<Image style={styles.btnimg} source={require("../../assets/images/telegram.png")}/> 
-					</TouchableOpacity>
+					</TouchableOpacity> */}
 					<TouchableOpacity  style={styles.btnOptionLogin} onPress={this.onPress} >
 						<Image style={styles.btnimg} source={require("../../assets/images/google.png")}/> 
 					</TouchableOpacity>
@@ -40,7 +41,7 @@ class LoginScreen extends Component {
 					</TouchableOpacity>
 					<View style={styles.loginFooter}>
 						<Text style={styles.notRegister}>Haven’t registered yet?</Text>
-						<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Signup")} ><Text style={styles.footerbtn} uppercase={true}> SIGN UP </Text></TouchableOpacity>
+						<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Signup")} ><Text style={styles.footerbtn2} uppercase={true}> SIGN UP </Text></TouchableOpacity>
 					</View>
 				</View>
 		);

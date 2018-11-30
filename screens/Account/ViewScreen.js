@@ -169,11 +169,11 @@ class ListingPage extends Component {
 								<View style={styles.reviewRating}>
 									<Text style={styles.redText}>View all 86 reviews</Text>
 									<View style={styles.ratings}>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>									
-										<Icon name='ios-star-half' style={{fontSize: 14, color: '#EF4F67'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+										<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
 									</View>
 								</View>					
 							</View>
@@ -197,11 +197,11 @@ class ListingPage extends Component {
 								<View style={styles.reviewRating}>
 									<Text style={[styles.redText,{color:'#4A4A4A',fontFamily: 'Lato-Bold'}]}>View 2 reccomendations</Text>
 									<View style={styles.ratings}>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>									
-										<Icon name='ios-star-half' style={{fontSize: 14, color: '#EF4F67'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+										<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
 									</View>
 								</View>					
 							</View>
@@ -222,17 +222,17 @@ class ListingPage extends Component {
 											<Text style={styles.homePropertyName}> 85 Young St </Text>
 											<Text style={styles.homePropertyDes}> Downtown, Kitchener, ON </Text>
 										</View>
-										<View style={styles.priceButton}>
+										{/* <View style={styles.priceButton}>
 											<Text style={styles.price}>$1980/</Text><Text style={styles.permonth}>Month</Text>									
-										</View>
+										</View> */}
 									</View>
 									<View style={[styles.homeFacilityOuter,{marginTop:5}]}>
 										<View style={styles.ratings}>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>									
-											<Icon name='ios-star-half' style={{fontSize: 14, color: '#EF4F67'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+											<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
 											<View><Text style={styles.countText}>(86)</Text></View>
 										</View>
 										<View style={styles.homeFacilityFlex}>
@@ -258,17 +258,17 @@ class ListingPage extends Component {
 											<Text style={styles.homePropertyName}> 85 Young St </Text>
 											<Text style={styles.homePropertyDes}> Downtown, Kitchener, ON </Text>
 										</View>
-										<View style={styles.priceButton}>
+										{/* <View style={styles.priceButton}>
 											<Text style={styles.price}>$1980/</Text><Text style={styles.permonth}>Month</Text>									
-										</View>
+										</View> */}
 									</View>
 									<View style={[styles.homeFacilityOuter,{marginTop:5}]}>
 										<View style={styles.ratings}>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>									
-											<Icon name='ios-star-half' style={{fontSize: 14, color: '#EF4F67'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+											<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
 											<View><Text style={styles.countText}>(86)</Text></View>
 										</View>
 										<View style={styles.homeFacilityFlex}>
@@ -294,17 +294,17 @@ class ListingPage extends Component {
 											<Text style={styles.homePropertyName}> 85 Young St </Text>
 											<Text style={styles.homePropertyDes}> Downtown, Kitchener, ON </Text>
 										</View>
-										<View style={styles.priceButton}>
+										{/* <View style={styles.priceButton}>
 											<Text style={styles.price}>$1980/</Text><Text style={styles.permonth}>Month</Text>									
-										</View>
+										</View> */}
 									</View>
 									<View style={[styles.homeFacilityOuter,{marginTop:5}]}>
 										<View style={styles.ratings}>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>									
-											<Icon name='ios-star-half' style={{fontSize: 14, color: '#EF4F67'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+											<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
 											<View><Text style={styles.countText}>(86)</Text></View>
 										</View>
 										<View style={styles.homeFacilityFlex}>
@@ -328,16 +328,16 @@ class ListingPage extends Component {
 								<Text style={styles.availablityPrefix}>Month</Text>
 							</View>
 							<View style={styles.ratings}>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#EF4F67'}}/>									
-								<Icon name='ios-star-half' style={{fontSize: 14, color: '#EF4F67'}}/>
+								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+								<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
 								<View><Text style={styles.countText}>(86)</Text></View>
 							</View>
 						</View>
 						<View style={[styles.priceButton,{height:'auto'}]}>
-							<Text style={[styles.price,{lineHeight:50,paddingLeft:15,paddingRight:15}]}>Apply for Rental</Text>									
+							<Text style={[styles.price,{lineHeight:50,paddingLeft:15,paddingRight:15,color:'#fff'}]}>Apply for Rental</Text>									
 						</View>
 
 					</View>

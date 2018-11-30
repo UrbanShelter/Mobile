@@ -71,8 +71,8 @@ class LoginScreenTwo extends Component {
 					<StatusBar backgroundColor={'transparent'} translucent />
 					<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Login")} ><Image style={styles.arrowBtn} source={require("../../assets/images/arrow.png")}/></TouchableOpacity> 
 					<KeyboardAvoidingView behavior="padding" style={{ width: '100%', borderWidth: 0,}}>
-						<Text style={styles.headtext}>Log In</Text>
-						<Text style={styles.headescriptionText}>LOG IN WITH EMAIL</Text>
+						<Text style={styles.headtext2}>Log In</Text>
+						<Text style={styles.headescriptionText2}>LOG IN WITH EMAIL</Text>
 						<View style={{width:'100%'}}>
 							<Item style={styles.borderInput}>
 								<Input style={styles.inputStyle} placeholder="Email Address" onChangeText={(text) => this.setState({email:text})} keyboardType="email-address" placeholderTextColor="#9b9b9b" />
@@ -88,7 +88,7 @@ class LoginScreenTwo extends Component {
 					<View style={styles.loginFooter}>
 						<Text style={styles.notRegister}>Forgot Password</Text>
 						{/* <TouchableOpacity  onPress={()=>this.props.navigation.navigate("ForgotPass")}><Text style={styles.footerbtn} uppercase={true}> CLICK HERE </Text></TouchableOpacity> */}
-						<TouchableOpacity  onPress={()=>logOut()}><Text style={styles.footerbtn} uppercase={true}> CLICK HERE </Text></TouchableOpacity>
+						<TouchableOpacity  onPress={()=>logOut()}><Text style={styles.footerbtn2} uppercase={true}> CLICK HERE </Text></TouchableOpacity>
 					</View>
 				</View>
 					

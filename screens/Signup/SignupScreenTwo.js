@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, View, StatusBar, TouchableOpacity} from "react-native";
+import { Image, View, StatusBar,KeyboardAvoidingView, TouchableOpacity} from "react-native";
 import {Text, Item, Input } from "native-base";
 import styles from "./styles";
 import {saveData, storeItem} from '../../service/service';
@@ -17,7 +17,7 @@ class SignupScreenTwo extends Component {
 			lastName : ''
 		}
 
-	}
+	}	
 
 	saveDetails = async () => {
 		var obj = {
@@ -46,13 +46,14 @@ class SignupScreenTwo extends Component {
 		
 
 		return (
+			<KeyboardAvoidingView style={{flex:1}}  behavior="padding" enabled>
 				<View style={styles.signinbg}>					
 					<StatusBar backgroundColor={'transparent'} translucent />
 					<Text style={styles.headtext}>Continue Signing Up</Text>
 					<View style={{width:'100%',marginBottom:15}}>
 						<Text style={styles.labeltext}>FIRST NAME</Text>
 						<Item style={styles.borderInput}>							
-							<Input onChangeText={(text)=>{this.setState({firstName:text})}} style={styles.inputStyle} placeholder="First Name" placeholderTextColor="#9b9b9b" />
+							<Input ref={(ref) => this.titleInput = ref} onChangeText={(text)=>{this.setState({firstName:text})}} style={styles.inputStyle} placeholder="First Name" placeholderTextColor="#9b9b9b" />
 						</Item>
 					</View>
 					<View style={{width:'100%',marginBottom:15}}>
@@ -109,6 +110,7 @@ class SignupScreenTwo extends Component {
 
 					
 				</View>
+				</KeyboardAvoidingView>
 		);
 	}
 }
