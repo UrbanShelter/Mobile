@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Image, Modal, View, ScrollView, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
+import { Image, View, ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
 import { Text, Icon,Input } from "native-base";
 import styles from "./styles";
 import {db, logOut} from '../../service/auth';
 
-class HomeScreen extends Component {
+
+class SavedScreen extends Component {
 	static navigationOptions = {
 		header: null,
 	};
@@ -14,19 +15,9 @@ class HomeScreen extends Component {
 			loading : true,
 			properties : []
 		}		
-	}
+    }
 
-	  state = {
-	  	modalVisible: false,
-	  };
-
-	  setModalVisible(visible) {
-	  	this.setState({
-	  		modalVisible: visible
-	  	});
-	  }
-
-	async componentWillMount() {
+    	async componentWillMount() {
 		var properties = [];
 		var MainData = {};
 		await db.collection("property").get().then((querySnapshot) => {
@@ -44,62 +35,47 @@ class HomeScreen extends Component {
 
 
 	render() {
-		if(this.state.loading == true ) {
-			return (
-				<View style={[style.container, style.horizontal]}>
-					<ActivityIndicator size="large" color="#F55057" />
+        return(
+			<View style={styles.HomeScreen}>			
+				<View style={[styles.relativeHeader,{marginBottom:20}]}>
+                    <View style={styles.signinbg}>					
+                        <StatusBar backgroundColor={'transparent'} translucent />
+                        <Text style={styles.headtext}>Saved</Text>
+                    </View>
+                    <View style={styles.flexOneline}>							
+                        <TouchableOpacity><Image style={[styles.headerImg,{marginTop:15}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
+                    </View>	
 				</View>
-			);
-		} else {
-			console.log(this.state.properties);
-			return (
-				<View style={styles.HomeScreen}>			
-					<StatusBar backgroundColor="#fff" barStyle="dark-content"/>
-					<View style={[styles.relativeHeader,{marginTop:40,marginBottom:10}]}>
-
-						<View style={styles.searchbar}>
-						<TouchableOpacity>
-							<Image style={styles.headerImg} source={require("../../assets/images/search_inactive.png")}/>
-						</TouchableOpacity>
-						<Input style={[styles.inputStyle,{borderWidth:0,borderColor:'transparent'}]} placeholder="Search Location"  placeholderTextColor="#9b9b9b" />
-						</View>
-						<View style={styles.flexOneline}>							
-							<TouchableOpacity onPress={()=> {
-								this.props.navigation.navigate("Filter")}} >
-								<Image style={[styles.headerImg,{marginLeft:5}]} source={require("../../assets/images/Shape.png")}/>
-							</TouchableOpacity>
-						</View>	
+                <ScrollView showsVerticalScrollIndicator={false}>
+					<View style={{position:'relative',paddingBottom:30}}>
+						<Text style={[styles.listText,{fontSize:20,}]}>Today </Text>
+						<View elevation={1} style={styles.bar}></View>
 					</View>
-					<ScrollView showsVerticalScrollIndicator={false}>						
-						<View style={styles.homeCategoryBox}>
-							<Text style={styles.homeCategoryButton}> From</Text>
-							<Text style={styles.homeCategoryButton}> Home Type</Text>
-							<Text style={styles.homeCategoryButton}> Rooms</Text> 
-						</View>						
-						<Text style={styles.headtext1}>Home Rentals in Waterloo </Text>
-						{this.state.properties.map((data, key) => 
-							<View key={key}>
-							<TouchableOpacity style={styles.homeImgCat} onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
+
+                	{this.state.properties.map((data, key) => 
+					<View key={key}>
+						{/* <TouchableOpacity style={styles.homeImgCat} onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} > */}
 							<View style={styles.imgeOver}>
 								<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
 								<Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/>
 							</View>
-							{/* <Image style={styles.homeImg} source={require("../../assets/images/flat-with-yellow.png")}/> */}
 						<View style={{position:'relative', height:500}}>	
-							<Image style={styles.homeImg} source={{uri:data.image}}/>	
+							<Image style={[styles.homeImg,{position:'relative'}]} source={{uri:data.image}}/>	
+
+
 							<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
-									<View style={[styles.Buttonpr,{position:'relative'}]}>
-										<View style={styles.priceBar}></View>
-										<Text style={styles.priceName}>${data.rent}/{data.rentUnit}</Text>									
-									</View>					
+								<View style={[styles.Buttonpr,{position:'relative'}]}>
+									<View style={styles.priceBar}></View>
+									<Text style={styles.priceName}>${data.rent}/{data.rentUnit}</Text>
+									<Text style={styles.apartmentText}> APARTMENT</Text>								
+								</View>					
 								<View style={styles.propertDesOuter}>								
 									<View>
 										<Text style={styles.homePropertyName}>{data.location.address} • {data.location.city}, {data.location.state}, {data.location.countryCode}</Text>
-										{/* <Text style={styles.homePropertyDes}>{data.location.city}, {data.location.state}, {data.location.countryCode} </Text> */}
 									</View>
 									
 								</View>
-								<View style={styles.homeCategoryBox}>
+								<View style={[styles.homeCategoryBox,{paddingTop:10}]}>
 								{
 									data.tags.map( (tag, tagKey) => {
 										return <Text key={tagKey} style={styles.homeCategorylebel}>{tag}</Text>
@@ -127,7 +103,7 @@ class HomeScreen extends Component {
 										data.amenities.inBuilding.map( (roomaminity , aminityKey) => {
 											return (
 												<View key = {aminityKey} style={styles.homeFacilityFlex}>
-													{/* <Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/> */}
+													
 													<Text style={styles.countText}>{roomaminity.name}</Text>
 												</View>
 											)
@@ -136,28 +112,26 @@ class HomeScreen extends Component {
 								</View>
 							</View>
 						</View>
-						</TouchableOpacity> 
+						{/* </TouchableOpacity>  */}
 						</View>
 						)}
-					</ScrollView>
-				</View>
-			);
-		}
-
-		
-	}
+                </ScrollView>
+            </View>
+        );
+    }
 }
-const style = StyleSheet.create({
-	container: {
-	  flex: 1,
-	  justifyContent: 'center'
-	},
-	horizontal: {
-	  flexDirection: 'row',
-	  justifyContent: 'space-around',
-	  padding: 10
-	}
-  })
 
-export default HomeScreen;
+    const style = StyleSheet.create({
+        container: {
+            flex: 1,
+            justifyContent: 'center'
+        },
+        horizontal: {
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            padding: 10
+        }
+    })
 
+
+    export default SavedScreen;

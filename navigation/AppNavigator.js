@@ -8,9 +8,20 @@ import LoginScreen from '../screens/Signup/LoginScreen';
 import LoginMain from '../screens/Signup/LoginMainScreen';
 import ForgotPass from '../screens/Signup/ForgotPassScreen';
 
+import ListScreen from '../screens/Account/ListScreen';
+import TourScreen from '../screens/Account/TourScreen';
+import ViewScreen from '../screens/Account/ViewScreen';
+
+import SavedScreen from '../screens/Account/SavedScreen';
+import ExploreScreen from '../screens/Account/ExploreScreen';
+
+import LandlordScreen from '../screens/Account/LandlordScreen';
+
+import MessageScreen from '../screens/Account/MessageScreen';
 
 
 const WelcomeStack = createStackNavigator({
+
 	Welcome: WelcomeScreen,
 	Signup: SignupScreen,
 	SignupTwo: SignupScreenTwo,
@@ -26,8 +37,9 @@ const WelcomeStack = createStackNavigator({
 
 
 export default createSwitchNavigator({
+
 	Welcome: WelcomeStack,
-	Main: MainTabNavigator
+	Main: MainTabNavigator,
 });
 
 

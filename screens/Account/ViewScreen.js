@@ -14,10 +14,11 @@ class ListingPage extends Component {
 		this.state = {
 			propertyId : this.props.navigation.getParam('propertyId'),
 			property : '',
-			loading : true
+			loading : true,
 		}
 		
 	}
+
 
 
 	async componentDidMount() {
@@ -61,32 +62,27 @@ class ListingPage extends Component {
 								<Image style={styles.tour} source={require("../../assets/images/tour.png")}/>
 							</TouchableOpacity>
 						</ImageBackground>
-						<View style={styles.listBody}>
+						<View style={[styles.listBody]}>
 							<View style={styles.propertDesOuter}>
 								<View>
-									<Text style={styles.homePropertyName}>{property.address}</Text>
-									<Text style={styles.homePropertyDes}> {property.city}, {property.state}, {property.country_code} </Text>
+									<Text style={styles.homePropertyName}>1 Victoria St S • Downtown, Kitchener, US</Text>
 								</View>
-								<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Private Room</Text></View>
 							</View>
+
 							<View>
-								
-							<MapView
-								style={styles.map}
-								initialRegion={{
-								latitude: property.location.geopoint.latitude,
-								longitude: property.location.geopoint.longitude,
-								latitudeDelta: 0.0922,
-								longitudeDelta: 0.0421,
-								}}
-							>
-							<MapView.Marker
-								coordinate={{latitude: property.location.geopoint.latitude,
-								longitude: property.location.geopoint.longitude,}}
-								title={"marker.title"}
-							/>
-							</MapView>
-								{/* <Image style={styles.map} source={require("../../assets/images/map.png")}/> */}
+								<MapView
+									style={styles.map}
+									initialRegion={{
+									latitude: property.location.geopoint.latitude,
+									longitude: property.location.geopoint.longitude,
+									latitudeDelta: 0.0922,
+									longitudeDelta: 0.0421,
+									}} >
+								<MapView.Marker
+									coordinate={{latitude: property.location.geopoint.latitude,
+									longitude: property.location.geopoint.longitude,}}
+									title={"marker.title"} />
+								</MapView>
 								<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Explore")} >
 									<Image style={styles.mapExplore} source={require("../../assets/images/explore.png")}/>
 								</TouchableOpacity>
@@ -129,7 +125,7 @@ class ListingPage extends Component {
 								<Text style={styles.listText}>Available form {property.availableFrom}  |  12+ months min </Text>
 							</View>
 							<View style={styles.hrBox}>
-								<Text style={styles.hrBoxHeading}>Amenities</Text>
+								<Text style={styles.hrBoxHeading}>In-Unit Amenities</Text>
 								<View style={styles.aminitiesBox}>
 								{
 									property.amenities.inBuilding.map( (animity , animityKey) => {
@@ -144,11 +140,26 @@ class ListingPage extends Component {
 								</View>
 							</View>
 							<View style={styles.hrBox}>
-								<Text style={styles.hrBoxHeading}>Precautions</Text>
-								<View style={[styles.aminitiesBoxHoolder,{width:'100%'}]}>
+								<Text style={styles.hrBoxHeading}>In-Building Amenities</Text>
+								<View style={styles.aminitiesBox}>
+								{
+									property.amenities.inBuilding.map( (animity , animityKey) => {
+										return (
+											<View key = {animityKey} style={styles.aminitiesBoxHoolder}>
+												{/* <Image style={styles.aminitiesBoxImg} source={{uri : animity.icon}}/> */}
+												<Text style={styles.aminitiesText}>{animity}</Text>
+											</View>
+										)
+									})
+								}
+								</View>
+							</View>
+							<View style={styles.hrBox}>
+								<Text style={styles.hrBoxHeading}>Deposits</Text>
+								{/* <View style={[styles.aminitiesBoxHoolder,{width:'100%'}]}>
 									<Image style={styles.PrecautionsImg} source={require("../../assets/images/pet.png")}/>
 									<Text style={styles.PrecautionsText}>Pet Policy: <Text style={styles.PrecautionsTextBold}>Pets Allowed</Text></Text>
-								</View>
+								</View> */}
 								<View style={[styles.aminitiesBoxHoolder,{width:'100%'}]}>
 									<Image style={styles.PrecautionsImg} source={require("../../assets/images/deposit.png")}/>
 									<Text style={styles.PrecautionsText}>Deposit: <Text style={styles.PrecautionsTextBold}>$3900</Text></Text>
@@ -166,8 +177,10 @@ class ListingPage extends Component {
 								<Text style={styles.PrecautionsText}>
 									The place was nice and comfy. The landlord was easy to work with. There is a really nice diner down the road. A TV would have been blessed.
 								</Text>
-								<View style={styles.reviewRating}>
-									<Text style={styles.redText}>View all 86 reviews</Text>
+								<View style={styles.reviewRating} >
+									<TouchableOpacity  onPress={()=> {this.props.navigation.navigate("Review")}}>
+										<Text style={styles.redText}>View all 86 reviews</Text>
+									</TouchableOpacity>
 									<View style={styles.ratings}>
 										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
 										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
@@ -178,7 +191,10 @@ class ListingPage extends Component {
 								</View>					
 							</View>
 							<View style={styles.hrBox}>
-								<Text style={[styles.hrBoxHeading,{marginBottom:0}]}> Cancellation Policy </Text>
+								<TouchableOpacity  onPress={()=> {
+								this.props.navigation.navigate("Report")}} >
+									<Text style={[styles.hrBoxHeading,{marginBottom:0}]}> Report this Listing </Text>
+								</TouchableOpacity>
 							</View>
 							<View style={styles.hrBox}>
 								<Text style={styles.hrBoxHeading}>Landlord</Text>
@@ -206,7 +222,7 @@ class ListingPage extends Component {
 								</View>					
 							</View>
 							<View style={styles.hrBox}>
-								<Text style={[styles.hrBoxHeading,{marginBottom:0}]}> Report this Listing </Text>
+								<Text style={[styles.hrBoxHeading,{marginBottom:0}]}> Schedule a Viewing </Text>
 							</View>
 							<ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{marginBottom:15}}>
 								<TouchableOpacity style={[styles.homeImgCat,{marginRight:10}]} onPress={()=>this.props.navigation.navigate("Listing")} >

@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 28594,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://e4-b22.raj-das.mobile.exp.direct",
   "packagerNgrokUrl": "https://packager.e4-b22.raj-das.mobile.exp.direct",
-  "ngrokPid": 28616
+  "ngrokPid": 9344
 }

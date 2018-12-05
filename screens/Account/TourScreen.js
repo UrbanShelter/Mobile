@@ -21,18 +21,22 @@ class TourScreen extends Component {
 	render() {
 		return (
 				<View style={styles.ExploreScreen}>					
-					<StatusBar backgroundColor="#fff" barStyle="dark-content"/>
+					<StatusBar backgroundColor="#ffffff"/>
 					
-					<View style={[styles.relativeHeader,{paddingRight:20,paddingLeft:20}]}>
+					<View elevation={5} style={[styles.relativeHeader,{paddingRight:20,paddingLeft:20,}]}>
 						<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
 							<Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
 						</TouchableOpacity>
 						<View style={styles.flexOneline}>
-							<Image style={styles.headerImg} source={require("../../assets/images/heart-black.png")}/>
-							<Image style={[styles.headerImg,{marginLeft:10}]} source={require("../../assets/images/share-black.png")}/>
+							<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
+								<Image style={styles.headerImg} source={require("../../assets/images/heart-black.png")}/>
+							</TouchableOpacity>
+							<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
+								<Image style={[styles.headerImg,{marginLeft:10}]} source={require("../../assets/images/share-black.png")}/>
+							</TouchableOpacity>
 						</View>	
 					</View>
-					<ScrollView showsVerticalScrollIndicator={false}>
+					<ScrollView showsVerticalScrollIndicator={false} style={[{paddingTop:30}]}>
 						<View style={styles.tourPadding}>												
 							<Text style={[styles.homePropertyName,{marginBottom:5}]}>Living Room </Text>
 							<Text style={styles.listText}> 
@@ -42,7 +46,15 @@ class TourScreen extends Component {
 							<Image style={styles.tourImg} source={require("../../assets/images/image2.png")}/>
 							<Image style={styles.tourImg} source={require("../../assets/images/flat-with-yellow.png")}/>					
 						</View>	
-
+						<View style={styles.tourPadding}>												
+							<Text style={[styles.homePropertyName,{marginBottom:5}]}>Layout </Text>
+							<Text style={styles.listText}> 
+							Netflix, DVD Player, Air conditioner, Sofa, Dining table, Stand lighting 
+							</Text>
+							<Image style={styles.tourImg} source={require("../../assets/images/flat-with-yellow.png")}/>	
+							<Image style={styles.tourImg} source={require("../../assets/images/image2.png")}/>
+							<Image style={styles.tourImg} source={require("../../assets/images/flat-with-yellow.png")}/>					
+						</View>	
 						<View style={styles.tourPadding}>												
 							<Text style={[styles.homePropertyName,{marginBottom:5}]}>Full Kitchen </Text>
 							<Text style={styles.listText}> 
@@ -67,6 +79,13 @@ class TourScreen extends Component {
 							<Text style={styles.listText}> 
 							Sound system, Rain Shower
 							</Text>
+							<Image style={styles.tourImg} source={require("../../assets/images/flat-with-yellow.png")}/>	
+							<Image style={styles.tourImg} source={require("../../assets/images/image2.png")}/>
+							<Image style={styles.tourImg} source={require("../../assets/images/flat-with-yellow.png")}/>					
+						</View>
+						<View style={styles.tourPadding}>												
+							<Text style={[styles.homePropertyName,{marginBottom:5}]}>Patio</Text>
+							<Text style={styles.listText}></Text>
 							<Image style={styles.tourImg} source={require("../../assets/images/flat-with-yellow.png")}/>	
 							<Image style={styles.tourImg} source={require("../../assets/images/image2.png")}/>
 							<Image style={styles.tourImg} source={require("../../assets/images/flat-with-yellow.png")}/>					

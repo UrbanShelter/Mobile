@@ -4,6 +4,13 @@ import ListScreen from '../screens/Account/ListScreen';
 import ViewScreen from '../screens/Account/ViewScreen';
 import ExploreScreen from '../screens/Account/ExploreScreen';
 import TourScreen from '../screens/Account/TourScreen';
+import SavedScreen from '../screens/Account/SavedScreen';
+import MessageScreen from '../screens/Account/MessageScreen';
+import MessageInnerScreen from '../screens/Account/MessageInnerScreen';
+import FilterScreen from '../screens/Account/FilterScreen';
+import ReportScreen from '../screens/Account/ReportScreen';
+import ReviewScreen from '../screens/Account/ReviewScreen';
+
 
 
 const MainStack = createStackNavigator({
@@ -11,7 +18,12 @@ const MainStack = createStackNavigator({
     List: ListScreen,
     Tour: TourScreen,
     Explore: ExploreScreen,
-    View: ViewScreen
+    View: ViewScreen,
+    Saved: SavedScreen,
+    Message: MessageScreen,
+    Filter: FilterScreen,
+    Report: ReportScreen,
+    Review: ReviewScreen
   
     },{
         initialRouteName: 'List',
@@ -22,10 +34,12 @@ const SaveStack = createStackNavigator({
     List: ListScreen,
     Tour: TourScreen,
     Explore: ExploreScreen,
-    View: ViewScreen
+    View: ViewScreen,
+    Saved: SavedScreen,
+    Message: MessageScreen,
   
     },{
-        initialRouteName: 'List',
+        initialRouteName: 'Saved',
     }
 );
 const ProfileStack = createStackNavigator({
@@ -33,7 +47,9 @@ const ProfileStack = createStackNavigator({
     List: ListScreen,
     Tour: TourScreen,
     Explore: ExploreScreen,
-    View: ViewScreen
+    View: ViewScreen,
+    Saved: SavedScreen,
+    Message: MessageScreen,
   
     },{
         initialRouteName: 'List',
@@ -44,7 +60,9 @@ const StayStack = createStackNavigator({
     List: ListScreen,
     Tour: TourScreen,
     Explore: ExploreScreen,
-    View: ViewScreen
+    View: ViewScreen,
+    Saved: SavedScreen,
+    Message: MessageScreen,
   
     },{
         initialRouteName: 'List',
@@ -55,10 +73,13 @@ const MessageStack = createStackNavigator({
     List: ListScreen,
     Tour: TourScreen,
     Explore: ExploreScreen,
-    View: ViewScreen
+    View: ViewScreen,
+    Saved: SavedScreen,
+    Message: MessageScreen,
+    MessageInner: MessageInnerScreen
   
     },{
-        initialRouteName: 'List',
+        initialRouteName: 'Message',
     }
 );
 

@@ -23,13 +23,13 @@ export default {
   relativeHeader:{
     backgroundColor:'#fff',
     paddingLeft:0,
-    paddingRight:0,
+    paddingRight:20,
     borderWidth:0,
     marginTop:0,
     flex: 0,
     flexDirection: 'row',
     justifyContent:'space-between',
-    paddingTop:10,
+    paddingTop:20,
     paddingBottom:10,
     height:50,
     alignItems:'center'
@@ -54,7 +54,7 @@ export default {
     flexDirection: 'row',
   },
   headerImg:{
-    width:23,
+    width:22,
     height:22,
   },
   headtext1:{
@@ -81,8 +81,8 @@ export default {
     paddingLeft:10,
     paddingRight:10,
     borderRadius:3,
-    marginRight:5,
-    marginBottom:5
+    marginBottom:5,
+    marginRight:10,
   },
   homeCategorylebel:{
     color: '#4A4A4A',
@@ -104,10 +104,10 @@ export default {
   homeImg:{
     width:'100%',
     height:200,
-    borderRadius:5
+    borderRadius:10,
   },
   propertDesOuter:{
-    flex: 0,
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems:'flex-end',
@@ -115,7 +115,8 @@ export default {
   },
   homePropertyName:{
     color: '#2A283B',
-    fontSize: 20,
+    fontWeight: '600',
+    fontSize: 22,
     textAlign: 'left',
     fontFamily: 'Montserrat-Regular',   
   },
@@ -130,6 +131,7 @@ export default {
     fontFamily: 'Montserrat-SemiBold',
     fontSize: 13,    
     lineHeight: 35,
+    fontWeight:'bold',
   },
   permonth:{
     fontSize: 12,
@@ -153,6 +155,7 @@ export default {
     flex: 0,
     flexDirection: 'row',
     alignItems:'center',
+    justifyContent:'flex-start',
     width:'auto'
   },
   countText:{
@@ -245,7 +248,7 @@ export default {
   listText:{
     fontSize: 14,
     fontFamily: 'Lato-regular-webfont',
-    color:'#484848',
+    color:'#979797',
   },
   AvailablityBox:{
     width: 170,
@@ -571,20 +574,174 @@ export default {
     borderRadius:4,
     maxWidth:'95%'   
   },
-  // whiteshadow:{
-  //   position:'absolute',
-  //   left:0,
-  //   top:180,
-  //   height:200,
-  //   right:0,
-  //   shadowColor: 'rgba(0, 0, 0, 0.15)',    
-  //   borderRradius: 15,
-  //   shadowOffset: { width: 0, height: 2 },
-  //   shadowOpacity: 1,
-  //   shadowRadius: 22, 
-  //   elevation: 5, 
-  //   backgroundColor:'#fff',
-  //   width:'90%'
-  // }
+  whiteshadow:{
+    borderRadius: 10,
+    width:'95%',
+    padding:10,
+    paddingLeft:20,
+    backgroundColor:'#fff',
+    position:'absolute',
+    top:140,
+    left:-10,
+    
+  },
 
+
+  /*----------------------------Start Code Raj------------------------------*/
+
+  headtext: {
+    color: '#000',
+    fontSize: 24,
+    marginBottom: 10,
+    textAlign: 'left',
+    marginLeft: -15,
+    fontFamily: 'Montserrat-Bold',
+    fontWeight: 'bold'
+  },
+  filterPadding:{
+    padding:20,
+  },
+  filterName:{
+    fontWeight:'600',
+  },
+filterItem:{
+  paddingTop:10,
+},
+typeBox:{
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 10,
+},
+  typeCategoryButton:{
+    color: '#4A4A4A',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 12,
+    borderWidth:1,
+    borderColor: '#f2f2f2', 
+    lineHeight:30,
+    paddingLeft:10,
+    paddingRight:10,
+    borderRadius:3,
+    marginRight:20,
+    marginLeft:20,
+    marginBottom:5,
+  },
+  bedCategoryButton:{
+    color: '#4A4A4A',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 12,
+    borderWidth:1,
+    borderColor: '#f2f2f2', 
+    lineHeight:30,
+    paddingLeft:10,
+    paddingRight:10,
+    borderRadius:3,
+    marginRight:5,
+    marginLeft:10,
+    marginBottom:5,
+  },
+  aminitiesBoxFilterText:{
+    color: '#4A4A4A',
+    fontSize: 13,
+    fontFamily: 'Lato-Bold',
+    marginLeft: 5,
+  },
+  aminitiesFilterImg:{
+    width:15,
+    height:15,
+
+  },
+  aminitiesBoxFilter:{
+    width:'50%',
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  aminitiesBoxFilterHolder:{
+    padding:15,
+    borderWidth:1,
+    borderColor: '#f2f2f2', 
+    width:20,
+    height:20,  
+  },
+  listBox:{
+    position:'relative',
+  },
+  bar:{
+    backgroundColor:'#f2f2f2',
+    width:'80%',
+    height:1,
+    right:0,
+    top:'50%',
+    position:'absolute',
+  },
+  priceBar:{
+    backgroundColor: '#4F3BF6',
+    height:35,
+    width:5,
+    left:-20,
+    position:'absolute',
+    zIndex:99,
+  },
+    apartmentText:{
+    color:'#7F7D8A',
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 10,    
+    lineHeight: 35,
+    fontWeight:'bold',
+    position:'absolute',
+    left:'30%',
+  },
+  reviewImg:{
+    width:100,
+    height:70,
+    borderRadius:10,
+    marginRight:15,
+
+  },
+  propertyContent:{
+    padding:20,
+  },
+  recommendation: {
+    backgroundColor: '#d3d4d8',
+    borderRadius:10,
+    padding:20,
+    marginTop:20,
+  },
+    textAreaContainer: {
+    borderColor: '#f2f2f2',
+    borderWidth: 1,
+    padding: 5
+  },
+  textArea: {
+    height: 150,
+  },
+  customBtnArea:{
+    backgroundColor: '#7f7d8a',
+    padding:20,
+  },
+  customBtn:{       
+    color:'#fff',
+    fontFamily:'Lato-Bold',
+    fontWeight:'700',
+    fontSize:14,
+    textAlign:'center',
+    backgroundColor:'#4F3BF6',
+    borderRadius:4,
+    lineHeight:48,
+    marginTop:30,
+  },
+  blueDot:{
+    position:'absolute',
+    height:14,
+    width:14,
+    top:0,
+    right:15,
+    backgroundColor:'blue',
+    zIndex:9999,
+    borderRadius:10,
+    borderWidth:2,
+    borderColor: '#fff',
+  }
 };
