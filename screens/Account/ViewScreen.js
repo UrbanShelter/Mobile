@@ -21,6 +21,7 @@ class ListingPage extends Component {
 
 
 
+
 	async componentDidMount() {
 		var property = {}; 
 		await db.collection("property").doc(this.state.propertyId).get().then((querySnapshot) => {
@@ -63,6 +64,9 @@ class ListingPage extends Component {
 							</TouchableOpacity>
 						</ImageBackground>
 						<View style={[styles.listBody]}>
+							<View style={[{paddingTop:10,fontSize:15,color:'#4a4a4a'}]}>
+								<Text style={[{fontSize:12,color:'#4a4a4a'}]}>APARTMENT • PRIVATE ROOM</Text>
+							</View>
 							<View style={styles.propertDesOuter}>
 								<View>
 									<Text style={styles.homePropertyName}>1 Victoria St S • Downtown, Kitchener, US</Text>
@@ -70,40 +74,6 @@ class ListingPage extends Component {
 							</View>
 
 							<View>
-								<MapView
-									style={styles.map}
-									initialRegion={{
-									latitude: property.location.geopoint.latitude,
-									longitude: property.location.geopoint.longitude,
-									latitudeDelta: 0.0922,
-									longitudeDelta: 0.0421,
-									}} >
-								<MapView.Marker
-									coordinate={{latitude: property.location.geopoint.latitude,
-									longitude: property.location.geopoint.longitude,}}
-									title={"marker.title"} />
-								</MapView>
-								<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Explore")} >
-									<Image style={styles.mapExplore} source={require("../../assets/images/explore.png")}/>
-								</TouchableOpacity>
-							</View>
-							<View style={[styles.homeFacilityOuter,{justifyContent:'flex-start',flex:0}]}>
-							{
-								property.amenities.inSuite.map( (roomaminity , aminityKey) => {
-									return (
-										<View key = {aminityKey} style={[styles.homeFacilityFlex,{marginRight:10}]}>
-											<Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/>
-											<Text style={styles.countText}>{roomaminity}</Text>
-										</View>
-									)
-								})
-							}			
-							</View>
-							<View style={styles.hrBox}>
-								<Text style={styles.listText}>{property.description}</Text>
-							</View>
-							<View style={styles.hrBox}>
-								<Text style={styles.hrBoxHeading}>Availablity</Text>
 								<ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
 								{
 									property.available.map ( (data , key) => {
@@ -121,6 +91,23 @@ class ListingPage extends Component {
 								}
 								</ScrollView>
 							</View>
+							<View style={[styles.homeFacilityOuter,{justifyContent:'flex-start',}]}>
+								<View style={styles.homeFacilityFlex}>
+									<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
+									<Text style={[styles.countText,{marginRight:5}]}>2 Beds</Text>
+								</View>
+								<View style={styles.homeFacilityFlex}>
+									<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
+									<Text style={[styles.countText,{marginRight:5}]}>2 Baths</Text>
+								</View>	
+								<View style={styles.homeFacilityFlex}>
+									<Image style={styles.homeFacilityImg} source={require("../../assets/images/size.png")}/>
+									<Text style={[styles.countText,{marginRight:5}]}>1240 Sqft</Text>
+								</View>	
+							</View>
+							<View style={styles.hrBox}>
+								<Text style={styles.listText}>{property.description}</Text>
+							</View>
 							<View style={styles.hrBox}>
 								<Text style={styles.listText}>Available form {property.availableFrom}  |  12+ months min </Text>
 							</View>
@@ -131,7 +118,6 @@ class ListingPage extends Component {
 									property.amenities.inBuilding.map( (animity , animityKey) => {
 										return (
 											<View key = {animityKey} style={styles.aminitiesBoxHoolder}>
-												{/* <Image style={styles.aminitiesBoxImg} source={{uri : animity.icon}}/> */}
 												<Text style={styles.aminitiesText}>{animity}</Text>
 											</View>
 										)
@@ -146,7 +132,6 @@ class ListingPage extends Component {
 									property.amenities.inBuilding.map( (animity , animityKey) => {
 										return (
 											<View key = {animityKey} style={styles.aminitiesBoxHoolder}>
-												{/* <Image style={styles.aminitiesBoxImg} source={{uri : animity.icon}}/> */}
 												<Text style={styles.aminitiesText}>{animity}</Text>
 											</View>
 										)
@@ -156,15 +141,42 @@ class ListingPage extends Component {
 							</View>
 							<View style={styles.hrBox}>
 								<Text style={styles.hrBoxHeading}>Deposits</Text>
-								{/* <View style={[styles.aminitiesBoxHoolder,{width:'100%'}]}>
-									<Image style={styles.PrecautionsImg} source={require("../../assets/images/pet.png")}/>
-									<Text style={styles.PrecautionsText}>Pet Policy: <Text style={styles.PrecautionsTextBold}>Pets Allowed</Text></Text>
-								</View> */}
 								<View style={[styles.aminitiesBoxHoolder,{width:'100%'}]}>
 									<Image style={styles.PrecautionsImg} source={require("../../assets/images/deposit.png")}/>
 									<Text style={styles.PrecautionsText}>Deposit: <Text style={styles.PrecautionsTextBold}>$3900</Text></Text>
 								</View>
 							</View>
+							<View style={styles.hrBox}>
+								<Text style={styles.hrBoxHeading}>Location</Text>
+								<MapView
+									style={styles.map}
+									initialRegion={{
+									latitude: property.location.geopoint.latitude,
+									longitude: property.location.geopoint.longitude,
+									latitudeDelta: 0.0922,
+									longitudeDelta: 0.0421,
+									}} >
+								<MapView.Marker
+									coordinate={{latitude: property.location.geopoint.latitude,
+									longitude: property.location.geopoint.longitude,}}
+									title={"marker.title"} />
+								</MapView>
+								<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Explore")} >
+									<Image style={styles.mapExplore} source={require("../../assets/images/explore.png")}/>
+								</TouchableOpacity>
+							</View>
+							{/* <View style={[styles.homeFacilityOuter,{justifyContent:'flex-start',flex:0}]}>
+							{
+								property.amenities.inSuite.map( (roomaminity , aminityKey) => {
+									return (
+										<View key = {aminityKey} style={[styles.homeFacilityFlex,{marginRight:10}]}>
+											<Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/>
+											<Text style={styles.countText}>{roomaminity}</Text>
+										</View>
+									)
+								})
+							}			
+							</View> */}
 							<View style={styles.hrBox}>
 								<Text style={styles.hrBoxHeading}>Property Reviews</Text>
 								<View style={styles.reviewsBox}>									
@@ -224,116 +236,6 @@ class ListingPage extends Component {
 							<View style={styles.hrBox}>
 								<Text style={[styles.hrBoxHeading,{marginBottom:0}]}> Schedule a Viewing </Text>
 							</View>
-							<ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{marginBottom:15}}>
-								<TouchableOpacity style={[styles.homeImgCat,{marginRight:10}]} onPress={()=>this.props.navigation.navigate("Listing")} >
-									<View style={styles.imgeOver}>
-										<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Private Room</Text></View>
-										<Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/>
-									</View>
-									
-
-									<Image style={styles.homeImg} source={require("../../assets/images/flat-with-yellow.png")}/>
-									<View style={[styles.propertDesOuter,{marginBottom:0}]}>
-										<View>
-											<Text style={styles.homePropertyName}> 85 Young St </Text>
-											<Text style={styles.homePropertyDes}> Downtown, Kitchener, ON </Text>
-										</View>
-										{/* <View style={styles.priceButton}>
-											<Text style={styles.price}>$1980/</Text><Text style={styles.permonth}>Month</Text>									
-										</View> */}
-									</View>
-									<View style={[styles.homeFacilityOuter,{marginTop:5}]}>
-										<View style={styles.ratings}>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
-											<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<View><Text style={styles.countText}>(86)</Text></View>
-										</View>
-										<View style={styles.homeFacilityFlex}>
-											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
-											<Text style={styles.countText}>2 Beds</Text>
-										</View>
-										<View style={styles.homeFacilityFlex}>
-											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
-											<Text style={styles.countText}>2 Baths</Text>
-										</View>										
-									</View>
-								</TouchableOpacity>
-								<TouchableOpacity style={[styles.homeImgCat,{marginRight:10}]} onPress={()=>this.props.navigation.navigate("Listing")} >
-									<View style={styles.imgeOver}>
-										<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Private Room</Text></View>
-										<Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/>
-									</View>
-									
-
-									<Image style={styles.homeImg} source={require("../../assets/images/flat-with-yellow.png")}/>
-									<View style={[styles.propertDesOuter,{marginBottom:0}]}>
-										<View>
-											<Text style={styles.homePropertyName}> 85 Young St </Text>
-											<Text style={styles.homePropertyDes}> Downtown, Kitchener, ON </Text>
-										</View>
-										{/* <View style={styles.priceButton}>
-											<Text style={styles.price}>$1980/</Text><Text style={styles.permonth}>Month</Text>									
-										</View> */}
-									</View>
-									<View style={[styles.homeFacilityOuter,{marginTop:5}]}>
-										<View style={styles.ratings}>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
-											<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<View><Text style={styles.countText}>(86)</Text></View>
-										</View>
-										<View style={styles.homeFacilityFlex}>
-											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
-											<Text style={styles.countText}>2 Beds</Text>
-										</View>
-										<View style={styles.homeFacilityFlex}>
-											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
-											<Text style={styles.countText}>2 Baths</Text>
-										</View>										
-									</View>
-								</TouchableOpacity>
-								<TouchableOpacity style={[styles.homeImgCat,{marginRight:10}]} onPress={()=>this.props.navigation.navigate("Listing")} >
-									<View style={styles.imgeOver}>
-										<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Private Room</Text></View>
-										<Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/>
-									</View>
-									
-
-									<Image style={styles.homeImg} source={require("../../assets/images/flat-with-yellow.png")}/>
-									<View style={[styles.propertDesOuter,{marginBottom:0}]}>
-										<View>
-											<Text style={styles.homePropertyName}> 85 Young St </Text>
-											<Text style={styles.homePropertyDes}> Downtown, Kitchener, ON </Text>
-										</View>
-										{/* <View style={styles.priceButton}>
-											<Text style={styles.price}>$1980/</Text><Text style={styles.permonth}>Month</Text>									
-										</View> */}
-									</View>
-									<View style={[styles.homeFacilityOuter,{marginTop:5}]}>
-										<View style={styles.ratings}>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
-											<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
-											<View><Text style={styles.countText}>(86)</Text></View>
-										</View>
-										<View style={styles.homeFacilityFlex}>
-											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
-											<Text style={styles.countText}>2 Beds</Text>
-										</View>
-										<View style={styles.homeFacilityFlex}>
-											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
-											<Text style={styles.countText}>2 Baths</Text>
-										</View>										
-									</View>
-								</TouchableOpacity>
-							</ScrollView>							
 						</View>
 						
 					</ScrollView>
