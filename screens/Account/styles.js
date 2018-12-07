@@ -257,7 +257,9 @@ export default {
     borderColor: 'rgba(0, 0, 0, 0.1)',
     borderRadius:5,
     padding:20, 
-    marginRight:15  
+    marginRight:15,
+    bottom:0,
+    position:'absolute'
   },
   AvailablityBoxActive:{
     borderColor: 'rgba(0, 0, 0, 0.5)'
@@ -732,6 +734,26 @@ typeBox:{
     lineHeight:48,
     marginTop:30,
   },
+  sendBtn:{
+    color:'#4f3bf6',
+    fontFamily:'Lato-Bold',
+    fontWeight:'700',
+    fontSize:14,
+    textAlign:'right',
+    borderRadius:4,
+    lineHeight:48,
+    marginRight:30,
+
+  },
+  filterBtn:{
+    color:'#4f3bf6',
+    textAlign:'center',
+    fontFamily:'Lato-Bold',
+    fontWeight:'700',
+    fontSize:14,
+    paddingBottom:20,
+    paddingTop:10,
+  },
   blueDot:{
     position:'absolute',
     height:14,
@@ -743,5 +765,43 @@ typeBox:{
     borderRadius:10,
     borderWidth:2,
     borderColor: '#fff',
-  }
+  },
+  multipleGroupBtn:{
+    marginLeft:15,
+  },
+sendMsg:{
+  borderTopColor: '#4a4a4a',
+  borderTopWidth:1,
+},
+chatTextRcv:{
+  color:'#4a4a4a',
+  fontSize:16,
+},
+chatTextRcvCnt:{
+  padding:20,
+  borderRadius:10,
+  backgroundColor:'#f2f2f2',
+  width:250,
+},
+chatTextSendCnt: {
+  padding: 20,
+  borderRadius: 10,
+  backgroundColor: '#4f3bf6',
+  width: 250,
+},
+smallIcon:{
+  height:20,
+  width:20,
+  marginLeft:15,
+},
+  txt:{
+    backgroundColor:'#fff',
+    flex: 0,
+    flexDirection: 'column',
+    justifyContent:'center',
+    paddingTop:20,
+    paddingBottom:10,
+    height:50,
+    alignItems:'center'
+  },
 };
