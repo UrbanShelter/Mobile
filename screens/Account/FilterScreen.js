@@ -67,11 +67,11 @@ class FilterScreen extends React.Component {
     }
    
 
-    multiSliderValuesChange = (values) => {
-        this.setState({
-            values,
-        });
-    }
+    // multiSliderValuesChange = (values) => {
+    //     this.setState({
+    //         values,
+    //     });
+    // }
 
 
 	render() {
@@ -113,7 +113,7 @@ class FilterScreen extends React.Component {
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={styles.typeBox}>
                                 <View style={[styles.typeBox,styles.multipleGroupBtn]}>
-                                    <SelectMultipleGroupButton
+                                    {/* <SelectMultipleGroupButton
                                         defaultSelectedIndexes={defaultSelectedIndex_group_insterest2}
                                         containerViewStyle={{ justifyContent: "flex-start" }}
                                         highLightStyle={{
@@ -129,7 +129,7 @@ class FilterScreen extends React.Component {
                                             this._groupButtonOnSelectedValuesChange(selectedValues)
                                         }
                                         group={multipleGroupData2}
-                                    />
+                                    /> */}
                                 </View>
 						    </View>
                         </View>
@@ -140,7 +140,7 @@ class FilterScreen extends React.Component {
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={[styles.typeBox,{marginLeft:10}]}>
-                                <SelectMultipleGroupButton
+                                {/* <SelectMultipleGroupButton
                                     defaultSelectedIndexes={defaultSelectedIndex_group_insterest3}
                                     containerViewStyle={{ justifyContent: "flex-start" }}
                                     highLightStyle={{
@@ -156,7 +156,7 @@ class FilterScreen extends React.Component {
                                         this._groupButtonOnSelectedValuesChange(selectedValues)
                                     }
                                     group={multipleGroupData3}
-                                />
+                                /> */}
 						    </View>
                         </View>
                     </View>

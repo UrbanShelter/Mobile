@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
 import { Text, Icon,Input } from "native-base";
 import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
-import { SelectMultipleButton, SelectMultipleGroupButton } from 'react-native-selectmultiple-button';
+// import { SelectMultipleButton, SelectMultipleGroupButton } from 'react-native-selectmultiple-button';
 import styles from "./styles";
 import {db, logOut} from '../../service/auth';
 
@@ -218,7 +218,7 @@ class HomeScreen extends Component {
 							<Text style={[styles.headtext,{marginLeft: 20,paddingTop:5}]}>Home Type</Text>
 						</View>
 						<View style={{flex:0,justifyContent:'center',alignItems:'center',padding:20}}>
-								<SelectMultipleGroupButton
+								{/* <SelectMultipleGroupButton
 								buttonViewStyle={{borderRadius: 3,width: 100,marginBottom:10}}
                                     defaultSelectedIndexes={defaultSelectedIndex_group_insterest}
                                     containerViewStyle={{ justifyContent: "center" }}
@@ -235,7 +235,7 @@ class HomeScreen extends Component {
                                         this._groupButtonOnSelectedValuesChange(selectedValues)
                                     }
                                     group={multipleGroupDataHomeType}
-                                />
+                                /> */}
 						</View>
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
 							<TouchableOpacity><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
@@ -249,7 +249,7 @@ class HomeScreen extends Component {
 						<View>
 							<Text  style={{flex:0,paddingLeft:20,paddingTop:20}}>Room Type</Text>
 							<View style={{flex:0,justifyContent:'flex-start',alignItems:'flex-start',padding:20}}>
-								<SelectMultipleGroupButton
+								{/* <SelectMultipleGroupButton
 								buttonViewStyle={{borderRadius: 3,paddingLeft:0,marginBottom:10}}
                                     defaultSelectedIndexes={defaultSelectedIndex_group_insterest2}
                                     containerViewStyle={{ justifyContent: "flex-start" }}
@@ -266,12 +266,12 @@ class HomeScreen extends Component {
                                         this._groupButtonOnSelectedValuesChange(selectedValues)
                                     }
                                     group={multipleGroupDataRoomType}
-                                />
+                                /> */}
 							</View>
 
 							<Text  style={{flex:0,paddingLeft:20,paddingTop:0}}>Room Type</Text>
 							<View style={{flex:0,justifyContent:'flex-start',alignItems:'flex-start',padding:20}}>
-								<SelectMultipleGroupButton
+								{/* <SelectMultipleGroupButton
 								buttonViewStyle={{borderRadius: 3,paddingLeft:0,marginBottom:10}}
                                     defaultSelectedIndexes={defaultSelectedIndex_group_insterest3}
                                     containerViewStyle={{ justifyContent: "flex-start" }}
@@ -288,7 +288,7 @@ class HomeScreen extends Component {
                                         this._groupButtonOnSelectedValuesChange(selectedValues)
                                     }
                                     group={multipleGroupDataBedrooms}
-                                />
+                                /> */}
 							</View>
 						</View>
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
