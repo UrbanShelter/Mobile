@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
 import { Text, Icon,Input } from "native-base";
 import styles from "./styles";
-import {db, logOut} from '../../service/auth';
-import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import { SelectMultipleButton, SelectMultipleGroupButton } from 'react-native-selectmultiple-button';
+// import { SelectMultipleButton, SelectMultipleGroupButton } from 'react-native-selectmultiple-button';
 
 
 const multipleGroupData = [
@@ -42,7 +40,7 @@ class FilterScreen extends React.Component {
         };
 
     }
-
+   
 
     multiSliderValuesChange = (values) => {
         this.setState({
@@ -69,16 +67,7 @@ class FilterScreen extends React.Component {
                         </View>
                         <View>
                             <View style={{flex: 1, flexDirection: 'row',paddingLeft:20}}>
-                <MultiSlider
-                    sliderLength={280}
-                    onValuesChange={this.multiSliderValuesChange}
-                    min={0}
-                    max={1000}
-                    step={1}
-                    onValuesChangeStart={this.disableScroll}
-                    onValuesChangeFinish={this.enableScroll}
-                    isMarkersSeparated={true}
-                />
+                           
                             </View>
                         </View>
                     </View>
@@ -88,7 +77,7 @@ class FilterScreen extends React.Component {
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={styles.typeBox}>
-                                <SelectMultipleGroupButton
+                                {/* <SelectMultipleGroupButton
                                     defaultSelectedIndexes={defaultSelectedIndex_group_insterest}
                                     containerViewStyle={{ justifyContent: "flex-start" }}
                                     highLightStyle={{
@@ -104,7 +93,7 @@ class FilterScreen extends React.Component {
                                         this._groupButtonOnSelectedValuesChange(selectedValues)
                                     }
                                     group={multipleGroupData}
-                                />
+                                /> */}
                             </View>
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>

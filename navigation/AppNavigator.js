@@ -34,9 +34,7 @@ const WelcomeStack = createStackNavigator({
 );
 
 
-
 export default createSwitchNavigator({
-	FilterScreen: FilterScreen,
 
 	Welcome: WelcomeStack,
 	Main: MainTabNavigator,

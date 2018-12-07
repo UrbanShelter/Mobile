@@ -27,7 +27,7 @@ const MainStack = createStackNavigator({
     Review: ReviewScreen
   
     },{
-        initialRouteName: 'List',
+        initialRouteName: 'Filter',
         
     }
 );
@@ -71,12 +71,7 @@ const StayStack = createStackNavigator({
     }
 );
 const MessageStack = createStackNavigator({
-    Search: MainScreen,
-    List: ListScreen,
-    Tour: TourScreen,
-    Explore: ExploreScreen,
-    View: ViewScreen,
-    Saved: SavedScreen,
+    
     Message: MessageScreen,
     MessageInner: MessageInnerScreen
   

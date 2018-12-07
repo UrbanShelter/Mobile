@@ -51,7 +51,6 @@ class HomeScreen extends Component {
 				</View>
 			);
 		} else {
-			console.log(this.state.properties);
 			return (
 				<View style={styles.HomeScreen}>			
 					<StatusBar backgroundColor="#fff" barStyle="dark-content"/>

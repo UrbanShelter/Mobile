@@ -3,7 +3,6 @@ import { Image, View, ScrollView, StatusBar, TouchableOpacity, AsyncStorage } fr
 import { Container, Text } from "native-base";
 import Swiper from 'react-native-swiper';
 import styles from "./styles";
-import * as firebase from "firebase";
 
 
 class WelcomeScreen extends Component {
@@ -14,14 +13,18 @@ class WelcomeScreen extends Component {
 		super(props)
 		this.state = {
 			swiperFinished:false
-		}
-		
-		firebase.auth().onAuthStateChanged(function(user) {
-			if (user) {
-				props.navigation.navigate('Main');
-			} 
-		});
+		}	
 	}
+
+	async componentWillMount () {
+		var user = await Expo.SecureStore.getItemAsync('uId');
+		console.log(user);
+		if(user) {
+			this.props.navigation.navigate('Main');
+		}
+	}
+
+	
 
 	render() {
 		let nextBtn;
