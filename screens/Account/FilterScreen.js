@@ -103,28 +103,7 @@ class FilterScreen extends React.Component {
                         <View style={{flex: 1, flexDirection: 'row'}}>
 
                             <View style={styles.typeBox}>
-
-                                {/* <SelectMultipleGroupButton
-
-                            <View style={[styles.typeBox,styles.multipleGroupBtn]}>
-                                <SelectMultipleGroupButton
-
-                                    defaultSelectedIndexes={defaultSelectedIndex_group_insterest}
-                                    containerViewStyle={{ justifyContent: "flex-start" }}
-                                    highLightStyle={{
-                                        borderColor: "#f2f2f2",
-                                        backgroundColor: "transparent",
-                                        textColor: "#4a4a4a",
-                                        borderTintColor: ios_blue,
-                                        backgroundTintColor: "transparent",
-                                        textTintColor: ios_blue,
-                                    }}
-                                    maximumNumberSelected={5}
-                                    onSelectedValuesChange={selectedValues =>
-                                        this._groupButtonOnSelectedValuesChange(selectedValues)
-                                    }
-                                    group={multipleGroupData}
-                                /> */}
+				    
                             </View>
                         </View>
                     </View>
@@ -135,23 +114,7 @@ class FilterScreen extends React.Component {
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={styles.typeBox}>
                                 <View style={[styles.typeBox,styles.multipleGroupBtn]}>
-                                    {/* <SelectMultipleGroupButton
-                                        defaultSelectedIndexes={defaultSelectedIndex_group_insterest2}
-                                        containerViewStyle={{ justifyContent: "flex-start" }}
-                                        highLightStyle={{
-                                            borderColor: "#f2f2f2",
-                                            backgroundColor: "transparent",
-                                            textColor: "#4a4a4a",
-                                            borderTintColor: ios_blue,
-                                            backgroundTintColor: "transparent",
-                                            textTintColor: ios_blue,
-                                        }}
-                                        maximumNumberSelected={5}
-                                        onSelectedValuesChange={selectedValues =>
-                                            this._groupButtonOnSelectedValuesChange(selectedValues)
-                                        }
-                                        group={multipleGroupData2}
-                                    /> */}
+                                    
                                 </View>
 						    </View>
                         </View>
@@ -162,23 +125,7 @@ class FilterScreen extends React.Component {
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={[styles.typeBox,{marginLeft:10}]}>
-                                {/* <SelectMultipleGroupButton
-                                    defaultSelectedIndexes={defaultSelectedIndex_group_insterest3}
-                                    containerViewStyle={{ justifyContent: "flex-start" }}
-                                    highLightStyle={{
-                                        borderColor: "#f2f2f2",
-                                        backgroundColor: "transparent",
-                                        textColor: "#4a4a4a",
-                                        borderTintColor: ios_blue,
-                                        backgroundTintColor: "transparent",
-                                        textTintColor: ios_blue,
-                                    }}
-                                    maximumNumberSelected={5}
-                                    onSelectedValuesChange={selectedValues =>
-                                        this._groupButtonOnSelectedValuesChange(selectedValues)
-                                    }
-                                    group={multipleGroupData3}
-                                /> */}
+                               
 						    </View>
                         </View>
                     </View>
