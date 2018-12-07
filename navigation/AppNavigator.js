@@ -1,4 +1,4 @@
-import { createSwitchNavigator, createStackNavigator, DrawerNavigator } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 import WelcomeScreen from '../screens/Welcome/WelcomeScreen';
@@ -11,13 +11,12 @@ import ForgotPass from '../screens/Signup/ForgotPassScreen';
 import ListScreen from '../screens/Account/ListScreen';
 import TourScreen from '../screens/Account/TourScreen';
 import ViewScreen from '../screens/Account/ViewScreen';
-
+import ReviewScreen from '../screens/Account/ReviewScreen';
 import SavedScreen from '../screens/Account/SavedScreen';
 import ExploreScreen from '../screens/Account/ExploreScreen';
-
 import LandlordScreen from '../screens/Account/LandlordScreen';
-
 import MessageScreen from '../screens/Account/MessageScreen';
+import FilterScreen from '../screens/Account/FilterScreen';
 
 
 const WelcomeStack = createStackNavigator({
@@ -37,6 +36,7 @@ const WelcomeStack = createStackNavigator({
 
 
 export default createSwitchNavigator({
+	FilterScreen: FilterScreen,
 
 	Welcome: WelcomeStack,
 	Main: MainTabNavigator,
