@@ -1,4 +1,5 @@
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+
 import MainScreen from '../screens/Account/MainScreen';
 import ListScreen from '../screens/Account/ListScreen';
 import ViewScreen from '../screens/Account/ViewScreen';
@@ -27,6 +28,7 @@ const MainStack = createStackNavigator({
   
     },{
         initialRouteName: 'List',
+        
     }
 );
 const SaveStack = createStackNavigator({
@@ -100,7 +102,8 @@ MainStack.navigationOptions = ({ navigation }) => {
 }
 
 const MainTabNavigator = createBottomTabNavigator({
-    EXPLORE :MainStack,
+  
+    EXPLORE: MainStack,
     SAVED:SaveStack,
     STAY:StayStack,
     MESSAGES:MessageStack,

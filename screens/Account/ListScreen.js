@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, Modal, View, ScrollView, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
+import { Image, View, ScrollView, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
 import { Text, Icon,Input } from "native-base";
 import styles from "./styles";
 import {db, logOut} from '../../service/auth';
@@ -75,7 +75,7 @@ class HomeScreen extends Component {
 							<Text style={styles.homeCategoryButton}> From</Text>
 							<Text style={styles.homeCategoryButton}> Home Type</Text>
 							<Text style={styles.homeCategoryButton}> Rooms</Text> 
-						</View>						
+						</View>				
 						<Text style={styles.headtext1}>Home Rentals in Waterloo </Text>
 						{this.state.properties.map((data, key) => 
 							<View key={key}>
@@ -85,7 +85,7 @@ class HomeScreen extends Component {
 								<Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/>
 							</View>
 							{/* <Image style={styles.homeImg} source={require("../../assets/images/flat-with-yellow.png")}/> */}
-						<View style={{position:'relative', height:500}}>	
+						<View style={{position:'relative', height:360}}>	
 							<Image style={styles.homeImg} source={{uri:data.image}}/>	
 							<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
 									<View style={[styles.Buttonpr,{position:'relative'}]}>

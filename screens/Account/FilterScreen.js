@@ -4,6 +4,17 @@ import { Text, Icon,Input } from "native-base";
 import styles from "./styles";
 import {db, logOut} from '../../service/auth';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import { SelectMultipleButton, SelectMultipleGroupButton } from 'react-native-selectmultiple-button';
+
+
+const multipleGroupData = [
+  { value: "running" },
+  { value: "riding" },
+  { value: "reading" },
+  { value: "coding" },
+  { value: "Niuer" }
+];
+const defaultSelectedIndex_group_insterest = [0, 1, 4];
 
 
 class FilterScreen extends React.Component {
@@ -11,11 +22,25 @@ class FilterScreen extends React.Component {
 		header: null,
 	};
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			loading : true,
 			properties : []
-		}		
+        }		
+        
+        var selectedValues1 = [];
+        defaultSelectedIndex_group_insterest.map(item => {
+            selectedValues1.push(multipleGroupData[item].value);
+        });
+
+        this.state = {
+            multipleSelectedData: [],
+            multipleSelectedDataLimited: [],
+            radioSelectedData: "",
+            multipleSelectedData_group: selectedValues1,
+            multipleSelectedData_group_limited: [],
+        };
+
     }
 
 
@@ -45,7 +70,6 @@ class FilterScreen extends React.Component {
                         <View>
                             <View style={{flex: 1, flexDirection: 'row',paddingLeft:20}}>
                 <MultiSlider
-                    
                     sliderLength={280}
                     onValuesChange={this.multiSliderValuesChange}
                     min={0}
@@ -61,6 +85,27 @@ class FilterScreen extends React.Component {
                     <View style={styles.filterItem}>
                         <View style={styles.filterPadding}>												
                             <Text style={[styles.filterName,{marginBottom:5}]}>Type </Text>
+                        </View>
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <View style={styles.typeBox}>
+                                <SelectMultipleGroupButton
+                                    defaultSelectedIndexes={defaultSelectedIndex_group_insterest}
+                                    containerViewStyle={{ justifyContent: "flex-start" }}
+                                    highLightStyle={{
+                                        borderColor: "#f2f2f2",
+                                        backgroundColor: "transparent",
+                                        textColor: "#4a4a4a",
+                                        borderTintColor: '#4F3BF6',
+                                        backgroundTintColor: "#4F3BF6",
+                                        textTintColor: '#ffffff',
+                                    }}
+                                    maximumNumberSelected={5}
+                                    onSelectedValuesChange={selectedValues =>
+                                        this._groupButtonOnSelectedValuesChange(selectedValues)
+                                    }
+                                    group={multipleGroupData}
+                                />
+                            </View>
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={styles.typeBox}>

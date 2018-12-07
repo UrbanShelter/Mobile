@@ -27,8 +27,6 @@ class SignupScreenTwo extends Component {
 		var storeObj = {
 			uId : this.state.uid
 		}
-		// let response = storeItem('user', storeObj);
-		// console.log(response);
 
 		await Expo.SecureStore.setItemAsync('userDetails', storeObj)
 
