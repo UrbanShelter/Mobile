@@ -8,13 +8,34 @@ import { SelectMultipleButton, SelectMultipleGroupButton } from 'react-native-se
 
 
 const multipleGroupData = [
-  { value: "running" },
-  { value: "riding" },
-  { value: "reading" },
-  { value: "coding" },
-  { value: "Niuer" }
+  { value: "Apartment" },
+  { value: "House" },
+  { value: "Condo" },
+  { value: "Townhouse" },
+  { value: "Dorm" }
 ];
+const multipleGroupData2 = [
+  { value: "Studio" },
+  { value: "1" },
+  { value: "2" },
+  { value: "3" },
+  { value: "4" },
+  { value: "5+" }
+];
+const multipleGroupData3 = [
+  { value: "1" },
+  { value: "2" },
+  { value: "3" },
+  { value: "4" },
+  { value: "5+" }
+];
+
+
 const defaultSelectedIndex_group_insterest = [0, 1, 4];
+const defaultSelectedIndex_group_insterest2 = [0, 2, 3];
+const defaultSelectedIndex_group_insterest3 = [0, 1, 3];
+const ios_blue = "#4F3BF6";
+
 
 
 class FilterScreen extends React.Component {
@@ -30,6 +51,10 @@ class FilterScreen extends React.Component {
         
         var selectedValues1 = [];
         defaultSelectedIndex_group_insterest.map(item => {
+            selectedValues1.push(multipleGroupData[item].value);
+        });
+        var selectedValues1 = [];
+        defaultSelectedIndex_group_insterest2.map(item => {
             selectedValues1.push(multipleGroupData[item].value);
         });
 
@@ -69,16 +94,16 @@ class FilterScreen extends React.Component {
                         </View>
                         <View>
                             <View style={{flex: 1, flexDirection: 'row',paddingLeft:20}}>
-                <MultiSlider
-                    sliderLength={280}
-                    onValuesChange={this.multiSliderValuesChange}
-                    min={0}
-                    max={1000}
-                    step={1}
-                    onValuesChangeStart={this.disableScroll}
-                    onValuesChangeFinish={this.enableScroll}
-                    isMarkersSeparated={true}
-                />
+                                <MultiSlider
+                                    sliderLength={280}
+                                    onValuesChange={this.multiSliderValuesChange}
+                                    min={0}
+                                    max={1000}
+                                    step={1}
+                                    onValuesChangeStart={this.disableScroll}
+                                    onValuesChangeFinish={this.enableScroll}
+                                    isMarkersSeparated={true}
+                                />
                             </View>
                         </View>
                     </View>
@@ -87,7 +112,7 @@ class FilterScreen extends React.Component {
                             <Text style={[styles.filterName,{marginBottom:5}]}>Type </Text>
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
-                            <View style={styles.typeBox}>
+                            <View style={[styles.typeBox,styles.multipleGroupBtn]}>
                                 <SelectMultipleGroupButton
                                     defaultSelectedIndexes={defaultSelectedIndex_group_insterest}
                                     containerViewStyle={{ justifyContent: "flex-start" }}
@@ -95,9 +120,9 @@ class FilterScreen extends React.Component {
                                         borderColor: "#f2f2f2",
                                         backgroundColor: "transparent",
                                         textColor: "#4a4a4a",
-                                        borderTintColor: '#4F3BF6',
-                                        backgroundTintColor: "#4F3BF6",
-                                        textTintColor: '#ffffff',
+                                        borderTintColor: ios_blue,
+                                        backgroundTintColor: "transparent",
+                                        textTintColor: ios_blue,
                                     }}
                                     maximumNumberSelected={5}
                                     onSelectedValuesChange={selectedValues =>
@@ -107,15 +132,6 @@ class FilterScreen extends React.Component {
                                 />
                             </View>
                         </View>
-                        <View style={{flex: 1, flexDirection: 'row'}}>
-                            <View style={styles.typeBox}>
-                                <TouchableOpacity><Text style={styles.typeCategoryButton}> Apartment</Text></TouchableOpacity>
-                                <TouchableOpacity><Text style={styles.typeCategoryButton}> House</Text></TouchableOpacity>
-                                <TouchableOpacity><Text style={styles.typeCategoryButton}> Condo</Text></TouchableOpacity> 
-                                <TouchableOpacity><Text style={styles.typeCategoryButton}> Townhouse</Text></TouchableOpacity>
-                                <TouchableOpacity><Text style={styles.typeCategoryButton}> Dorm</Text></TouchableOpacity> 
-						    </View>
-                        </View>
                     </View>
                     <View style={styles.filterItem}>
                         <View style={styles.filterPadding}>												
@@ -123,12 +139,25 @@ class FilterScreen extends React.Component {
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={styles.typeBox}>
-                                <Text style={{marginLeft:20,}}>Studio</Text>
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 1</Text></TouchableOpacity>
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 2</Text></TouchableOpacity>
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 3</Text></TouchableOpacity> 
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 4</Text></TouchableOpacity>
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 5+</Text></TouchableOpacity> 
+                                <View style={[styles.typeBox,styles.multipleGroupBtn]}>
+                                    <SelectMultipleGroupButton
+                                        defaultSelectedIndexes={defaultSelectedIndex_group_insterest2}
+                                        containerViewStyle={{ justifyContent: "flex-start" }}
+                                        highLightStyle={{
+                                            borderColor: "#f2f2f2",
+                                            backgroundColor: "transparent",
+                                            textColor: "#4a4a4a",
+                                            borderTintColor: ios_blue,
+                                            backgroundTintColor: "transparent",
+                                            textTintColor: ios_blue,
+                                        }}
+                                        maximumNumberSelected={5}
+                                        onSelectedValuesChange={selectedValues =>
+                                            this._groupButtonOnSelectedValuesChange(selectedValues)
+                                        }
+                                        group={multipleGroupData2}
+                                    />
+                                </View>
 						    </View>
                         </View>
                     </View>
@@ -138,11 +167,23 @@ class FilterScreen extends React.Component {
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={[styles.typeBox,{marginLeft:10}]}>
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 1</Text></TouchableOpacity>
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 2</Text></TouchableOpacity>
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 3</Text></TouchableOpacity> 
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 4</Text></TouchableOpacity>
-                                <TouchableOpacity><Text style={styles.bedCategoryButton}> 5+</Text></TouchableOpacity> 
+                                <SelectMultipleGroupButton
+                                    defaultSelectedIndexes={defaultSelectedIndex_group_insterest3}
+                                    containerViewStyle={{ justifyContent: "flex-start" }}
+                                    highLightStyle={{
+                                        borderColor: "#f2f2f2",
+                                        backgroundColor: "transparent",
+                                        textColor: "#4a4a4a",
+                                        borderTintColor: ios_blue,
+                                        backgroundTintColor: "transparent",
+                                        textTintColor: ios_blue,
+                                    }}
+                                    maximumNumberSelected={5}
+                                    onSelectedValuesChange={selectedValues =>
+                                        this._groupButtonOnSelectedValuesChange(selectedValues)
+                                    }
+                                    group={multipleGroupData3}
+                                />
 						    </View>
                         </View>
                     </View>
