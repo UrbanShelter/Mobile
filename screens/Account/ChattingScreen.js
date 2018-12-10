@@ -6,8 +6,10 @@ import styles from "./styles";
 
 class ChattingScreen extends Component {
 	static navigationOptions = {
-		header: null,
-	};
+        header : null,
+        tabBarVisible : false
+    };
+    
 	constructor(props) {
 		super(props)
 		this.state = {

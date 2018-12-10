@@ -75,21 +75,36 @@ const MessageStack = createStackNavigator({
     Message: MessageScreen,
     MessageInner: MessageInnerScreen,
     Chat:ChattingScreen
-  
     },{
         initialRouteName: 'Message',
     }
 );
 
 
-MainStack.navigationOptions = ({ navigation }) => {
+// MainStack.navigationOptions = ({ navigation }) => {
 
-    let tabBarVisible = false;
+//     let tabBarVisible = false;
+
+//     let routeName = navigation.state.routes[navigation.state.index].routeName
+
+//     if ( routeName == 'List' ) {
+//         tabBarVisible = true
+//     }
+
+//     return {
+//         tabBarVisible,
+//     }
+// }
+
+
+MessageStack.navigationOptions = ({ navigation }) => {
+
+    let tabBarVisible = true;
 
     let routeName = navigation.state.routes[navigation.state.index].routeName
 
-    if ( routeName == 'List' ) {
-        tabBarVisible = true
+    if ( routeName == 'Chat' ) {
+        tabBarVisible = false
     }
 
     return {
