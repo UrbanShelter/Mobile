@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar, TouchableOpacity, TextInput, StyleSheet, KeyboardAvoidingView } from "react-native";
-import {Text, Icon } from "native-base";
+import {Text} from "native-base";
 import styles from "./styles";
+import {db} from '../../service/auth';
+
 
 
 class ChattingScreen extends Component {
@@ -13,10 +15,20 @@ class ChattingScreen extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			loading : true,
-			properties : []
+            chatmsgId : this.props.navigation.getParam('chatmsgId'),
+            loading : true,
+            msgs : []
 		}		
     }
+
+    componentDidMount () {
+        db.collection("chatmsg").doc(this.state.chatmsgId)
+        .onSnapshot(function(doc) {
+            this.setState({msgs:[...this.state.msgs, doc.data()]});
+            console.log("Current data: ", doc.data());
+        });
+    }
+
     
 render() {
     return (

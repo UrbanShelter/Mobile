@@ -106,7 +106,7 @@ render() {
                             return  (
                                 <TouchableOpacity key={key}  onPress={()=>this.props.navigation.navigate("Chat",{chatmsgId: roomateslist.chatmsgId})}>
                                     <View style={[styles.reviewsBox,styles.hrBox,{paddingTop:20}]}>
-                                        <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/>
+                                        <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={{uri:roomateslist.userdata.image}}/>
                                         <View style={[{position:'relative'}]}>
                                             <Text style={styles.reviewsBoxHeading}>{roomateslist.userdata.firstName} {roomateslist.userdata.lastName}</Text>
                                             <Text style={[styles.PrecautionsText,{fontSize:16,color:'#7f7d8a'}]}>This is a sample read message from the...</Text>
