@@ -48,7 +48,7 @@ render() {
             {this.state.reviews.map((data, key) =>
                 <View key={key}>	
                     <StatusBar backgroundColor="#fff" barStyle="light-content"/>
-                    <View elevation={5} style={[{borderWidth:0}]}>
+                    <View elevation={5} style={[{borderWidth:0,marginLeft:-5,marginRight:-5}]}>
                         <View style={[styles.relativeHeader,styles.hrBox,{paddingLeft:20,marginTop:30,marginBottom:10}]}>
                             <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
                                 <Image style={[styles.headerImg]} source={require("../../assets/images/arrow.png")}/>
@@ -59,7 +59,7 @@ render() {
                             </View>	
                         </View>
                         <View style={[styles.reviewsBox,{position:'relative',paddingBottom:20}]}>									
-                            <Image style={[styles.reviewImg,{marginLeft:20}]} source={require("../../assets/images/flat-with-yellow.png")}/>
+                            <Image style={[styles.reviewImg,{marginLeft:30}]} source={require("../../assets/images/flat-with-yellow.png")}/>
                             <View>
                                 <Text style={[styles.homePropertyName, {fontSize: 16 }]}> {data.location.address},</Text>
                                 <Text style={[styles.homePropertyName, {fontSize: 16 }]}> {data.location.city}, {data.location.countryCode}</Text>

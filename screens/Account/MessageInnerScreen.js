@@ -19,7 +19,7 @@ class MessageInnerScreen extends Component {
             roommates: []
 		}		
     }
-    
+ 
     async componentWillMount () {
 
         var chats = await db.collection('chats').doc(this.state.msgId).get();
