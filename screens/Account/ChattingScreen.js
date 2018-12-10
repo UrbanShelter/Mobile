@@ -22,15 +22,20 @@ class ChattingScreen extends Component {
     }
 
     componentDidMount () {
+        console.log(this.state.chatmsgId);
         db.collection("chatmsg").doc(this.state.chatmsgId)
         .onSnapshot(function(doc) {
-            this.setState({msgs:[...this.state.msgs, doc.data()]});
+
+            // let msgs = [...this.state.msgs];
+            // msgs.push(doc.data());
+            // this.setState({ msgs });
             console.log("Current data: ", doc.data());
         });
     }
 
     
 render() {
+    // console.log(this.state.msgs);
     return (
         <View style={styles.ListScreen}>					
             <StatusBar backgroundColor="#fff" barStyle="light-content"/>
@@ -52,6 +57,9 @@ render() {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={[{position:'relative',height:'100%'}]}>
                     <View style={[]}>
+                        {
+                            
+                        }
                         <View style={[styles.reviewsBox,{paddingTop:20}]}>
                             <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/>
                             <View style={[styles.chatTextRcvCnt,]}>
@@ -60,7 +68,7 @@ render() {
                             </View>
                             
                         </View>
-                        <View style={[styles.reviewsBox,{paddingTop:20}]}>
+                        {/* <View style={[styles.reviewsBox,{paddingTop:20}]}>
                             <View style={[styles.chatTextSendCnt,{marginLeft:'5%'}]}>
                                 <Text style={[styles.chatTextRcv,{color:'#fff'}]}>I tried to look for the keys but I couldn't find it anywhere.</Text>
                                 <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> Jeffery • Landlord • Aug 12 </Text>
@@ -96,7 +104,7 @@ render() {
                                 <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> Jeffery • Landlord • Aug 12 </Text>
                             </View>
                             <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/>
-                        </View>
+                        </View> */}
                     </View>
                 </View>
             </ScrollView>
