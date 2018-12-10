@@ -9,7 +9,6 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@ptomasroos/react-native-multi-slider": "^1.0.0",
     "axios": "^0.18.0",
     "expo": "^29.0.0",
     "firebase": "^5.5.5",
@@ -25,7 +24,6 @@
     "react-native-loading-spinner-overlay": "^0.5.2",
     "react-native-paper": "^2.2.0",
     "react-native-popup-dialog": "^0.15.1",
-    "react-native-selectmultiple-button": "^0.1.105",
     "react-native-star-rating": "^1.1.0",
     "react-native-swiper": "^1.5.13",
     "react-native-vector-icons": "^6.1.0",

@@ -4,7 +4,6 @@ import { Text, Icon,Input } from "native-base";
 import styles from "./styles";
 
 
-
 class FilterScreen extends React.Component {
 	static navigationOptions = {
 		header: null,
@@ -19,6 +18,7 @@ class FilterScreen extends React.Component {
 
         this.buttonPressed = this.buttonPressed.bind(this);
     }
+   
 
     buttonPressed(index) {
         console.log('FROM:',this.state.activeState);
@@ -90,6 +90,7 @@ class FilterScreen extends React.Component {
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={styles.typeBox}>
+
                                 <TouchableOpacity>
                                     <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
                                     onPress={() => this.buttonPressed(0)}> Studio</Text>
@@ -114,6 +115,8 @@ class FilterScreen extends React.Component {
                                     <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
                                     onPress={() => this.buttonPressed(0)}> 5+</Text>
                                 </TouchableOpacity>
+
+                                
 						    </View>
                         </View>
                     </View>
@@ -143,6 +146,8 @@ class FilterScreen extends React.Component {
                                     <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
                                     onPress={() => this.buttonPressed(0)}> 5+</Text>
                                 </TouchableOpacity>
+
+                              
 						    </View>
                         </View>
                     </View>

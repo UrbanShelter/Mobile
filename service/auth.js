@@ -18,7 +18,7 @@ if (!firebase.apps.length) {
 export const firebaseInstances = firebase;
 
 export const db = firebase.firestore();
-// Disable deprecated features
+
 db.settings({
     timestampsInSnapshots: true
 });

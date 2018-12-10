@@ -5,8 +5,18 @@ export async function saveData(collection,doc,obj) {
     
     var data = await db.collection(collection).doc(doc).set(obj);
     console.log(data);
-    return true;
+    return data;
   
+}
+
+export async function getData(collection,doc) {
+    var data = await db.collection(collection).doc(doc).get();
+    console.log(data.data());
+    totaldata = {
+        doc: data.data(),
+        id : data.id
+    }
+    return totaldata;
 }
 
 

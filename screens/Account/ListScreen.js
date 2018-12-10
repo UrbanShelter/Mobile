@@ -220,6 +220,7 @@ class HomeScreen extends Component {
                                 </TouchableOpacity>
 							</View>
 						</View>	
+
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
 							<TouchableOpacity><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
@@ -271,6 +272,7 @@ class HomeScreen extends Component {
                                     <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
                                     onPress={() => this.buttonPressed(0)}> 4</Text>
                                 </TouchableOpacity>
+
 							</View>
 						</View>	
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
