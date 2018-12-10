@@ -2,38 +2,6 @@ import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
 import { Text, Icon,Input } from "native-base";
 import styles from "./styles";
-// import { SelectMultipleButton, SelectMultipleGroupButton } from 'react-native-selectmultiple-button';
-
-
-const multipleGroupData = [
-  { value: "Apartment" },
-  { value: "House" },
-  { value: "Condo" },
-  { value: "Townhouse" },
-  { value: "Dorm" }
-];
-const multipleGroupData2 = [
-  { value: "Studio" },
-  { value: "1" },
-  { value: "2" },
-  { value: "3" },
-  { value: "4" },
-  { value: "5+" }
-];
-const multipleGroupData3 = [
-  { value: "1" },
-  { value: "2" },
-  { value: "3" },
-  { value: "4" },
-  { value: "5+" }
-];
-
-
-const defaultSelectedIndex_group_insterest = [0, 1, 4];
-const defaultSelectedIndex_group_insterest2 = [0, 2, 3];
-const defaultSelectedIndex_group_insterest3 = [0, 1, 3];
-const ios_blue = "#4F3BF6";
-
 
 
 class FilterScreen extends React.Component {
@@ -44,35 +12,26 @@ class FilterScreen extends React.Component {
 		super(props);
 		this.state = {
 			loading : true,
-			properties : []
+            properties : [],
+            activeState: [false]
         }		
-        
-        var selectedValues1 = [];
-        defaultSelectedIndex_group_insterest.map(item => {
-            selectedValues1.push(multipleGroupData[item].value);
-        });
-        var selectedValues1 = [];
-        defaultSelectedIndex_group_insterest2.map(item => {
-            selectedValues1.push(multipleGroupData[item].value);
-        });
 
-        this.state = {
-            multipleSelectedData: [],
-            multipleSelectedDataLimited: [],
-            radioSelectedData: "",
-            multipleSelectedData_group: selectedValues1,
-            multipleSelectedData_group_limited: [],
-        };
-
+        this.buttonPressed = this.buttonPressed.bind(this);
     }
    
 
-    // multiSliderValuesChange = (values) => {
-    //     this.setState({
-    //         values,
-    //     });
-    // }
+    buttonPressed(index) {
+        console.log('FROM:',this.state.activeState);
+        const tmpState = this.state.activeState.map((val, tmpIndex) => {
+            if (tmpIndex === index) {
+                return !val;
+            }
+            return val; 
+        });
+        this.setState({ activeState: tmpState });
+        console.log('TO:',this.state.activeState);
 
+    }
 
 	render() {
         return(
@@ -101,31 +60,28 @@ class FilterScreen extends React.Component {
                             <Text style={[styles.filterName,{marginBottom:5}]}>Type </Text>
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
-
                             <View style={styles.typeBox}>
-
-                                {/* <SelectMultipleGroupButton
-
-                            <View style={[styles.typeBox,styles.multipleGroupBtn]}>
-                                <SelectMultipleGroupButton
-
-                                    defaultSelectedIndexes={defaultSelectedIndex_group_insterest}
-                                    containerViewStyle={{ justifyContent: "flex-start" }}
-                                    highLightStyle={{
-                                        borderColor: "#f2f2f2",
-                                        backgroundColor: "transparent",
-                                        textColor: "#4a4a4a",
-                                        borderTintColor: ios_blue,
-                                        backgroundTintColor: "transparent",
-                                        textTintColor: ios_blue,
-                                    }}
-                                    maximumNumberSelected={5}
-                                    onSelectedValuesChange={selectedValues =>
-                                        this._groupButtonOnSelectedValuesChange(selectedValues)
-                                    }
-                                    group={multipleGroupData}
-                                /> */}
-                            </View>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> Apartment</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> House</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> Condo</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> Townhouse</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> Dorm</Text>
+                                </TouchableOpacity>
+						    </View>
                         </View>
                     </View>
                     <View style={styles.filterItem}>
@@ -134,25 +90,33 @@ class FilterScreen extends React.Component {
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={styles.typeBox}>
-                                <View style={[styles.typeBox,styles.multipleGroupBtn]}>
-                                    {/* <SelectMultipleGroupButton
-                                        defaultSelectedIndexes={defaultSelectedIndex_group_insterest2}
-                                        containerViewStyle={{ justifyContent: "flex-start" }}
-                                        highLightStyle={{
-                                            borderColor: "#f2f2f2",
-                                            backgroundColor: "transparent",
-                                            textColor: "#4a4a4a",
-                                            borderTintColor: ios_blue,
-                                            backgroundTintColor: "transparent",
-                                            textTintColor: ios_blue,
-                                        }}
-                                        maximumNumberSelected={5}
-                                        onSelectedValuesChange={selectedValues =>
-                                            this._groupButtonOnSelectedValuesChange(selectedValues)
-                                        }
-                                        group={multipleGroupData2}
-                                    /> */}
-                                </View>
+
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> Studio</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 1</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 2</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 3</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 4</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 5+</Text>
+                                </TouchableOpacity>
+
+                                
 						    </View>
                         </View>
                     </View>
@@ -162,23 +126,28 @@ class FilterScreen extends React.Component {
                         </View>
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={[styles.typeBox,{marginLeft:10}]}>
-                                {/* <SelectMultipleGroupButton
-                                    defaultSelectedIndexes={defaultSelectedIndex_group_insterest3}
-                                    containerViewStyle={{ justifyContent: "flex-start" }}
-                                    highLightStyle={{
-                                        borderColor: "#f2f2f2",
-                                        backgroundColor: "transparent",
-                                        textColor: "#4a4a4a",
-                                        borderTintColor: ios_blue,
-                                        backgroundTintColor: "transparent",
-                                        textTintColor: ios_blue,
-                                    }}
-                                    maximumNumberSelected={5}
-                                    onSelectedValuesChange={selectedValues =>
-                                        this._groupButtonOnSelectedValuesChange(selectedValues)
-                                    }
-                                    group={multipleGroupData3}
-                                /> */}
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 1</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 2</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 3</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 4</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(0)}> 5+</Text>
+                                </TouchableOpacity>
+
+                              
 						    </View>
                         </View>
                     </View>

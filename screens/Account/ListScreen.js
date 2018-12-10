@@ -6,33 +6,7 @@ import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
 import styles from "./styles";
 import {db, logOut} from '../../service/auth';
 
-const multipleGroupDataHomeType = [
-  { value: "Any" },
-  { value: "House" },
-  { value: "Apartment"},	
-  { value: "Dorm" },
-  { value: "Townhouse" },
-  { value: "Condo" }
-];
-const defaultSelectedIndex_group_insterest = [1];
 
-const multipleGroupDataRoomType = [
-  { value: "Any" },
-  { value: "Entire Home" },
-  { value: "Private Rooms"},	
-];
-const defaultSelectedIndex_group_insterest2 = [0];
-
-const multipleGroupDataBedrooms = [
-  { value: "Studio" },
-  { value: "1" },
-  { value: "2" },
-  { value: "3" },
-  { value: "4" }
-];
-const defaultSelectedIndex_group_insterest3 = [0];
-
-const ios_blue = "#4F3BF6";
 
 
 
@@ -44,8 +18,10 @@ class HomeScreen extends Component {
 		super(props)
 		this.state = {
 			loading : true,
-			properties : []
+			properties : [],
+			activeState: [false]
 		}		
+		this.buttonPressed = this.buttonPressed.bind(this);
 	}
 
 	  state = {
@@ -56,21 +32,20 @@ class HomeScreen extends Component {
 	  	this.setState({
 	  		modalVisible: visible
 		  });
-		  
-
-		  var selectedValues1 = [];
-		  defaultSelectedIndex_group_insterest.map(item => {
-		  	selectedValues1.push(multipleGroupDataHomeType[item].value);
-		  });
-
-		  this.state = {
-		  	multipleSelectedData: [],
-		  	multipleSelectedDataLimited: [],
-		  	radioSelectedData: "",
-		  	multipleSelectedData_group: selectedValues1,
-		  	multipleSelectedData_group_limited: [],
-		  };
 	  }
+
+	buttonPressed(index) {
+        console.log('FROM:',this.state.activeState);
+        const tmpState = this.state.activeState.map((val, tmpIndex) => {
+            if (tmpIndex === index) {
+                return !val;
+            }
+            return val; 
+        });
+        this.setState({ activeState: tmpState });
+        console.log('TO:',this.state.activeState);
+
+    }
 
 	async componentWillMount() {
 		var properties = [];
@@ -217,26 +192,35 @@ class HomeScreen extends Component {
 						<View style={[{borderBottomWidth:1,borderBottomColor:'#f2f2f2',padding:10}]}>
 							<Text style={[styles.headtext,{marginLeft: 20,paddingTop:5}]}>Home Type</Text>
 						</View>
-						<View style={{flex:0,justifyContent:'center',alignItems:'center',padding:20}}>
-								{/* <SelectMultipleGroupButton
-								buttonViewStyle={{borderRadius: 3,width: 100,marginBottom:10}}
-                                    defaultSelectedIndexes={defaultSelectedIndex_group_insterest}
-                                    containerViewStyle={{ justifyContent: "center" }}
-                                    highLightStyle={{
-                                        borderColor: "#f2f2f2",
-                                        backgroundColor: "transparent",
-                                        textColor: "#4a4a4a",
-                                        borderTintColor: ios_blue,
-                                        backgroundTintColor: ios_blue,
-                                        textTintColor: "#fff",
-                                    }}
-                                    maximumNumberSelected={1}
-                                    onSelectedValuesChange={selectedValues =>
-                                        this._groupButtonOnSelectedValuesChange(selectedValues)
-                                    }
-                                    group={multipleGroupDataHomeType}
-                                /> */}
-						</View>
+						<View style={[styles.typeBox,{padding:10}]}>
+							<View style={[styles.quickfilters]}>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> Any</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> House</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> Apartment</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> Dorm</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> Townhouse</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> Condo</Text>
+                                </TouchableOpacity>
+							</View>
+						</View>	
+
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
 							<TouchableOpacity><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
@@ -244,53 +228,53 @@ class HomeScreen extends Component {
 
 					<PopupDialog width={310} height={350} show={this.state.visible} ref={(popupDialog) => { this.popupDialogRooms = popupDialog; }}>
 						<View style={[{borderBottomWidth:1,borderBottomColor:'#f2f2f2',padding:10}]}>
-							<Text style={[styles.headtext,{marginLeft: 20,paddingTop:5}]}>Home Type</Text>
+							<Text style={[styles.headtext,{marginLeft: 20,paddingTop:5}]}>Rooms</Text>
 						</View>
-						<View>
-							<Text  style={{flex:0,paddingLeft:20,paddingTop:20}}>Room Type</Text>
-							<View style={{flex:0,justifyContent:'flex-start',alignItems:'flex-start',padding:20}}>
-								{/* <SelectMultipleGroupButton
-								buttonViewStyle={{borderRadius: 3,paddingLeft:0,marginBottom:10}}
-                                    defaultSelectedIndexes={defaultSelectedIndex_group_insterest2}
-                                    containerViewStyle={{ justifyContent: "flex-start" }}
-                                    highLightStyle={{
-                                        borderColor: "#f2f2f2",
-                                        backgroundColor: "transparent",
-                                        textColor: "#4a4a4a",
-                                        borderTintColor: ios_blue,
-                                        backgroundTintColor: ios_blue,
-                                        textTintColor: "#fff",
-                                    }}
-                                    maximumNumberSelected={1}
-                                    onSelectedValuesChange={selectedValues =>
-                                        this._groupButtonOnSelectedValuesChange(selectedValues)
-                                    }
-                                    group={multipleGroupDataRoomType}
-                                /> */}
+						<Text style={[{paddingLeft:30,paddingTop:10}]}>Room Type</Text>
+						<View style={[styles.typeBox,{padding:10}]}>
+								
+							<View style={[styles.quickfilters]}>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> Any</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> Entire House</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> Private Rooms</Text>
+                                </TouchableOpacity>
 							</View>
+						</View>	
+						<Text style={[{paddingLeft:30}]}>Bedrooms</Text>
+						<View style={[styles.typeBox,{padding:10}]}>
+								
+							<View style={[styles.quickfilters]}>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> Studio</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> 1</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> 2</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> 3</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}> 4</Text>
+                                </TouchableOpacity>
 
-							<Text  style={{flex:0,paddingLeft:20,paddingTop:0}}>Room Type</Text>
-							<View style={{flex:0,justifyContent:'flex-start',alignItems:'flex-start',padding:20}}>
-								{/* <SelectMultipleGroupButton
-								buttonViewStyle={{borderRadius: 3,paddingLeft:0,marginBottom:10}}
-                                    defaultSelectedIndexes={defaultSelectedIndex_group_insterest3}
-                                    containerViewStyle={{ justifyContent: "flex-start" }}
-                                    highLightStyle={{
-                                        borderColor: "#f2f2f2",
-                                        backgroundColor: "transparent",
-                                        textColor: "#4a4a4a",
-                                        borderTintColor: ios_blue,
-                                        backgroundTintColor: ios_blue,
-                                        textTintColor: "#fff",
-                                    }}
-                                    maximumNumberSelected={1}
-                                    onSelectedValuesChange={selectedValues =>
-                                        this._groupButtonOnSelectedValuesChange(selectedValues)
-                                    }
-                                    group={multipleGroupDataBedrooms}
-                                /> */}
 							</View>
-						</View>
+						</View>	
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
 							<TouchableOpacity><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
 						</View>

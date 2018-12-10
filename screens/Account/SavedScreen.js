@@ -59,7 +59,7 @@ class SavedScreen extends Component {
 								<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
 								<Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/>
 							</View>
-						<View style={{position:'relative', height:500}}>	
+						<View style={{position:'relative', height:380}}>	
 							<Image style={[styles.homeImg,{position:'relative'}]} source={{uri:data.image}}/>	
 
 
