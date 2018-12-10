@@ -34,8 +34,7 @@ class LoginScreenTwo extends Component {
 				ToastAndroid.show('Please Enter valid Email address', ToastAndroid.SHORT);
 			} else {
 				const data  = await signIn(this.state.email,this.state.password);
-				console.log(data);
-
+				await Expo.SecureStore.setItemAsync('uId', data.user.uid);
 				if( data.ack == 1) {
 					this.props.navigation.navigate("Main")
 				} else {
