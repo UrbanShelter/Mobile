@@ -17,7 +17,7 @@ import ExploreScreen from '../screens/Account/ExploreScreen';
 import LandlordScreen from '../screens/Account/LandlordScreen';
 import MessageScreen from '../screens/Account/MessageScreen';
 import FilterScreen from '../screens/Account/FilterScreen';
-import ChattingScreen from '../screens/Account/ChattingScreen';
+
 
 
 const WelcomeStack = createStackNavigator({
@@ -35,10 +35,7 @@ const WelcomeStack = createStackNavigator({
 );
 
 
-
 export default createSwitchNavigator({
-	ChattingScreen: ChattingScreen,
-
 	Welcome: WelcomeStack,
 	Main: MainTabNavigator,
 });

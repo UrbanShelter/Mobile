@@ -11,7 +11,7 @@ import MessageInnerScreen from '../screens/Account/MessageInnerScreen';
 import FilterScreen from '../screens/Account/FilterScreen';
 import ReportScreen from '../screens/Account/ReportScreen';
 import ReviewScreen from '../screens/Account/ReviewScreen';
-
+import ChattingScreen from '../screens/Account/ChattingScreen';
 
 
 const MainStack = createStackNavigator({
@@ -27,7 +27,7 @@ const MainStack = createStackNavigator({
     Review: ReviewScreen
   
     },{
-        initialRouteName: 'List',
+        initialRouteName: 'Search',
         
     }
 );
@@ -71,14 +71,10 @@ const StayStack = createStackNavigator({
     }
 );
 const MessageStack = createStackNavigator({
-    Search: MainScreen,
-    List: ListScreen,
-    Tour: TourScreen,
-    Explore: ExploreScreen,
-    View: ViewScreen,
-    Saved: SavedScreen,
+    
     Message: MessageScreen,
-    MessageInner: MessageInnerScreen
+    MessageInner: MessageInnerScreen,
+    Chat:ChattingScreen
   
     },{
         initialRouteName: 'Message',

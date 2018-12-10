@@ -48,14 +48,16 @@ render() {
                 <View style={[styles.listBody]}>
                     <Text style={[styles.headtext,{paddingLeft:20,marginTop:20,marginBottom:20}]}>Landlord</Text>
                 </View>
-                <View style={[styles.reviewsBox,styles.hrBox,{paddingTop:20}]}>
-                    <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/>
-                    <View style={[{position:'relative'}]}>
-                        <Text style={styles.reviewsBoxHeading}>Timmothy Hashfields</Text>
-                        <Text style={[styles.PrecautionsText,{fontSize:16,color:'#7f7d8a'}]}>This is a sample read message from the...</Text>
-                        <Text style={[styles.PrecautionsText,{position:'absolute',right:10,fontSize:15,fontWeight:'600',color:'#7f7d8a'}]}>Aug 10</Text>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate("Chat")}>
+                    <View style={[styles.reviewsBox,styles.hrBox,{paddingTop:20}]}>
+                        <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/>
+                        <View style={[{position:'relative'}]}>
+                            <Text style={styles.reviewsBoxHeading}>Timmothy Hashfields</Text>
+                            <Text style={[styles.PrecautionsText,{fontSize:16,color:'#7f7d8a'}]}>This is a sample read message from the...</Text>
+                            <Text style={[styles.PrecautionsText,{position:'absolute',right:10,fontSize:15,fontWeight:'600',color:'#7f7d8a'}]}>Aug 10</Text>
+                        </View>
                     </View>
-                </View>
+                </TouchableOpacity>
                 <View style={[styles.reviewsBox,styles.hrBox,{paddingTop:20}]}>
                     <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/>
                     <View style={[{position:'relative'}]}>

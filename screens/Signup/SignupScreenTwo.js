@@ -3,7 +3,6 @@ import { Image, View, StatusBar,KeyboardAvoidingView, TouchableOpacity} from "re
 import {Text, Item, Input } from "native-base";
 import styles from "./styles";
 import {saveData, storeItem} from '../../service/service';
-// import {saveData} from '../../service/auth';
 
 class SignupScreenTwo extends Component {
 	static navigationOptions = {
@@ -28,7 +27,7 @@ class SignupScreenTwo extends Component {
 			uId : this.state.uid
 		}
 
-		await Expo.SecureStore.setItemAsync('userDetails', storeObj)
+		await Expo.SecureStore.setItemAsync('uId', this.state.uid)
 
 		var data = await saveData("users",this.state.uid,obj);
 		if(data == true) {
