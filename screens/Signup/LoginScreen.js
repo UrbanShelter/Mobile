@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import { Image, View, ScrollView, StatusBar, TouchableOpacity, ImageBackground, KeyboardAvoidingView, TextInput, ToastAndroid, AsyncStorage } from "react-native";
-import { Container, Button, H3, Text, Header, Title, Body, Left, Right, Content, Item, Input } from "native-base";
-import Swiper from 'react-native-swiper';
+import { Image, View, StatusBar, TouchableOpacity } from "react-native";
+import { Text } from "native-base";
 import styles from "./styles";
 
-import {
-	customerLogin
-} from "../../js/api/commonApi";
 
 class LoginScreen extends Component {
 	static navigationOptions = {

@@ -75,6 +75,7 @@ class LoginScreen extends Component {
 
 	registerUser = async () => {
 		var data = await signUp(this.state.email, this.state.password );
+		console.log(data);
 		if(data.operationType == 'signIn'){
 			this.setState({loader : false});
 			this.props.navigation.navigate("SignupTwo",{uid:data.user.uid});

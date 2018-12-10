@@ -22,8 +22,7 @@ class TourScreen extends Component {
 		return (
 				<View style={styles.ExploreScreen}>					
 					<StatusBar backgroundColor="#ffffff"/>
-					
-					<View elevation={5} style={[styles.relativeHeader,{paddingRight:20,paddingLeft:20,}]}>
+					<View elevation={5} style={[styles.relativeHeader,{paddingRight:20,paddingLeft:20,paddingBottom:20,height:60}]}>
 						<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
 							<Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
 						</TouchableOpacity>
