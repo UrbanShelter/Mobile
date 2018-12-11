@@ -19,7 +19,7 @@ class MessageInnerScreen extends Component {
             roommates: []
 		}		
     }
- 
+    
     async componentWillMount () {
 
         var chats = await db.collection('chats').doc(this.state.msgId).get();
@@ -102,13 +102,13 @@ render() {
                         <Text style={[styles.headtext,{paddingLeft:20,marginTop:20,marginBottom:20}]}>Roommates</Text>
                     </View>
                     { 
-                        this.state.roommates.map((roomateslist , key) => {
+                        this.state.roommates.map((roommateslist , key) => {
                             return  (
-                                <TouchableOpacity key={key}  onPress={()=>this.props.navigation.navigate("Chat",{chatmsgId: roomateslist.chatmsgId})}>
+                                <TouchableOpacity key={key}  onPress={()=>this.props.navigation.navigate("Chat",{chatmsgId: roommateslist.chatmsgId, userData: roommateslist.userdata })}>
                                     <View style={[styles.reviewsBox,styles.hrBox,{paddingTop:20}]}>
-                                        <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/>
+                                        <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={{uri:roommateslist.userdata.image}}/>
                                         <View style={[{position:'relative'}]}>
-                                            <Text style={styles.reviewsBoxHeading}>{roomateslist.userdata.firstName} {roomateslist.userdata.lastName}</Text>
+                                            <Text style={styles.reviewsBoxHeading}>{roommateslist.userdata.firstName} {roommateslist.userdata.lastName}</Text>
                                             <Text style={[styles.PrecautionsText,{fontSize:16,color:'#7f7d8a'}]}>This is a sample read message from the...</Text>
                                             <Text style={[styles.PrecautionsText,{position:'absolute',right:10,fontSize:15,fontWeight:'600',color:'#7f7d8a'}]}>Aug 10</Text>
                                         </View>

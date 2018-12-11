@@ -23,6 +23,8 @@ class ListingPage extends Component {
 
 
 	async componentDidMount() {
+		console.log(this.state.propertyId);
+		
 		var property = {}; 
 		await db.collection("property").doc(this.state.propertyId).get().then((querySnapshot) => {
 			this.setState({property : querySnapshot.data()});

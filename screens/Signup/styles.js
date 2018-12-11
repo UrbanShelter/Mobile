@@ -209,6 +209,25 @@ cityTextTwo:{
   color:'#fff',
   fontSize: 14,
   fontWeight: '300',
-}
+},
+/************************************************Code Start RAJA************************************************/
+
+  customBtn:{       
+    color:'#fff',
+    fontFamily:'Lato-Bold',
+    fontWeight:'700',
+    fontSize:14,
+    textAlign:'center',
+    backgroundColor:'#4F3BF6',
+    borderRadius:4,
+    lineHeight:48,
+    marginTop:30,
+  },
+  signinbg:{
+    flex: 1,
+    padding:20,
+    paddingTop:50,
+    backgroundColor:'#fff'
+  },
 
 };
