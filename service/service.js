@@ -9,6 +9,12 @@ export async function saveData(collection,doc,obj) {
   
 }
 
+export async function updateData(collection,doc,obj) {
+    
+    var data = await db.collection(collection).doc(doc).update(obj);
+    return data;
+}
+
 export async function getData(collection,doc) {
     var data = await db.collection(collection).doc(doc).get();
     console.log(data.data());

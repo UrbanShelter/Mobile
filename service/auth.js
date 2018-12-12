@@ -1,6 +1,7 @@
 import * as firebase from "firebase";
 import Expo from "expo";
 import 'firebase/firestore';
+import Login from '../screens/Signup/LoginScreen';
 
 var config = {
     apiKey: "AIzaSyDtZLZMjy5KmC3qaOVpKhDUmlBRg5OmcO8",
@@ -58,6 +59,7 @@ export async function signIn(email , password) {
 export async function logOut(){
     firebase.auth().signOut().then(function() {
         console.log('Signed Out');
+        this.props.navigation.navigate("Login");
     }, function(error) {
         console.error('Sign Out Error', error);
     });
