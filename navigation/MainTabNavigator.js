@@ -1,4 +1,7 @@
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import {Icon} from 'native-base';
+import React, { Component } from "react";
+
 
 import MainScreen from '../screens/Account/MainScreen';
 import ListScreen from '../screens/Account/ListScreen';
@@ -12,7 +15,7 @@ import FilterScreen from '../screens/Account/FilterScreen';
 import ReportScreen from '../screens/Account/ReportScreen';
 import ReviewScreen from '../screens/Account/ReviewScreen';
 import ChattingScreen from '../screens/Account/ChattingScreen';
-
+import EditprofileScreen from '../screens/Account/EditprofileScreen';
 
 const MainStack = createStackNavigator({
     Search: MainScreen,
@@ -24,7 +27,8 @@ const MainStack = createStackNavigator({
     Message: MessageScreen,
     Filter: FilterScreen,
     Report: ReportScreen,
-    Review: ReviewScreen
+    Review: ReviewScreen, 
+    Editprofile: EditprofileScreen,
   
     },{
         initialRouteName: 'Search',
@@ -39,7 +43,8 @@ const SaveStack = createStackNavigator({
     View: ViewScreen,
     Saved: SavedScreen,
     Message: MessageScreen,
-  
+    Editprofile: EditprofileScreen,
+
     },{
         initialRouteName: 'Saved',
     }
@@ -52,9 +57,10 @@ const ProfileStack = createStackNavigator({
     View: ViewScreen,
     Saved: SavedScreen,
     Message: MessageScreen,
+    Editprofile: EditprofileScreen,
   
     },{
-        initialRouteName: 'List',
+        initialRouteName: 'Editprofile',
     }
 );
 const StayStack = createStackNavigator({
@@ -65,6 +71,7 @@ const StayStack = createStackNavigator({
     View: ViewScreen,
     Saved: SavedScreen,
     Message: MessageScreen,
+    Editprofile: EditprofileScreen,
   
     },{
         initialRouteName: 'List',
@@ -74,7 +81,8 @@ const MessageStack = createStackNavigator({
     
     Message: MessageScreen,
     MessageInner: MessageInnerScreen,
-    Chat:ChattingScreen
+    Chat:ChattingScreen,
+    Editprofile: EditprofileScreen,
     },{
         initialRouteName: 'Message',
     }
@@ -114,11 +122,58 @@ MessageStack.navigationOptions = ({ navigation }) => {
 
 const MainTabNavigator = createBottomTabNavigator({
   
-    EXPLORE: MainStack,
-    SAVED:SaveStack,
-    STAY:StayStack,
-    MESSAGES:MessageStack,
-    PROFILE:ProfileStack,
+    EXPLORE: {
+        screen: MainStack,
+        navigationOptions: {
+            tabBarIcon: () => <Icon name="ios-compass-outline" />,
+            tabBarOptions: {
+            activeTintColor: '#4f3bf6',
+            showLabel: true,
+            },
+        },
+    },
+    SAVED: {
+        screen:SaveStack,
+        navigationOptions: {
+            tabBarIcon: () => <Icon name="ios-heart-outline" />,
+            tabBarOptions: {
+            activeTintColor: '#4f3bf6',
+            showLabel: true,
+            },
+        }
+    },
+    STAY: {
+        screen:StayStack,
+        navigationOptions: {
+            tabBarIcon: () => <Icon name="ios-home-outline" />,
+            tabBarOptions: {
+            activeTintColor: '#4f3bf6',
+            showLabel: true,
+            },
+        }
+    },
+    MESSAGES:{
+        screen:MessageStack,
+        navigationOptions: {
+            tabBarIcon: () => <Icon name="ios-chatbubbles-outline" />,
+            tabBarOptions: {
+                activeTintColor: '#4f3bf6',
+                showLabel: true,
+            },
+        }
+    },
+    PROFILE:{
+        screen:ProfileStack,
+        navigationOptions: {
+            tabBarIcon: () => <Icon name="ios-contact-outline" />,
+            tabBarOptions: {
+            activeTintColor: '#4f3bf6',
+            showLabel: true,
+            },
+        },
+        
+    },
+
 })
 
 export default MainTabNavigator;

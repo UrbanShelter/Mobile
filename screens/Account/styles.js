@@ -878,4 +878,34 @@ smallIcon:{
     height:50,
     alignItems:'center'
   },
+  labeltext:{
+    fontSize:12,
+    color:'#000000',
+    fontWeight:'700',
+    fontFamily:'Montserrat-SemiBold',
+    textAlign:'left',
+    lineHeight:16
+  },
+  monthYear: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  profileImgCnt: {
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  profileImg:{
+    width:120,
+    height:120,
+    borderRadius:60,
+    borderWidth:2,
+    borderColor:'#4f3bf6'
+  },
+  clearBtn:{
+    color:'#4f3bf6',
+    fontWeight:'600',
+    marginRight:10,
+  }
 };
