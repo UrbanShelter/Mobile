@@ -102,6 +102,8 @@ render() {
                         <Text style={[styles.headtext,{paddingLeft:20,marginTop:20,marginBottom:20}]}>Roommates</Text>
                     </View>
                     { 
+                        (this.state.roommates.length == 0) ? null
+                        : 
                         this.state.roommates.map((roommateslist , key) => {
                             return  (
                                 <TouchableOpacity key={key}  onPress={()=>this.props.navigation.navigate("Chat",{chatmsgId: roommateslist.chatmsgId, userData: roommateslist.userdata })}>

@@ -106,8 +106,6 @@ render() {
                                     )
                                 })
                             }
-
-
                         </View> 
                     </ScrollView>
                 </View>
