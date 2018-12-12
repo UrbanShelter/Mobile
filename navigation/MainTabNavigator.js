@@ -89,20 +89,20 @@ const MessageStack = createStackNavigator({
 );
 
 
-// MainStack.navigationOptions = ({ navigation }) => {
+MainStack.navigationOptions = ({ navigation }) => {
 
-//     let tabBarVisible = false;
+    let tabBarVisible = true;
 
-//     let routeName = navigation.state.routes[navigation.state.index].routeName
+    let routeName = navigation.state.routes[navigation.state.index].routeName
 
-//     if ( routeName == 'List' ) {
-//         tabBarVisible = true
-//     }
+    if ( routeName == 'View' || routeName == 'Explore' ) {
+        tabBarVisible = false
+    }
 
-//     return {
-//         tabBarVisible,
-//     }
-// }
+    return {
+        tabBarVisible,
+    }
+}
 
 
 MessageStack.navigationOptions = ({ navigation }) => {

@@ -21,16 +21,19 @@ class MessageInnerScreen extends Component {
     }
     
     async componentWillMount () {
-
-        var chats = await db.collection('chats').doc(this.state.msgId).get();
-
-        chats.data().chats.roommates.forEach(element => {
-            db.collection('users').doc(element.userId).get().then( function(userelement) {
-                let roommates = [...this.state.roommates];
-                roommates.push({chatmsgId : element.chatmsgId,userdata : userelement.data()});
-                this.setState({ roommates });
-                
-            }.bind(this))
+        let roommates;
+        var that = this;
+        console.log(this.state.msgId);
+        var chats = db.collection('chats').doc(this.state.msgId).collection('roommates').get().then( function(element){
+            element.forEach( function(singleElement) {
+                console.log(singleElement.data());
+                db.collection('users').doc(singleElement.data().userId).get().then( function(userelement) {
+                    roommates = [...that.state.roommates];
+                    roommates.push({chatmsgId : singleElement.data().chatmsgId,userdata : userelement.data()});
+                    that.setState({ roommates });
+                    
+                }.bind(that))
+            })
         });
 
         this.setState({loading:false});

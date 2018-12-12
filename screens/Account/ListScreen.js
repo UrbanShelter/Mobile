@@ -113,7 +113,7 @@ class HomeScreen extends Component {
 								<Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/>
 							</View>
 							{/* <Image style={styles.homeImg} source={require("../../assets/images/flat-with-yellow.png")}/> */}
-						<View style={{position:'relative', height:360}}>	
+						<View style={{position:'relative', height:400}}>	
 							<Image style={styles.homeImg} source={{uri:data.image}}/>	
 							<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
 									<View style={[styles.Buttonpr,{position:'relative'}]}>
