@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar, TouchableOpacity, ActivityIndicator, StyleSheet} from "react-native";
 import {Text, Icon } from "native-base";
 import styles from "./styles";
-import StarRatingBar from 'react-native-star-rating-view/StarRatingBar';
 import {db, logOut} from '../../service/auth';
 
 
@@ -67,14 +66,11 @@ render() {
                                 <Text style={styles.PrecautionsText}>APARTMENT•PRIVATE ROOM</Text>
 
                                 <View style={[styles.ratings,{position:'absolute',bottom:-15}]}>
-                                    <StarRatingBar
-										score={data.rating}
-										allowsHalfStars={true}
-    									accurateHalfStars={true}
-										dontShowScore={true}
-										emptyStarImage={<Icon name='ios-star-outline' style={{fontSize: 14,marginTop:-1, color: '#4f3bf6'}}/>}
-										filledStarImage={<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>}
-										/>
+                                    <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+                                    <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+                                    <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+                                    <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+                                    <Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
                                     <View><Text style={styles.countText}>(86)</Text></View>
                                 </View>	
                             </View>	
@@ -95,14 +91,11 @@ render() {
                                                 </View>
                                                 <View style={[styles.reviewRating,{position:'absolute',right:0, top: 20}]}>
                                                     <View style={styles.ratings}>
-                                                        <StarRatingBar
-                                                            score={tag.rating	}
-                                                            allowsHalfStars={true}
-                                                            accurateHalfStars={true}
-                                                            dontShowScore={true}
-                                                            emptyStarImage={<Icon name='ios-star-outline' style={{fontSize: 14,marginTop:-1, color: '#4f3bf6'}}/>}
-                                                            filledStarImage={<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>}
-                                                            />
+                                                        <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+                                                        <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+                                                        <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+                                                        <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+                                                        <Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
                                                     </View>
                                                 </View>
                                             </View>
