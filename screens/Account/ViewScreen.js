@@ -167,18 +167,6 @@ class ListingPage extends Component {
 									<Image style={styles.mapExplore} source={require("../../assets/images/explore.png")}/>
 								</TouchableOpacity>
 							</View>
-							{/* <View style={[styles.homeFacilityOuter,{justifyContent:'flex-start',flex:0}]}>
-							{
-								property.amenities.inSuite.map( (roomaminity , aminityKey) => {
-									return (
-										<View key = {aminityKey} style={[styles.homeFacilityFlex,{marginRight:10}]}>
-											<Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/>
-											<Text style={styles.countText}>{roomaminity}</Text>
-										</View>
-									)
-								})
-							}			
-							</View> */}
 							<View style={styles.hrBox}>
 								<Text style={styles.hrBoxHeading}>Property Reviews</Text>
 								<View style={styles.reviewsBox}>									

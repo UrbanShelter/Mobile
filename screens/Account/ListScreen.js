@@ -106,12 +106,15 @@ class HomeScreen extends Component {
 						</View>				
 						<Text style={styles.headtext1}>Home Rentals in Waterloo </Text>
 						{this.state.properties.map((data, key) => 
-							<View key={key}>
-							<TouchableOpacity style={styles.homeImgCat} onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
+
+						<View key={key}>
+
+						<TouchableOpacity style={styles.homeImgCat} onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
 							<View style={styles.imgeOver}>
 								<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
 								<Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/>
 							</View>
+
 							{/* <Image style={styles.homeImg} source={require("../../assets/images/flat-with-yellow.png")}/> */}
 						<View style={{position:'relative', height:400}}>	
 							<Image style={styles.homeImg} source={{uri:data.image}}/>	
@@ -146,29 +149,64 @@ class HomeScreen extends Component {
 											starSize={15}
 										/>
 										<View><Text style={styles.countText}>(86)</Text></View>
+
+							<View style={{position:'relative', height:400}}>	
+								<Image style={styles.homeImg} source={{uri:data.image}}/>	
+								<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
+										<View style={[styles.Buttonpr,{position:'relative'}]}>
+											<View style={styles.priceBar}></View>
+											<Text style={styles.priceName}>${data.rent}/{data.rentUnit}</Text>									
+										</View>					
+									<View style={styles.propertDesOuter}>								
+										<View>
+											<Text style={styles.homePropertyName}>{data.location.address} • {data.location.city}, {data.location.state}, {data.location.countryCode}</Text>
+										</View>
+
 									</View>
-									
-									<View style={styles.homeFacilityFlex}>
-										<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
-										<Text style={styles.countText}>2 Beds</Text>
-									</View>
-									<View style={styles.homeFacilityFlex}>
-										<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
-										<Text style={styles.countText}>2 Baths</Text>
-									</View>	
+									<View style={styles.homeCategoryBox}>
 									{
-										data.amenities.inBuilding.map( (roomaminity , aminityKey) => {
-											return (
-												<View key = {aminityKey} style={styles.homeFacilityFlex}>
-													{/* <Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/> */}
-													<Text style={styles.countText}>{roomaminity.name}</Text>
-												</View>
-											)
+										data.tags.map( (tag, tagKey) => {
+											return <Text key={tagKey} style={styles.homeCategorylebel}>{tag}</Text>
 										})
 									}
+									</View>
+									<View style={styles.homeFacilityOuter}>
+										<View style={styles.ratings}>
+											<StarRating
+												disabled={true}
+												emptyStar={'ios-star-outline'}
+												fullStar={'ios-star'}
+												halfStar={'ios-star-half'}
+												iconSet={'Ionicons'}
+												maxStars={5}
+												rating={data.rating}
+												fullStarColor={'#4f3bf6'}
+												starSize={15}
+											/>
+											<View><Text style={styles.countText}>(86)</Text></View>
+										</View>
+										
+										<View style={styles.homeFacilityFlex}>
+											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
+											<Text style={styles.countText}>2 Beds</Text>
+										</View>
+										<View style={styles.homeFacilityFlex}>
+											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
+											<Text style={styles.countText}>2 Baths</Text>
+										</View>	
+										{
+											data.amenities.inBuilding.map( (roomaminity , aminityKey) => {
+												return (
+													<View key = {aminityKey} style={styles.homeFacilityFlex}>
+														{/* <Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/> */}
+														<Text style={styles.countText}>{roomaminity.name}</Text>
+													</View>
+												)
+											})
+										}
+									</View>
 								</View>
 							</View>
-						</View>
 						</TouchableOpacity> 
 						</View>
 						)}
