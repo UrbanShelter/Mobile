@@ -3,6 +3,7 @@ import { Image, View, ScrollView, StatusBar, TouchableOpacity, ActivityIndicator
 import {Text, Icon } from "native-base";
 import styles from "./styles";
 import {db, logOut} from '../../service/auth';
+import StarRating from 'react-native-star-rating';
 
 
 class ReviewScreen extends Component {
@@ -66,11 +67,17 @@ render() {
                                 <Text style={styles.PrecautionsText}>APARTMENT•PRIVATE ROOM</Text>
 
                                 <View style={[styles.ratings,{position:'absolute',bottom:-15}]}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
-                                    <Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
+                                    <StarRating
+                                    disabled={true}
+                                    emptyStar={'ios-star-outline'}
+                                    fullStar={'ios-star'}
+                                    halfStar={'ios-star-half'}
+                                    iconSet={'Ionicons'}
+                                    maxStars={5}
+                                    rating={data.rating}
+                                    fullStarColor={'#4f3bf6'}
+                                    starSize={15}
+                                    />
                                     <View><Text style={styles.countText}>(86)</Text></View>
                                 </View>	
                             </View>	
@@ -91,11 +98,17 @@ render() {
                                                 </View>
                                                 <View style={[styles.reviewRating,{position:'absolute',right:0, top: 20}]}>
                                                     <View style={styles.ratings}>
-                                                        <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-                                                        <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-                                                        <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-                                                        <Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
-                                                        <Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
+                                                        <StarRating
+                                                        disabled={true}
+                                                        emptyStar={'ios-star-outline'}
+                                                        fullStar={'ios-star'}
+                                                        halfStar={'ios-star-half'}
+                                                        iconSet={'Ionicons'}
+                                                        maxStars={5}
+                                                        rating={tag.rating}
+                                                        fullStarColor={'#4f3bf6'}
+                                                        starSize={15}
+                                                        />
                                                     </View>
                                                 </View>
                                             </View>

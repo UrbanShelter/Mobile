@@ -4,8 +4,7 @@ import { Text, Icon,Input } from "native-base";
 import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
 import styles from "./styles";
 import {db, logOut} from '../../service/auth';
-
-
+import StarRating from 'react-native-star-rating';
 
 
 
@@ -26,7 +25,6 @@ class HomeScreen extends Component {
 	  state = {
 	  	modalVisible: false,
 	  };
-
 	  setModalVisible(visible) {
 	  	this.setState({
 	  		modalVisible: visible
@@ -125,7 +123,6 @@ class HomeScreen extends Component {
 								<View style={styles.propertDesOuter}>								
 									<View>
 										<Text style={styles.homePropertyName}>{data.location.address} • {data.location.city}, {data.location.state}, {data.location.countryCode}</Text>
-										{/* <Text style={styles.homePropertyDes}>{data.location.city}, {data.location.state}, {data.location.countryCode} </Text> */}
 									</View>
 								</View>
 								<View style={styles.homeCategoryBox}>
@@ -137,11 +134,17 @@ class HomeScreen extends Component {
 								</View>
 								<View style={styles.homeFacilityOuter}>
 									<View style={styles.ratings}>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
-										<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<StarRating
+											disabled={true}
+											emptyStar={'ios-star-outline'}
+											fullStar={'ios-star'}
+											halfStar={'ios-star-half'}
+											iconSet={'Ionicons'}
+											maxStars={5}
+											rating={data.rating}
+											fullStarColor={'#4f3bf6'}
+											starSize={15}
+										/>
 										<View><Text style={styles.countText}>(86)</Text></View>
 									</View>
 									
