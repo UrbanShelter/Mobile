@@ -3,6 +3,7 @@ import { Image, View, ScrollView, StatusBar, TouchableOpacity, ActivityIndicator
 import {Text, Icon } from "native-base";
 import styles from "./styles";
 import { getData, retrieveItem } from '../../service/service';
+import {db} from '../../service/auth';
 
 
 class MessageScreen extends Component {
@@ -14,14 +15,23 @@ class MessageScreen extends Component {
 		this.state = {
 			loading : true,
             properties : [],
-            userData : {}
+            userData : {},
+            applications : []
 		}		
     }
 
     async componentWillMount () {
         let uId = await Expo.SecureStore.getItemAsync('uId');
-        this.setState({userData : await getData('users', uId)});
-        this.setState({loading : false});
+        // this.setState({userData : await getData('users', uId)});
+        
+        that = this ;
+        db.collection('users').doc(uId).collection('chats')
+        .onSnapshot(function(snapshot) {
+            snapshot.forEach(function(doc) {
+                that.setState({applications:[...that.state.applications, doc.data()]});
+            });
+            that.setState({loading : false});
+        });
     }
 
     
@@ -51,7 +61,7 @@ class MessageScreen extends Component {
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <View style={[styles.listBody]}>
                         {   
-                            this.state.userData.doc.chats.map((applicationList,Key ) => 
+                            this.state.applications.map((applicationList,Key ) => 
                             {
                                 return (
                                     <View key = {Key} style={[styles.hrBox]}>
