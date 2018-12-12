@@ -7,6 +7,7 @@ import {db} from '../../service/auth';
 
 
 class ChattingScreen extends Component {
+    
 	static navigationOptions = {
         header : null,
         tabBarVisible : false
@@ -22,20 +23,19 @@ class ChattingScreen extends Component {
     }
 
     componentDidMount () {
+        var that = this;
         console.log(this.state.chatmsgId);
         db.collection("chatmsg").doc(this.state.chatmsgId)
         .onSnapshot(function(doc) {
 
-            // let msgs = [...this.state.msgs];
-            // msgs.push(doc.data());
-            // this.setState({ msgs });
-            console.log("Current data: ", doc.data());
+
+            that.setState({msgs:[...that.state.msgs, doc.data()]});
         });
     }
 
     
 render() {
-    // console.log(this.state.msgs);
+    console.log(this.state.msgs);
     return (
         <View style={styles.ListScreen}>					
             <StatusBar backgroundColor="#fff" barStyle="light-content"/>
