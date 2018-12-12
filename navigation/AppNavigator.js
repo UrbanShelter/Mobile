@@ -28,6 +28,8 @@ const WelcomeStack = createStackNavigator({
 
 
 export default createSwitchNavigator({	
+	
+	EditprofileScreen: EditprofileScreen,
 	Welcome: WelcomeStack,
 	Main: MainTabNavigator,
 });
