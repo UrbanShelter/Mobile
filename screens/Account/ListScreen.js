@@ -8,7 +8,7 @@ import StarRating from 'react-native-star-rating';
 
 
 
-class HomeScreen extends Component {
+class ListScreen extends Component {
 	static navigationOptions = {
 		header: null,
 	};
