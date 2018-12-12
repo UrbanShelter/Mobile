@@ -125,7 +125,7 @@ const MainTabNavigator = createBottomTabNavigator({
     EXPLORE: {
         screen: MainStack,
         navigationOptions: {
-            tabBarIcon: () => <Icon name="ios-compass-outline" />,
+            tabBarIcon: () => <Icon name='ios-compass-outline' color={'#4f3bf6'}/>,
             tabBarOptions: {
             activeTintColor: '#4f3bf6',
             showLabel: true,

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
 import { Text, Icon,Input } from "native-base";
 import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
-import StarRatingBar from 'react-native-star-rating-view/StarRatingBar';
 import styles from "./styles";
 import {db, logOut} from '../../service/auth';
 
@@ -138,14 +137,11 @@ class HomeScreen extends Component {
 								</View>
 								<View style={styles.homeFacilityOuter}>
 									<View style={styles.ratings}>
-										<StarRatingBar
-										score={data.rating	}
-										allowsHalfStars={true}
-    									accurateHalfStars={true}
-										dontShowScore={true}
-										emptyStarImage={<Icon name='ios-star-outline' style={{fontSize: 14,marginTop:-1, color: '#4f3bf6'}}/>}
-										filledStarImage={<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>}
-										/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
+										<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
 										<View><Text style={styles.countText}>(86)</Text></View>
 									</View>
 									
