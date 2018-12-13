@@ -696,6 +696,23 @@ typeBox:{
     marginBottom:15,
     borderRadius:3
   },
+  savedBtn:{
+    color: '#ffffff',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 18,
+    textAlign: 'center',
+    borderRadius:3,
+    marginBottom:10,
+
+  },
+  savedBtnActive:{
+    color: '#ff0000',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 18,
+    textAlign: 'center',
+    marginBottom:10,
+
+  },
   bedCategoryButton:{
     color: '#4A4A4A',
     fontFamily: 'Lato-regular-webfont',
