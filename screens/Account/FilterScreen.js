@@ -13,7 +13,7 @@ class FilterScreen extends React.Component {
 		this.state = {
 			loading : true,
             properties : [],
-            activeState: [false]
+            activeState: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
         }		
 
         this.buttonPressed = this.buttonPressed.bind(this);
@@ -66,20 +66,24 @@ class FilterScreen extends React.Component {
                                     onPress={() => this.buttonPressed(0)}> Apartment</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> House</Text>
+                                    <Text style={this.state.activeState[1] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(1)}> House</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> Condo</Text>
+                                    <Text style={this.state.activeState[2] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(2)}> Condo</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> Townhouse</Text>
+                                    <Text style={this.state.activeState[3] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(3)}> Townhouse</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> Dorm</Text>
+                                    <Text style={this.state.activeState[4] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(4)}> Dorm</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[5] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(5)}> Studio</Text>
                                 </TouchableOpacity>
 						    </View>
                         </View>
@@ -91,29 +95,26 @@ class FilterScreen extends React.Component {
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={styles.typeBox}>
 
+                                
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> Studio</Text>
+                                    <Text style={this.state.activeState[6] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(6)}> 1</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 1</Text>
+                                    <Text style={this.state.activeState[7] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(7)}> 2</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 2</Text>
+                                    <Text style={this.state.activeState[8] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(8)}> 3</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 3</Text>
+                                    <Text style={this.state.activeState[9] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(9)}> 4</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 4</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 5+</Text>
+                                    <Text style={this.state.activeState[10] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(10)}> 5+</Text>
                                 </TouchableOpacity>
 
                                 
@@ -127,24 +128,24 @@ class FilterScreen extends React.Component {
                         <View style={{flex: 1, flexDirection: 'row'}}>
                             <View style={[styles.typeBox,{marginLeft:10}]}>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 1</Text>
+                                    <Text style={this.state.activeState[11] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(11)}> 1</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 2</Text>
+                                    <Text style={this.state.activeState[12] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(12)}> 2</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 3</Text>
+                                    <Text style={this.state.activeState[13] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(13)}> 3</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 4</Text>
+                                    <Text style={this.state.activeState[14] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(14)}> 4</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
-                                    onPress={() => this.buttonPressed(0)}> 5+</Text>
+                                    <Text style={this.state.activeState[15] ? styles.typeCategoryButton : styles.rateButtonActive} 
+                                    onPress={() => this.buttonPressed(15)}> 5+</Text>
                                 </TouchableOpacity>
 
                               

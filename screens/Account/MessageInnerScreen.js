@@ -21,22 +21,21 @@ class MessageInnerScreen extends Component {
     }
     
     async componentWillMount () {
-        let roommates;
         var that = this;
-        console.log(this.state.msgId);
-        var chats = db.collection('chats').doc(this.state.msgId).collection('roommates').get().then( function(element){
+        db.collection('chats').doc(this.state.msgId).collection('roommates').get().then( function(element){
             element.forEach( function(singleElement) {
+                that.setState({roommates:[...that.state.roommates, singleElement.data()]});
                 console.log(singleElement.data());
-                db.collection('users').doc(singleElement.data().userId).get().then( function(userelement) {
-                    roommates = [...that.state.roommates];
-                    roommates.push({chatmsgId : singleElement.data().chatmsgId,userdata : userelement.data()});
-                    that.setState({ roommates });
+                console.log(that.state.roommates);
+                // db.collection('users').doc(singleElement.data().userId).get().then( function(userelement) {
                     
-                }.bind(that))
+                    
+                // }.bind(that))
             })
+            that.setState({loading:false});
         });
 
-        this.setState({loading:false});
+        
         
     }
 
@@ -109,11 +108,11 @@ render() {
                         : 
                         this.state.roommates.map((roommateslist , key) => {
                             return  (
-                                <TouchableOpacity key={key}  onPress={()=>this.props.navigation.navigate("Chat",{chatmsgId: roommateslist.chatmsgId, userData: roommateslist.userdata })}>
+                                <TouchableOpacity key={key}  onPress={()=>this.props.navigation.navigate("Chat",{chatmsgId: roommateslist.chatmsgId, userData: roommateslist })}>
                                     <View style={[styles.reviewsBox,styles.hrBox,{paddingTop:20}]}>
-                                        <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={{uri:roommateslist.userdata.image}}/>
+                                        <Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={{uri:roommateslist.image}}/>
                                         <View style={[{position:'relative'}]}>
-                                            <Text style={styles.reviewsBoxHeading}>{roommateslist.userdata.firstName} {roommateslist.userdata.lastName}</Text>
+                                            <Text style={styles.reviewsBoxHeading}>{roommateslist.oppositeFirstName} {roommateslist.oppositeLastName}</Text>
                                             <Text style={[styles.PrecautionsText,{fontSize:16,color:'#7f7d8a'}]}>This is a sample read message from the...</Text>
                                             <Text style={[styles.PrecautionsText,{position:'absolute',right:10,fontSize:15,fontWeight:'600',color:'#7f7d8a'}]}>Aug 10</Text>
                                         </View>

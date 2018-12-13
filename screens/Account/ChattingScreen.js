@@ -29,7 +29,7 @@ class ChattingScreen extends Component {
         var that = this;
         let userId = await Expo.SecureStore.getItemAsync('uId');
         this.setState({uId : userId});
-        db.collection("chatmsg").doc(this.state.chatmsgId).collection('msgs')
+        db.collection("chatmsg").doc(this.state.chatmsgId).collection('msgs').orderBy("time")
         .onSnapshot(function(snapshot) {
             snapshot.docChanges().forEach(function(change) {
                 that.setState({msgs:[...that.state.msgs, change.doc.data()]});
@@ -39,10 +39,13 @@ class ChattingScreen extends Component {
 
 
     sendBtnHandler = async () => {
+        var d = new Date();
+        var time = d.getTime();
         db.collection("chatmsg").doc(this.state.chatmsgId).collection('msgs').add({
             msg: this.state.inputbox,
             senderId:  this.state.uId,
             receiverId:  '',
+            time : time
         });
         this.setState({inputbox : ''});
 
