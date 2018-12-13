@@ -1,5 +1,16 @@
 import React, { Component } from "react";
-import { Image, View, ScrollView, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
+import {
+	Image,
+	View,
+	ScrollView,
+	StatusBar,
+	TouchableHighlight,
+	TouchableOpacity,
+	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
+	StyleSheet,
+	ActivityIndicator
+} from 'react-native';
 import { Text, Icon,Input } from "native-base";
 import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
 import styles from "./styles";
@@ -8,7 +19,7 @@ import StarRating from 'react-native-star-rating';
 
 
 
-class HomeScreen extends Component {
+class ListScreen extends Component {
 	static navigationOptions = {
 		header: null,
 	};
@@ -17,7 +28,8 @@ class HomeScreen extends Component {
 		this.state = {
 			loading : true,
 			properties : [],
-			activeState: [false]
+			activeState: [false],
+			savedState: [false],
 		}		
 		this.buttonPressed = this.buttonPressed.bind(this);
 	}
@@ -41,8 +53,17 @@ class HomeScreen extends Component {
         });
         this.setState({ activeState: tmpState });
         console.log('TO:',this.state.activeState);
-
-    }
+	}
+	
+	savedBtn(index) {
+		const tmpState = this.state.savedState.map((val, tmpIndex) => {
+			if (tmpIndex === index) {
+				return!val;
+			}
+			return val;
+		});
+		this.setState({ savedState: tmpState});
+	}
 
 	async componentWillMount() {
 		var properties = [];
@@ -106,71 +127,76 @@ class HomeScreen extends Component {
 						</View>				
 						<Text style={styles.headtext1}>Home Rentals in Waterloo </Text>
 						{this.state.properties.map((data, key) => 
-
 						<View key={key}>
+							<View style={styles.homeImgCat}>
+								<View style={styles.imgeOver}>
+									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
+									<TouchableOpacity>
+										<Icon style={this.state.savedState[0] ? styles.savedBtn : styles.savedBtnActive} 
+                                    	onPress={() => this.savedBtn(0)} name="ios-heart" />
+									</TouchableOpacity>
 
-						<TouchableOpacity style={styles.homeImgCat} onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
-							<View style={styles.imgeOver}>
-								<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
-								<Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/>
-							</View>
-							<View style={{position:'relative', height:400}}>	
-								<Image style={styles.homeImg} source={{uri:data.image}}/>	
-								<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
-										<View style={[styles.Buttonpr,{position:'relative'}]}>
-											<View style={styles.priceBar}></View>
-											<Text style={styles.priceName}>${data.rent}/{data.rentUnit}</Text>									
-										</View>					
-									<View style={styles.propertDesOuter}>								
-										<View>
-											<Text style={styles.homePropertyName}>{data.location.address} • {data.location.city}, {data.location.state}, {data.location.countryCode}</Text>
+									{/* <Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/> */}
+								</View>
+								<View style={{position:'relative', height:400}}>	
+									<Image style={styles.homeImg} source={{uri:data.image}}/>	
+									<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
+											<View style={[styles.Buttonpr,{position:'relative'}]}>
+												<View style={styles.priceBar}></View>
+												<Text style={styles.priceName}>${data.rent}/{data.rentUnit}</Text>									
+											</View>					
+										<View style={styles.propertDesOuter}>								
+											<View>
+												<TouchableWithoutFeedback  onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
+													<Text style={styles.homePropertyName}>{data.location.address} • {data.location.city}, {data.location.state}, {data.location.countryCode}</Text>
+												</TouchableWithoutFeedback>
+											</View>
 										</View>
-									</View>
-									<View style={styles.homeCategoryBox}>
-									{
-										data.tags.map( (tag, tagKey) => {
-											return <Text key={tagKey} style={styles.homeCategorylebel}>{tag}</Text>
-										})
-									}
-									</View>
-									<View style={styles.homeFacilityOuter}>
-										<View style={styles.ratings}>
-											<StarRating
-												disabled={true}
-												emptyStar={'ios-star-outline'}
-												fullStar={'ios-star'}
-												halfStar={'ios-star-half'}
-												iconSet={'Ionicons'}
-												maxStars={5}
-												rating={data.rating}
-												fullStarColor={'#4f3bf6'}
-												starSize={15}
-											/>
-											<View><Text style={styles.countText}>(86)</Text></View>
-										</View>
-										
-										<View style={styles.homeFacilityFlex}>
-											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
-											<Text style={styles.countText}>2 Beds</Text>
-										</View>
-										<View style={styles.homeFacilityFlex}>
-											<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
-											<Text style={styles.countText}>2 Baths</Text>
-										</View>	
+										<View style={styles.homeCategoryBox}>
 										{
-											data.amenities.inBuilding.map( (roomaminity , aminityKey) => {
-												return (
-													<View key = {aminityKey} style={styles.homeFacilityFlex}>
-														{/* <Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/> */}
-														<Text style={styles.countText}>{roomaminity.name}</Text>
-													</View>
-												)
+											data.tags.map( (tag, tagKey) => {
+												return <Text key={tagKey} style={styles.homeCategorylebel}>{tag}</Text>
 											})
 										}
+										</View>
+										<View style={styles.homeFacilityOuter}>
+											<View style={styles.ratings}>
+												<StarRating
+													disabled={true}
+													emptyStar={'ios-star-outline'}
+													fullStar={'ios-star'}
+													halfStar={'ios-star-half'}
+													iconSet={'Ionicons'}
+													maxStars={5}
+													rating={data.rating}
+													fullStarColor={'#4f3bf6'}
+													starSize={15}
+												/>
+												<View><Text style={styles.countText}>(86)</Text></View>
+											</View>
+											
+											<View style={styles.homeFacilityFlex}>
+												<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
+												<Text style={styles.countText}>2 Beds</Text>
+											</View>
+											<View style={styles.homeFacilityFlex}>
+												<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
+												<Text style={styles.countText}>2 Baths</Text>
+											</View>	
+											{
+												data.amenities.inBuilding.map( (roomaminity , aminityKey) => {
+													return (
+														<View key = {aminityKey} style={styles.homeFacilityFlex}>
+															{/* <Image style={styles.homeFacilityImg} source={{uri : roomaminity.icon}}/> */}
+															<Text style={styles.countText}>{roomaminity.name}</Text>
+														</View>
+													)
+												})
+											}
+										</View>
 									</View>
 								</View>
-							</View>
-						</TouchableOpacity> 
+							</View> 
 						</View>
 						)}
 					</ScrollView>
@@ -303,5 +329,4 @@ const style = StyleSheet.create({
 	}
   })
 
-export default HomeScreen;
-
+export default ListScreen;
