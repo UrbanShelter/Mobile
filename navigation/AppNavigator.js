@@ -8,8 +8,6 @@ import LoginScreen from '../screens/Signup/LoginScreen';
 import LoginMain from '../screens/Signup/LoginMainScreen';
 import ForgotPass from '../screens/Signup/ForgotPassScreen';
 
-import EditprofileScreen from '../screens/Account/EditprofileScreen';
-
 
 const WelcomeStack = createStackNavigator({
 
@@ -19,7 +17,6 @@ const WelcomeStack = createStackNavigator({
 	Login: LoginScreen,
 	LoginMain: LoginMain,
 	ForgotPass: ForgotPass,
-	EditProfile: EditprofileScreen,
 },
 	{
 		initialRouteName: 'Welcome',

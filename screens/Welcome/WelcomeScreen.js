@@ -18,6 +18,8 @@ class WelcomeScreen extends Component {
 
 	async componentWillMount () {
 		var user = await Expo.SecureStore.getItemAsync('uId');
+		const deviceId = Expo.Constants.deviceId;
+		console.log(Expo.Constants);
 		console.log(user);
 		if(user) {
 			this.props.navigation.navigate('Main');
