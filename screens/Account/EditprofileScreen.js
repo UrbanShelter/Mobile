@@ -4,9 +4,9 @@ import {Text, Item, Input } from "native-base";
 import styles from "./styles";
 import {updateData} from '../../service/service';
 import { logOut } from './../../service/auth';
-import {db} from '../../service/auth';
-import { Dropdown } from 'react-native-material-dropdown';
-
+import { db, firebaseInstances as firebase } from '../../service/auth';
+import { ImagePicker, Permissions } from 'expo'
+ 
 
 class EditprofileScreen extends Component {
 	static navigationOptions = {
@@ -23,8 +23,72 @@ class EditprofileScreen extends Component {
 			day : '',
 			month : '',
 			year : '',
+			image : ''
 		}
 	}	
+
+
+	_uploadImage = async (uri) => {
+		var that = this;
+		const response = await fetch(uri);
+		const blob = await response.blob();
+		var ref = firebase.storage().ref().child("profilePic/" + Math.random(99999));
+		uploadTask = ref.put(blob);
+		uploadTask.on('state_changed', function(snapshot){
+			// Observe state change events such as progress, pause, and resume
+			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+			var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+			console.log('Upload is ' + progress + '% done');
+			switch (snapshot.state) {
+			case firebase.storage.TaskState.PAUSED: // or 'paused'
+				console.log('Upload is paused');
+				break;
+			case firebase.storage.TaskState.RUNNING: // or 'running'
+				console.log('Upload is running');
+				break;
+			}
+		}, function(error) {
+			// Handle unsuccessful uploads
+		}, function() {
+			// Handle successful uploads on complete
+			// For instance, get the download URL: https://firebasestorage.googleapis.com/...
+			uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+				that.setState({image : downloadURL});
+				console.log(that.state.image);
+				that.saveDetails();
+				console.log('File available at', downloadURL);
+			});
+		});
+	}
+	
+
+	_pickImage = async () => {
+
+		this.getCameraAsync() ; 
+
+		let result = await ImagePicker.launchImageLibraryAsync({
+		  allowsEditing: true,
+		  aspect: [4, 3],
+		});
+
+		if (!result.cancelled) {
+			// this.setState({ image: result.uri });
+			this._uploadImage(result.uri );
+			console.log(result);
+		}
+	}
+
+	getCameraAsync = async () => {
+		// const permissions = Permissions.CAMERA_ROLL;
+    	// const { status } = await Permissions.askAsync(permissions);
+		const { Location, Permissions } = Expo;
+		const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+		if (status === 'granted') {
+		  return true;
+		} else {
+		  throw new Error('Location permission not granted');
+		}
+	}
 
 
 	async componentWillMount () {
@@ -33,8 +97,14 @@ class EditprofileScreen extends Component {
 		let uData = await db.collection("users").doc(uId).get()
 
 		this.setState({users : uData.data()});
+		this.setState({image : this.state.users.image});
+		this.setState({firstName : this.state.users.firstName});
+		this.setState({lastName : this.state.users.lastName});
+		this.setState({day : this.state.users.day});
+		this.setState({year : this.state.users.year});
+		this.setState({month : this.state.users.month});
 		this.setState({loading : false});
-		console.log('uid',uId);
+		
     }
 
 
@@ -45,13 +115,12 @@ class EditprofileScreen extends Component {
 			day : this.state.day,
 			month : this.state.month,
 			year: this.state.year,
+			image : this.state.image
 		}
+
 		var storeObj = {
 			uId : this.state.uId,
-
-			
 		}
-		console.log('UID=>', storeObj.uId);
 
 		var data = await updateData("users",storeObj.uId,obj);
 		if(data == true) {
@@ -88,8 +157,8 @@ class EditprofileScreen extends Component {
 					<View style={styles.HomeScreen}>	
 						<View style={[styles.profileImgCnt,{padding:0}]}>
 							<View style={[{position:'relative'}]}>
-								<TouchableOpacity>
-									<Image style={styles.profileImg} source={require("../../assets/images/profile.jpg")}/>
+								<TouchableOpacity onPress={this._pickImage}>
+									<Image style={styles.profileImg} source={{uri:this.state.image}}/>
 								</TouchableOpacity>
 								<Image style={[{width:25,height:25,position:'absolute',bottom:0,right:0,backgroundColor:'#fff'}]} source={require("../../assets/images/edit.png")}/>
 							</View>
