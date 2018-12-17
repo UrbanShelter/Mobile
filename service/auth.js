@@ -1,7 +1,6 @@
 import * as firebase from "firebase";
 import Expo from "expo";
 import 'firebase/firestore';
-import Login from '../screens/Signup/LoginScreen';
 
 var config = {
     apiKey: "AIzaSyDtZLZMjy5KmC3qaOVpKhDUmlBRg5OmcO8",
@@ -19,6 +18,9 @@ if (!firebase.apps.length) {
 export const firebaseInstances = firebase;
 
 export const db = firebase.firestore();
+
+export const storage = firebase.storage().ref();
+
 
 db.settings({
     timestampsInSnapshots: true
