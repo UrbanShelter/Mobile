@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { Image, View,ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, ActivityIndicator,Picker} from "react-native";
+import { Image, View,ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, 
+	ActivityIndicator,Modal} from "react-native";
 import {Text, Item, Input } from "native-base";
 import styles from "./styles";
 import {updateData} from '../../service/service';
 import { logOut } from './../../service/auth';
 import { db, firebaseInstances as firebase } from '../../service/auth';
-import { ImagePicker, Permissions } from 'expo'
+import { ImagePicker, Permissions } from 'expo';
+import Loader from '../../components/ProgressiveLoader';
  
 
 class EditprofileScreen extends Component {
@@ -23,7 +25,9 @@ class EditprofileScreen extends Component {
 			day : '',
 			month : '',
 			year : '',
-			image : ''
+			image : '',
+			modal : false,
+			imageUploadPercentage : 0 ,
 		}
 	}	
 
@@ -35,8 +39,10 @@ class EditprofileScreen extends Component {
 		var ref = firebase.storage().ref().child("profilePic/" + Math.random(99999));
 		uploadTask = ref.put(blob);
 		uploadTask.on('state_changed', function(snapshot){
+			that.setState({modal : true});
 			// Observe state change events such as progress, pause, and resume
 			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+			that.setState({imageUploadPercentage : (snapshot.bytesTransferred / snapshot.totalBytes)});
 			var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 			console.log('Upload is ' + progress + '% done');
 			switch (snapshot.state) {
@@ -56,6 +62,8 @@ class EditprofileScreen extends Component {
 				that.setState({image : downloadURL});
 				console.log(that.state.image);
 				that.saveDetails();
+				that.setState({modal : false});
+
 				console.log('File available at', downloadURL);
 			});
 		});
@@ -70,7 +78,7 @@ class EditprofileScreen extends Component {
 		  allowsEditing: true,
 		  aspect: [4, 3],
 		});
-
+		console.log(result)
 		if (!result.cancelled) {
 			// this.setState({ image: result.uri });
 			this._uploadImage(result.uri );
@@ -132,13 +140,31 @@ class EditprofileScreen extends Component {
 		if(this.state.loading == true ) {
 			return (
 				<View style={[styles.container, styles.horizontal]}>
-					<ActivityIndicator size="large" color="#F55057" />
+					<ActivityIndicator size="large" color="#4F3BF6" />
 				</View>
 			);
 		} else {
 			let dayData =[{ value: '1'},{ value: '2'},{ value: '3'},{ value: '4'},{ value: '5'},]
 		return (
+			
 			<KeyboardAvoidingView style={{flex:1}} behavior="padding" enabled>
+			<Modal 
+				style={{flex:1,justifyContent:"space-between", alignItems:"center"}}
+				transparent={true}
+				animationType={'fade'}
+				visible={this.state.modal}
+				onRequestClose={() => {
+					this.setState({modal:false})
+				  }}
+			>
+			<View style={styles.modalBackground}>
+				<View style={styles.activityIndicatorWrapper}>
+					<Loader percentage = {this.state.imageUploadPercentage}/>
+				</View>
+			</View>
+				
+			</Modal>
+			
 				<View style={styles.ListScreen}>					
                     <StatusBar backgroundColor="#fff" barStyle="light-content"/>
                     <View elevation={5} style={[{borderWidth:0,	marginLeft:-5,marginRight:-5}]}>
@@ -160,7 +186,9 @@ class EditprofileScreen extends Component {
 								<TouchableOpacity onPress={this._pickImage}>
 									<Image style={styles.profileImg} source={{uri:this.state.image}}/>
 								</TouchableOpacity>
-								<Image style={[{width:25,height:25,position:'absolute',bottom:0,right:0,backgroundColor:'#fff'}]} source={require("../../assets/images/edit.png")}/>
+								{/* <TouchableOpacity> */}
+									<Image style={[{width:25,height:25,position:'absolute',bottom:0,right:0,backgroundColor:'#fff'}]} source={require("../../assets/images/edit.png")}/>
+								{/* </TouchableOpacity> */}
 							</View>
 						</View>	
 						<View>
