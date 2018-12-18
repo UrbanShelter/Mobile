@@ -57,8 +57,8 @@ render() {
     return (
         <View style={styles.ListScreen}>					
             <StatusBar backgroundColor="#fff" barStyle="light-content"/>
-            <View elevation={5} style={[{borderWidth:0,marginLeft:-5,marginRight:-5}]}>
-                <View style={[styles.relativeHeader,{paddingLeft:20,marginTop:30,marginBottom:10}]}>
+            <View>
+                <View style={[styles.relativeHeader,styles.boxShadow]}>
                     <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
                         <Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
                     </TouchableOpacity>

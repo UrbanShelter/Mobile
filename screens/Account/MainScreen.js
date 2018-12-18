@@ -23,7 +23,7 @@ class SignupScreenThree extends Component {
 		return (
 			<View style={styles.signinbg}>					
 				<StatusBar backgroundColor={'transparent'} translucent />
-				<Text style={styles.headtext}>Find Your Community</Text>					
+				<Text style={[styles.headtext,{marginLeft:0}]}>Find Your Community</Text>					
 				<View style={{width:'100%'}}>
 					<Item style={[styles.borderInput,styles.borderInputSearch]}>
 						<Image style={styles.srchimg} source={require("../../assets/images/search-main.png")}/> 
