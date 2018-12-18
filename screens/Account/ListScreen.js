@@ -5,6 +5,7 @@ import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
 import styles from "./styles";
 import {db} from '../../service/auth';
 import StarRating from 'react-native-star-rating';
+import { getData , updateData } from '../../service/service'
 
 
 
@@ -18,23 +19,25 @@ class ListScreen extends Component {
 			loading : true,
 			properties : [],
 			activeState: [false],
-			savedState: [false],
+			savedState: [],
+			userId : '',
 		}		
 		this.buttonPressed = this.buttonPressed.bind(this);
 	}
 
-	  state = {
-	  	modalVisible: false,
-	  };
-	  setModalVisible(visible) {
-	  	this.setState({
-			  modalVisible: visible,
-			  activeState: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
-		  });
-	  }
+	state = {
+		modalVisible: false,
+	};
+
+
+	setModalVisible(visible) {
+	this.setState({
+			modalVisible: visible,
+			activeState: []
+		});
+	}
 
 	buttonPressed(index) {
-        console.log('FROM:',this.state.activeState);
         const tmpState = this.state.activeState.map((val, tmpIndex) => {
             if (tmpIndex === index) {
                 return !val;
@@ -42,34 +45,68 @@ class ListScreen extends Component {
             return val; 
         });
         this.setState({ activeState: tmpState });
-        console.log('TO:',this.state.activeState);
 	}
 	
-	savedBtn(index) {
-		const tmpState = this.state.savedState.map((val, tmpIndex) => {
-			if (tmpIndex === index) {
-				return!val;
+	
+	/* save or unsave item 
+	*@param id of the save or unsave item
+	*/
+	savedBtn = async (index) => {
+		var userId = this.state.userId;
+		var savedItemsState = this.state.savedState;
+		var flag = 0;
+		if(this.state.savedState.length != 0) {
+			this.state.savedState.map((val, tmpIndex) => {
+				if (val === index) {
+					let savedItems = this.state.savedState;
+					savedItems.splice(savedItems.indexOf(index), 1);
+					this.setState({ savedState: savedItems });
+					updateObj = {
+						saved : this.state.savedState
+					};
+					flag++;
+				} 
+			});
+			if(flag == 0) {
+				savedItemsState.push(index);
+				this.setState({ savedState: savedItemsState });
+				updateObj = {
+					saved : this.state.savedState
+				};
 			}
-			return val;
-		});
-		this.setState({ savedState: tmpState});
+		} else {
+			savedItemsState.push(index);
+			// this.setState({ savedState: savedItemsState });
+			updateObj = {
+				saved : this.state.savedState
+			};
+		}
+		await updateData('users',userId,updateObj);
 	}
+
 
 	async componentWillMount() {
 		var properties = [];
 		var MainData = {};
+		var userId = await Expo.SecureStore.getItemAsync('uId');
+		this.setState({userId :userId});
+		var userDetails = await getData('users', userId);
+		if(typeof userDetails.doc.saved !== 'undefined' || userDetails.doc.saved.length > 0) {
+			this.setState({savedState : userDetails.doc.saved});
+		}
+		
 		await db.collection("property").get().then((querySnapshot) => {
 			querySnapshot.forEach(function(doc) {
 				MainData = doc.data();
 				MainData.id = doc.id;
 				properties.push(MainData);
+
 			});
 		}).catch(function(error) {
 			console.log("Error getting documents: ", error);
 		});
 		this.setState({properties : properties });
 		this.setState({loading : false });
-		console.log(MainData);
 	}
 
 	showFrom = () => {
@@ -122,9 +159,9 @@ class ListScreen extends Component {
 								<View style={styles.imgeOver}>
 									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
 									<TouchableOpacity>
-										<Icon style={this.state.savedState[0] ? styles.savedBtn : styles.savedBtnActive} 
-                                    	onPress={() => this.savedBtn(0)}
-										name={this.state.savedState[0] ? "ios-heart-outline" : "ios-heart"}/>
+										<Icon style={(this.state.savedState.indexOf(data.id) != -1) ? styles.savedBtnActive : styles.savedBtn} 
+                                    	onPress={() => this.savedBtn(data.id)}
+										name={(this.state.savedState.indexOf(data.id) != -1) ? "ios-heart" : "ios-heart-outline"}/>
 									</TouchableOpacity>
 								</View>
 								<View style={{position:'relative'}}>	
