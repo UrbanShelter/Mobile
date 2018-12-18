@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, View,ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, 
+import { Image, View,ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, ToastAndroid,
 	ActivityIndicator,Modal} from "react-native";
 import {Text, Item, Input } from "native-base";
 import styles from "./styles";
@@ -50,25 +50,29 @@ class EditprofileScreen extends Component {
 				console.log('Upload is paused');
 				break;
 			case firebase.storage.TaskState.RUNNING: // or 'running'
-				console.log('Upload is running');
+				// console.log('Upload is running');
 				break;
 			}
 		}, function(error) {
 			// Handle unsuccessful uploads
 		}, function() {
 			// Handle successful uploads on complete
-			// For instance, get the download URL: https://firebasestorage.googleapis.com/...
 			uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
 				that.setState({image : downloadURL});
-				console.log(that.state.image);
 				that.saveDetails();
 				that.setState({modal : false});
-
-				console.log('File available at', downloadURL);
 			});
 		});
 	}
 	
+
+
+	_imageLoded = () => {
+		console.log('image loaded');
+		this.setState({modal : false});
+	}
+
+
 
 	_pickImage = async () => {
 
@@ -80,9 +84,7 @@ class EditprofileScreen extends Component {
 		});
 		console.log(result)
 		if (!result.cancelled) {
-			// this.setState({ image: result.uri });
 			this._uploadImage(result.uri );
-			console.log(result);
 		}
 	}
 
@@ -117,6 +119,7 @@ class EditprofileScreen extends Component {
 
 
 	saveDetails = async () => {
+		
 		var obj = {
 			firstName : this.state.firstName,
 			lastName : this.state.lastName,
@@ -126,14 +129,13 @@ class EditprofileScreen extends Component {
 			image : this.state.image
 		}
 
+		console.log(obj);
 		var storeObj = {
 			uId : this.state.uId,
 		}
 
-		var data = await updateData("users",storeObj.uId,obj);
-		if(data == true) {
-			this.props.navigation.navigate("Main");
-		}
+		await updateData("users",storeObj.uId,obj);
+		ToastAndroid.show('Saved.', ToastAndroid.SHORT);
 	}
 
 	render() {
@@ -187,13 +189,10 @@ class EditprofileScreen extends Component {
 									<Image style={styles.profileImg} source={{uri:this.state.image}}/>
 								</TouchableOpacity>
 								{/* <TouchableOpacity> */}
-									<Image style={[{width:25,height:25,position:'absolute',bottom:0,right:0,backgroundColor:'#fff'}]} source={require("../../assets/images/edit.png")}/>
+									<Image onLoadEnd={this._imageLoded} style={[{width:25,height:25,position:'absolute',bottom:0,right:0,backgroundColor:'#fff'}]} source={require("../../assets/images/edit.png")}/>
 								{/* </TouchableOpacity> */}
 							</View>
 						</View>	
-						<View>
-							{/* <Text>{this.state.users.firstName}</Text> */}
-						</View>
 						<View style={{width:'100%',marginBottom:15}}>
 							<Text style={styles.labeltext}>FIRST NAME</Text>
 							<Item style={styles.borderInput}>							
