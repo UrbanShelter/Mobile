@@ -1,20 +1,9 @@
 import React, { Component } from "react";
-import {
-	Image,
-	View,
-	ScrollView,
-	StatusBar,
-	TouchableHighlight,
-	TouchableOpacity,
-	TouchableNativeFeedback,
-	TouchableWithoutFeedback,
-	StyleSheet,
-	ActivityIndicator
-} from 'react-native';
+import {StatusBar, Image, View, ScrollView, TouchableOpacity, TouchableWithoutFeedback, StyleSheet, ActivityIndicator } from 'react-native';
 import { Text, Icon,Input } from "native-base";
 import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
 import styles from "./styles";
-import {db, logOut} from '../../service/auth';
+import {db} from '../../service/auth';
 import StarRating from 'react-native-star-rating';
 
 
@@ -39,7 +28,8 @@ class ListScreen extends Component {
 	  };
 	  setModalVisible(visible) {
 	  	this.setState({
-	  		modalVisible: visible
+			  modalVisible: visible,
+			  activeState: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
 		  });
 	  }
 
@@ -107,10 +97,10 @@ class ListScreen extends Component {
 					<View style={[styles.relativeHeader,{marginTop:40,marginBottom:10}]}>
 
 						<View style={styles.searchbar}>
-						<TouchableOpacity>
-							<Image style={styles.headerImg} source={require("../../assets/images/search_inactive.png")}/>
-						</TouchableOpacity>
-						<Input style={[styles.inputStyle,{borderWidth:0,borderColor:'transparent'}]} placeholder="Search Location"  placeholderTextColor="#9b9b9b" />
+							<TouchableOpacity>
+								<Image style={styles.headerImg} source={require("../../assets/images/search_inactive.png")}/>
+							</TouchableOpacity>
+							<Input style={[styles.inputStyle,{borderWidth:0,borderColor:'transparent'}]} placeholder="Search Location"  placeholderTextColor="#9b9b9b" />
 						</View>
 						<View style={styles.flexOneline}>							
 							<TouchableOpacity onPress={()=> {
@@ -133,13 +123,12 @@ class ListScreen extends Component {
 									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
 									<TouchableOpacity>
 										<Icon style={this.state.savedState[0] ? styles.savedBtn : styles.savedBtnActive} 
-                                    	onPress={() => this.savedBtn(0)} name="ios-heart" />
+                                    	onPress={() => this.savedBtn(0)}
+										name={this.state.savedState[0] ? "ios-heart-outline" : "ios-heart"}/>
 									</TouchableOpacity>
-
-									{/* <Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/> */}
 								</View>
-								<View style={{position:'relative', height:400}}>	
-									<Image style={styles.homeImg} source={{uri:data.image}}/>	
+								<View style={{position:'relative'}}>	
+									<TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})}><Image style={styles.homeImg} source={{uri:data.image}}/></TouchableWithoutFeedback>	
 									<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
 											<View style={[styles.Buttonpr,{position:'relative'}]}>
 												<View style={styles.priceBar}></View>
@@ -147,7 +136,7 @@ class ListScreen extends Component {
 											</View>					
 										<View style={styles.propertDesOuter}>								
 											<View>
-												<TouchableWithoutFeedback  onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
+												<TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
 													<Text style={styles.homePropertyName}>{data.location.address} • {data.location.city}, {data.location.state}, {data.location.countryCode}</Text>
 												</TouchableWithoutFeedback>
 											</View>
@@ -229,24 +218,24 @@ class ListScreen extends Component {
                                     onPress={() => this.buttonPressed(0)}> Any</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> House</Text>
+                                    <Text style={this.state.activeState[1] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(1)}> House</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> Apartment</Text>
+                                    <Text style={this.state.activeState[2] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(2)}> Apartment</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> Dorm</Text>
+                                    <Text style={this.state.activeState[3] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(3)}> Dorm</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> Townhouse</Text>
+                                    <Text style={this.state.activeState[4] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(4)}> Townhouse</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> Condo</Text>
+                                    <Text style={this.state.activeState[5] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(5)}> Condo</Text>
                                 </TouchableOpacity>
 							</View>
 						</View>	
@@ -265,16 +254,16 @@ class ListScreen extends Component {
 								
 							<View style={[styles.quickfilters]}>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> Any</Text>
+                                    <Text style={this.state.activeState[6] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(6)}> Any</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> Entire House</Text>
+                                    <Text style={this.state.activeState[7] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(7)}> Entire House</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> Private Rooms</Text>
+                                    <Text style={this.state.activeState[8] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(8)}> Private Rooms</Text>
                                 </TouchableOpacity>
 							</View>
 						</View>	
@@ -283,24 +272,24 @@ class ListScreen extends Component {
 								
 							<View style={[styles.quickfilters]}>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> Studio</Text>
+                                    <Text style={this.state.activeState[9] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(9)}> Studio</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> 1</Text>
+                                    <Text style={this.state.activeState[10] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(10)}> 1</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> 2</Text>
+                                    <Text style={this.state.activeState[10] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(10)}> 2</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> 3</Text>
+                                    <Text style={this.state.activeState[11] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(11)}> 3</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> 4</Text>
+                                    <Text style={this.state.activeState[12] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
+                                    onPress={() => this.buttonPressed(12)}> 4</Text>
                                 </TouchableOpacity>
 
 							</View>
