@@ -66,7 +66,7 @@ class ListingPage extends Component {
 							</TouchableOpacity>
 						</ImageBackground>
 						<View style={[styles.listBody]}>
-							<View style={[{paddingTop:10,fontSize:15,color:'#4a4a4a'}]}>
+							<View style={[{paddingTop:10}]}>
 								<Text style={[{fontSize:12,color:'#4a4a4a'}]}>APARTMENT • PRIVATE ROOM</Text>
 							</View>
 							<View style={styles.propertDesOuter}>

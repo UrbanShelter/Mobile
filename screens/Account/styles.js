@@ -22,17 +22,26 @@ export default {
   },
   relativeHeader:{
     backgroundColor:'#fff',
-    paddingLeft:0,
-    paddingRight:0,
+    paddingLeft:20,
+    paddingRight:20,
     borderWidth:0,
-    marginTop:0,
+    marginTop:20,
     flex: 0,
     flexDirection: 'row',
     justifyContent:'space-between',
-    paddingTop:20,
-    paddingBottom:20,
-    height:50,
-    alignItems:'center'
+    paddingTop:17,
+    paddingBottom:17,
+    alignItems:'center',
+  },
+  boxShadow:{
+    borderWidth:0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.6,
+    elevation:5,
+  },
+  headerText:{
+    lineHeight:34,
   },
   absoluteHeader:{
     position:'absolute',
@@ -332,13 +341,13 @@ export default {
   },
   PrecautionsText:{
     color: '#000',
-    fontSize: 12,
+    fontSize: 11,
     textAlign: 'left',
     fontFamily: 'Lato-regular-webfont',
   },
   PrecautionsTextBold:{
     color: '#000',
-    fontSize: 12,
+    fontSize: 11,
     marginBottom: 10,
     textAlign: 'left',
     fontFamily: 'Lato-Bold',
@@ -554,14 +563,6 @@ export default {
     paddingTop:50,
     backgroundColor:'#fff'
   },
-  headtext:{  
-    color:'#000',
-    fontSize:24,
-    marginBottom:10,
-    textAlign:'left',
-    fontFamily:'Raleway-regular-webfont',
-    fontWeight:'300'
-  },
   borderInput:{
     borderBottomWidth:0,
     marginTop:10,
@@ -583,9 +584,12 @@ export default {
     padding:10,
     paddingLeft:20,
     backgroundColor:'#fff',
-    //position:'absolute',
     top:-50,
     left:-10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
     
   },
 
@@ -595,11 +599,10 @@ export default {
   headtext: {
     color: '#000',
     fontSize: 24,
-    marginBottom: 10,
     textAlign: 'left',
-    marginLeft: -15,
-    fontFamily: 'Montserrat-Bold',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily:'Raleway-regular-webfont',
+    fontWeight:'300',
   },
   filterPadding:{
     padding:20,
@@ -614,7 +617,8 @@ typeBox:{
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginBottom: 10,
+    margin:10,
+
 },
   typeCategoryButton:{
     color: '#4A4A4A',
@@ -750,7 +754,7 @@ typeBox:{
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginTop:20,
+
   },
   aminitiesBoxFilterHolder:{
     padding:15,
@@ -941,5 +945,21 @@ smallIcon:{
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around'
+  },
+    btnAceptDecline:{
+    width:150,
+    height:47,
+  },
+  userPro:{
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  userProCnt: {
+    padding: 20,
+    borderRadius: 10,
+    width: 250,
   },
 };

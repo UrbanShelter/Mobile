@@ -1,3 +1,5 @@
+
+
 import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar, TouchableOpacity, ActivityIndicator, StyleSheet} from "react-native";
 import {Text, Icon } from "native-base";
@@ -46,12 +48,12 @@ class MessageScreen extends Component {
             return (
                 <View style={styles.ListScreen}>					
                     <StatusBar backgroundColor="#fff" barStyle="light-content"/>
-                    <View elevation={5} style={[{borderWidth:0}]}>
-                        <View style={[styles.relativeHeader,{paddingLeft:20,marginTop:30,marginBottom:10}]}>
+                    <View>
+                        <View style={[styles.relativeHeader,styles.boxShadow]}>
                             <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
                                 <Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
                             </TouchableOpacity>
-                            <Text style={[{fontWeight:'600'}]}>Message</Text>
+                            <Text style={[styles.headerText,{fontWeight:'600'}]}>Message</Text>
                             <View style={styles.flexOneline}>
                                 <Image style={[styles.headerImg,{marginLeft:10}]} source={require("../../assets/images/share-black.png")}/>
                             </View>	
@@ -72,7 +74,7 @@ class MessageScreen extends Component {
                                                     <View style={styles.blueDot}></View>
                                                 </View>
                                                 <View>
-                                                    <Text style={[styles.homePropertyName, {fontSize: 16 }]}> {applicationList.propertyName},</Text>
+                                                    <Text style={[styles.homePropertyName, {fontSize: 16 }]}> {applicationList.propertyName} •</Text>
                                                     <Text style={[styles.homePropertyName, {fontSize: 16 }]}> Kitchener, ON</Text>
                                                     <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> STATUS: <Text style={[styles.PrecautionsText,{color:'blue'}]}>APPLICATION SENT</Text></Text>
                                                     <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> New Message from Jeff</Text>
@@ -91,7 +93,7 @@ class MessageScreen extends Component {
                                         <View style={styles.blueDot}></View>
                                     </View>
                                     <View>
-                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St • Downtown,</Text>
+                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St •</Text>
                                         <Text style={[styles.homePropertyName, {fontSize: 16 }]}> Kitchener, ON</Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> STATUS: <Text style={[styles.PrecautionsText,{color:'blue'}]}>APPLICATION SENT</Text></Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> New Message from Jeff</Text>
@@ -105,7 +107,7 @@ class MessageScreen extends Component {
                                         <Image style={styles.reviewImg} source={require("../../assets/images/flat-with-yellow.png")}/>
                                     </View>
                                     <View>
-                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St • Downtown,</Text>
+                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St •</Text>
                                         <Text style={[styles.homePropertyName, {fontSize: 16 }]}> Kitchener, ON</Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> STATUS: <Text style={[styles.PrecautionsText,{color:'red'}]}>APPLICATION REJECTED</Text></Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> No new message</Text>
@@ -118,7 +120,7 @@ class MessageScreen extends Component {
                                         <Image style={styles.reviewImg} source={require("../../assets/images/flat-with-yellow.png")}/>
                                     </View>
                                     <View>
-                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St • Downtown,</Text>
+                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St •</Text>
                                         <Text style={[styles.homePropertyName, {fontSize: 16 }]}> Kitchener, ON</Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> STATUS: <Text style={[styles.PrecautionsText,{color:'red'}]}>APPLICATION REJECTED</Text></Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> No new message</Text>
@@ -131,7 +133,7 @@ class MessageScreen extends Component {
                                         <Image style={styles.reviewImg} source={require("../../assets/images/flat-with-yellow.png")}/>
                                     </View>
                                     <View>
-                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St • Downtown,</Text>
+                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St •</Text>
                                         <Text style={[styles.homePropertyName, {fontSize: 16 }]}> Kitchener, ON</Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> STATUS: <Text style={[styles.PrecautionsText,{color:'red'}]}>APPLICATION REJECTED</Text></Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> No new message</Text>
@@ -144,7 +146,7 @@ class MessageScreen extends Component {
                                         <Image style={styles.reviewImg} source={require("../../assets/images/flat-with-yellow.png")}/>
                                     </View>
                                     <View>
-                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St • Downtown,</Text>
+                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St •</Text>
                                         <Text style={[styles.homePropertyName, {fontSize: 16 }]}> Kitchener, ON</Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> STATUS: <Text style={[styles.PrecautionsText,{color:'red'}]}>APPLICATION REJECTED</Text></Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> No new message</Text>
@@ -157,7 +159,7 @@ class MessageScreen extends Component {
                                         <Image style={styles.reviewImg} source={require("../../assets/images/flat-with-yellow.png")}/>
                                     </View>
                                     <View>
-                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St • Downtown,</Text>
+                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St •</Text>
                                         <Text style={[styles.homePropertyName, {fontSize: 16 }]}> Kitchener, ON</Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> STATUS: <Text style={[styles.PrecautionsText,{color:'red'}]}>APPLICATION REJECTED</Text></Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> No new message</Text>
@@ -170,7 +172,7 @@ class MessageScreen extends Component {
                                         <Image style={styles.reviewImg} source={require("../../assets/images/flat-with-yellow.png")}/>
                                     </View>
                                     <View>
-                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St • Downtown,</Text>
+                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}> 85 Young St •</Text>
                                         <Text style={[styles.homePropertyName, {fontSize: 16 }]}> Kitchener, ON</Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> STATUS: <Text style={[styles.PrecautionsText,{color:'red'}]}>APPLICATION REJECTED</Text></Text>
                                         <Text style={[styles.PrecautionsText,{color:'#7F7D8A'}]}> No new message</Text>

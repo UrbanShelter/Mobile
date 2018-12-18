@@ -94,8 +94,7 @@ class ListScreen extends Component {
 			return (
 				<View style={styles.HomeScreen}>			
 					<StatusBar backgroundColor="#fff" barStyle="dark-content"/>
-					<View style={[styles.relativeHeader,{marginTop:10,marginBottom:10}]}>
-
+					<View style={[styles.relativeHeader,{paddingLeft:0,paddingRight:0}]}>
 						<View style={styles.searchbar}>
 							<TouchableOpacity>
 								<Image style={styles.headerImg} source={require("../../assets/images/search_inactive.png")}/>
@@ -190,12 +189,12 @@ class ListScreen extends Component {
 						)}
 					</ScrollView>
 
-					<PopupDialog width={300} height={150} show={this.state.visible} ref={(popupDialog) => { this.popupDialogFrom = popupDialog; }}>
+					<PopupDialog width={300} show={this.state.visible} ref={(popupDialog) => { this.popupDialogFrom = popupDialog; }}>
 						<View style={{flex:1,justifyContent:'center',alignItems:'center',padding:15,paddingTop:25}}>							 
 							<Text style={styles.recovery}>TERMS & CONDITIONS</Text>
 							<Text style={styles.recoveryDes}>
-								By clicking ‘accept’ button you agree to the UrbanShelter <Text style={styles.btex}> Terms and Conditions</Text>  
-								 and  <Text style={styles.btex}> Privacy Policy </Text>
+								By clicking ‘accept’ button you agree to the UrbanShelter <Text style={styles.btex}> Terms and Conditions & </Text>  
+								<Text style={styles.btex}> Privacy Policy </Text>
 							</Text>
 						</View>
 						<View style={{flex: 1, flexDirection: 'row',marginTop:16}}>
@@ -207,9 +206,9 @@ class ListScreen extends Component {
 						</View>
 					</PopupDialog>
 
-					<PopupDialog width={300} height={300} show={this.state.visible} ref={(popupDialog) => { this.popupDialogHomeType = popupDialog; }}>
+					<PopupDialog width={300} show={this.state.visible} ref={(popupDialog) => { this.popupDialogHomeType = popupDialog; }}>
 						<View style={[{borderBottomWidth:1,borderBottomColor:'#f2f2f2',padding:10}]}>
-							<Text style={[styles.headtext,{marginLeft: 20,paddingTop:5}]}>Home Type</Text>
+							<Text style={[styles.headtext,{padding:10,marginLeft:10}]}>Home Type</Text>
 						</View>
 						<View style={[styles.typeBox,{padding:10}]}>
 							<View style={[styles.quickfilters]}>
@@ -239,19 +238,17 @@ class ListScreen extends Component {
                                 </TouchableOpacity>
 							</View>
 						</View>	
-
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
 							<TouchableOpacity><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
 					</PopupDialog>
 
-					<PopupDialog width={310} height={350} show={this.state.visible} ref={(popupDialog) => { this.popupDialogRooms = popupDialog; }}>
+					<PopupDialog width={300} height={360} show={this.state.visible} ref={(popupDialog) => { this.popupDialogRooms = popupDialog; }}>
 						<View style={[{borderBottomWidth:1,borderBottomColor:'#f2f2f2',padding:10}]}>
-							<Text style={[styles.headtext,{marginLeft: 20,paddingTop:5}]}>Rooms</Text>
+							<Text style={[styles.headtext,{padding:10,marginLeft:10}]}>Rooms</Text>
 						</View>
-						<Text style={[{paddingLeft:30,paddingTop:10}]}>Room Type</Text>
+						<Text style={[{paddingLeft:20,paddingTop:10}]}>Room Type</Text>
 						<View style={[styles.typeBox,{padding:10}]}>
-								
 							<View style={[styles.quickfilters]}>
                                 <TouchableOpacity>
                                     <Text style={this.state.activeState[6] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
@@ -267,9 +264,8 @@ class ListScreen extends Component {
                                 </TouchableOpacity>
 							</View>
 						</View>	
-						<Text style={[{paddingLeft:30}]}>Bedrooms</Text>
+						<Text style={[{paddingLeft:20}]}>Bedrooms</Text>
 						<View style={[styles.typeBox,{padding:10}]}>
-								
 							<View style={[styles.quickfilters]}>
                                 <TouchableOpacity>
                                     <Text style={this.state.activeState[9] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
@@ -291,7 +287,6 @@ class ListScreen extends Component {
                                     <Text style={this.state.activeState[12] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
                                     onPress={() => this.buttonPressed(12)}> 4</Text>
                                 </TouchableOpacity>
-
 							</View>
 						</View>	
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>

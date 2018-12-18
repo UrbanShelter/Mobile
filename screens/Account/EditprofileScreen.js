@@ -167,8 +167,8 @@ class EditprofileScreen extends Component {
 			
 				<View style={styles.ListScreen}>					
                     <StatusBar backgroundColor="#fff" barStyle="light-content"/>
-                    <View elevation={5} style={[{borderWidth:0,	marginLeft:-5,marginRight:-5}]}>
-                        <View style={[styles.relativeHeader,{paddingLeft:20,marginTop:30,marginBottom:10}]}>
+                    <View style={[styles.boxShadow]}>
+                        <View style={[styles.relativeHeader]}>
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate("Home")} >
                                 <Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
                             </TouchableOpacity>
@@ -179,7 +179,7 @@ class EditprofileScreen extends Component {
                         </View>
                     </View>
 
-				<ScrollView>
+				<ScrollView showsVerticalScrollIndicator={false}>
 					<View style={styles.HomeScreen}>	
 						<View style={[styles.profileImgCnt,{padding:0}]}>
 							<View style={[{position:'relative'}]}>
