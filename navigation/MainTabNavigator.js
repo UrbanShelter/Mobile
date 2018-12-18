@@ -16,6 +16,7 @@ import ReportScreen from '../screens/Account/ReportScreen';
 import ReviewScreen from '../screens/Account/ReviewScreen';
 import ChattingScreen from '../screens/Account/ChattingScreen';
 import EditprofileScreen from '../screens/Account/EditprofileScreen';
+import LandlordScreen from '../screens/Account/LandlordScreen';
 
 const MainStack = createStackNavigator({
     Search: MainScreen,
@@ -29,6 +30,7 @@ const MainStack = createStackNavigator({
     Report: ReportScreen,
     Review: ReviewScreen, 
     Editprofile: EditprofileScreen,
+    Landlord : LandlordScreen,
   
     },{
         initialRouteName: 'Search',
