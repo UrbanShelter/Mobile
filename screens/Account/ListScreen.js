@@ -1,20 +1,9 @@
 import React, { Component } from "react";
-import {
-	Image,
-	View,
-	ScrollView,
-	StatusBar,
-	TouchableHighlight,
-	TouchableOpacity,
-	TouchableNativeFeedback,
-	TouchableWithoutFeedback,
-	StyleSheet,
-	ActivityIndicator
-} from 'react-native';
+import {StatusBar, Image, View, ScrollView, TouchableOpacity, TouchableWithoutFeedback, StyleSheet, ActivityIndicator } from 'react-native';
 import { Text, Icon,Input } from "native-base";
 import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
 import styles from "./styles";
-import {db, logOut} from '../../service/auth';
+import {db} from '../../service/auth';
 import StarRating from 'react-native-star-rating';
 
 
@@ -108,10 +97,10 @@ class ListScreen extends Component {
 					<View style={[styles.relativeHeader,{marginTop:40,marginBottom:10}]}>
 
 						<View style={styles.searchbar}>
-						<TouchableOpacity>
-							<Image style={styles.headerImg} source={require("../../assets/images/search_inactive.png")}/>
-						</TouchableOpacity>
-						<Input style={[styles.inputStyle,{borderWidth:0,borderColor:'transparent'}]} placeholder="Search Location"  placeholderTextColor="#9b9b9b" />
+							<TouchableOpacity>
+								<Image style={styles.headerImg} source={require("../../assets/images/search_inactive.png")}/>
+							</TouchableOpacity>
+							<Input style={[styles.inputStyle,{borderWidth:0,borderColor:'transparent'}]} placeholder="Search Location"  placeholderTextColor="#9b9b9b" />
 						</View>
 						<View style={styles.flexOneline}>							
 							<TouchableOpacity onPress={()=> {
@@ -134,13 +123,12 @@ class ListScreen extends Component {
 									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
 									<TouchableOpacity>
 										<Icon style={this.state.savedState[0] ? styles.savedBtn : styles.savedBtnActive} 
-                                    	onPress={() => this.savedBtn(0)} name="ios-heart" />
+                                    	onPress={() => this.savedBtn(0)}
+										name={this.state.savedState[0] ? "ios-heart-outline" : "ios-heart"}/>
 									</TouchableOpacity>
-
-									{/* <Image style={styles.heartImg} source={require("../../assets/images/heart.png")}/> */}
 								</View>
-								<View style={{position:'relative', height:400}}>	
-									<Image style={styles.homeImg} source={{uri:data.image}}/>	
+								<View style={{position:'relative'}}>	
+									<TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})}><Image style={styles.homeImg} source={{uri:data.image}}/></TouchableWithoutFeedback>	
 									<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
 											<View style={[styles.Buttonpr,{position:'relative'}]}>
 												<View style={styles.priceBar}></View>
@@ -148,7 +136,7 @@ class ListScreen extends Component {
 											</View>					
 										<View style={styles.propertDesOuter}>								
 											<View>
-												<TouchableWithoutFeedback  onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
+												<TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
 													<Text style={styles.homePropertyName}>{data.location.address} • {data.location.city}, {data.location.state}, {data.location.countryCode}</Text>
 												</TouchableWithoutFeedback>
 											</View>
