@@ -127,7 +127,7 @@ class SavedScreen extends Component {
 						</View> 
 					</View>
 					)}
-                </ScrollView>
++                </ScrollView>
             </View>
         );
     }

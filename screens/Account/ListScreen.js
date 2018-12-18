@@ -94,7 +94,7 @@ class ListScreen extends Component {
 			return (
 				<View style={styles.HomeScreen}>			
 					<StatusBar backgroundColor="#fff" barStyle="dark-content"/>
-					<View style={[styles.relativeHeader,{marginTop:40,marginBottom:10}]}>
+					<View style={[styles.relativeHeader,{marginTop:10,marginBottom:10}]}>
 
 						<View style={styles.searchbar}>
 							<TouchableOpacity>
@@ -110,7 +110,7 @@ class ListScreen extends Component {
 						</View>	
 					</View>
 					<ScrollView showsVerticalScrollIndicator={false}>						
-						<View style={styles.homeCategoryBox}>
+						<View style={[styles.homeCategoryBox,{marginTop:20}]}>
 							<TouchableOpacity onPress={this.showFrom}><Text style={styles.homeCategoryButton}> From</Text></TouchableOpacity>
 							<TouchableOpacity onPress={this.showHomeType}><Text style={styles.homeCategoryButton}> Home Type</Text></TouchableOpacity>
 							<TouchableOpacity onPress={this.showRooms}><Text style={styles.homeCategoryButton}> Rooms</Text></TouchableOpacity>
@@ -129,7 +129,7 @@ class ListScreen extends Component {
 								</View>
 								<View style={{position:'relative'}}>	
 									<TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})}><Image style={styles.homeImg} source={{uri:data.image}}/></TouchableWithoutFeedback>	
-									<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
+									<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30}]}>	
 											<View style={[styles.Buttonpr,{position:'relative'}]}>
 												<View style={styles.priceBar}></View>
 												<Text style={styles.priceName}>${data.rent}/{data.rentUnit}</Text>									

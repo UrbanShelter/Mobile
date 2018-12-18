@@ -23,14 +23,14 @@ export default {
   relativeHeader:{
     backgroundColor:'#fff',
     paddingLeft:0,
-    paddingRight:20,
+    paddingRight:0,
     borderWidth:0,
     marginTop:0,
     flex: 0,
     flexDirection: 'row',
     justifyContent:'space-between',
     paddingTop:20,
-    paddingBottom:10,
+    paddingBottom:20,
     height:50,
     alignItems:'center'
   },
@@ -54,6 +54,7 @@ export default {
     flexDirection: 'row',
   },
   headerImg:{
+    marginLeft:5,
     width:22,
     height:22,
   },
@@ -582,8 +583,8 @@ export default {
     padding:10,
     paddingLeft:20,
     backgroundColor:'#fff',
-    position:'absolute',
-    top:140,
+    //position:'absolute',
+    top:-50,
     left:-10,
     
   },
@@ -699,7 +700,7 @@ typeBox:{
   savedBtn:{
     color: '#ffffff',
     fontFamily: 'Lato-regular-webfont',
-    fontSize: 18,
+    fontSize: 22,
     textAlign: 'center',
     borderRadius:3,
     marginBottom:10,
@@ -708,7 +709,7 @@ typeBox:{
   savedBtnActive:{
     color: '#ff0000',
     fontFamily: 'Lato-regular-webfont',
-    fontSize: 18,
+    fontSize: 22,
     textAlign: 'center',
     marginBottom:10,
 
