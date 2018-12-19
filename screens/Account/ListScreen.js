@@ -21,9 +21,44 @@ class ListScreen extends Component {
 			activeState: [false],
 			savedState: [],
 			userId : '',
+			conditions : this.props.navigation.getParam('conditions')
 		}		
 		this.buttonPressed = this.buttonPressed.bind(this);
 	}
+
+
+	async componentWillMount() {
+		var properties = [];
+		var MainData = {};
+		var userId = await Expo.SecureStore.getItemAsync('uId');
+		this.setState({userId :userId});
+		var userDetails = await getData('users', userId);
+		if(typeof userDetails.doc.saved !== 'undefined' || userDetails.doc.saved.length > 0) {
+			this.setState({savedState : userDetails.doc.saved});
+		}
+		var propertyRef = db.collection("property")
+		console.log(this.state.conditions )
+		if(typeof this.state.conditions != 'undefined'){
+			this.state.conditions.forEach ( function (element) {
+				propertyRef = propertyRef.where(element.name, element.operator, element.value)
+				console.log(element.name, element.operator, element.value)
+			})
+		}
+		await propertyRef.get().then((querySnapshot) => {
+			querySnapshot.forEach(function(doc) {	
+				MainData = doc.data();
+				MainData.id = doc.id;
+				properties.push(MainData);
+
+			});
+		}).catch(function(error) {
+			console.log("Error getting documents: ", error);
+		});
+		this.setState({properties : properties });
+		this.setState({loading : false });
+	}
+
+
 
 	state = {
 		modalVisible: false,
@@ -85,29 +120,7 @@ class ListScreen extends Component {
 	}
 
 
-	async componentWillMount() {
-		var properties = [];
-		var MainData = {};
-		var userId = await Expo.SecureStore.getItemAsync('uId');
-		this.setState({userId :userId});
-		var userDetails = await getData('users', userId);
-		if(typeof userDetails.doc.saved !== 'undefined' || userDetails.doc.saved.length > 0) {
-			this.setState({savedState : userDetails.doc.saved});
-		}
-		
-		await db.collection("property").get().then((querySnapshot) => {
-			querySnapshot.forEach(function(doc) {
-				MainData = doc.data();
-				MainData.id = doc.id;
-				properties.push(MainData);
-
-			});
-		}).catch(function(error) {
-			console.log("Error getting documents: ", error);
-		});
-		this.setState({properties : properties });
-		this.setState({loading : false });
-	}
+	
 
 	showFrom = () => {
 		this.popupDialogFrom.show();
@@ -202,11 +215,11 @@ class ListScreen extends Component {
 											
 											<View style={styles.homeFacilityFlex}>
 												<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
-												<Text style={styles.countText}>2 Beds</Text>
+												<Text style={styles.countText}>{data.rooms.bedroom} Beds</Text>
 											</View>
 											<View style={styles.homeFacilityFlex}>
 												<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
-												<Text style={styles.countText}>2 Baths</Text>
+												<Text style={styles.countText}>{data.rooms.bathroom} Baths</Text>
 											</View>	
 											{
 												data.amenities.inBuilding.map( (roomaminity , aminityKey) => {
