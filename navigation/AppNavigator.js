@@ -27,8 +27,6 @@ const WelcomeStack = createStackNavigator({
 
 export default createSwitchNavigator({	
 
-	UserproScreen: UserproScreen,
-
 	Welcome: WelcomeStack,
 	Main: MainTabNavigator,
 });
