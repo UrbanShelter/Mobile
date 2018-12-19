@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Image, View, ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
-import { Text, Icon,Input } from "native-base";
+import { Image, View, ScrollView, TouchableOpacity, StyleSheet} from "react-native";
+import { Text } from "native-base";
 import styles from "./styles";
 
 
 class FilterScreen extends React.Component {
 	static navigationOptions = {
-		header: null,
+        header: null,
+        tabBarVisible : false
 	};
 	constructor(props) {
 		super(props);
