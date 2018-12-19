@@ -8,7 +8,7 @@ import LoginScreen from '../screens/Signup/LoginScreen';
 import LoginMain from '../screens/Signup/LoginMainScreen';
 import ForgotPass from '../screens/Signup/ForgotPassScreen';
 
-
+import FilterScreen from '../screens/Account/FilterScreen';
 const WelcomeStack = createStackNavigator({
 
 	Welcome: WelcomeScreen,
@@ -25,6 +25,8 @@ const WelcomeStack = createStackNavigator({
 
 
 export default createSwitchNavigator({	
+
+	FilterScreen: FilterScreen,
 
 	Welcome: WelcomeStack,
 	Main: MainTabNavigator,
