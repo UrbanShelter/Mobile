@@ -36,13 +36,13 @@ class FilterScreen extends React.Component {
 
 	render() {
         return(
-			<View style={styles.HomeScreen}>			
-				<View style={[styles.relativeHeader,{marginBottom:10}]}>
-                    <View style={styles.signinbg}>					
+			<View style={[styles.HomeScreen]}>			
+				<View style={[styles.relativeHeader,{marginTop:0,paddingTop:0}]}>
+                    <View style={[styles.signinbg,{padding:0}]}>					
                         <Text style={styles.headtext}>Filter</Text>
                     </View>
                     <View style={styles.flexOneline}>							
-                        <TouchableOpacity><Image style={[styles.headerImg,{marginTop:15}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
+                        <TouchableOpacity><Image style={[styles.headerImg,{marginTop:40}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
                     </View>	
 				</View>
                 <ScrollView showsVerticalScrollIndicator={false}>
@@ -60,7 +60,7 @@ class FilterScreen extends React.Component {
                         <View style={styles.filterPadding}>												
                             <Text style={[styles.filterName,{marginBottom:5}]}>Type </Text>
                         </View>
-                        <View style={{flex: 1, flexDirection: 'row'}}>
+                        <View>
                             <View style={styles.typeBox}>
                                 <TouchableOpacity>
                                     <Text style={this.state.activeState[0] ? styles.typeCategoryButton : styles.rateButtonActive} 
@@ -157,94 +157,96 @@ class FilterScreen extends React.Component {
                         <View style={styles.filterPadding}>												
                             <Text style={[styles.filterName,{marginBottom:5}]}>In-Unit Amenities </Text>
                         </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/bath.png")}/></View>
-                                <TouchableOpacity><Text style={styles.aminitiesBoxFilterText}>Bathrooms</Text></TouchableOpacity>
-                            </View>
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/bath.png")}/></View>
-                                <TouchableOpacity><Text style={styles.aminitiesBoxFilterText}>Bathrooms</Text></TouchableOpacity>
-                            </View>
-                        </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/1.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Washer/Dryer</Text>
-                            </View>
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/1.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Washer/Dryer</Text>
-                            </View>
-                        </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/2.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Heater</Text>
-                            </View>
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/2.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Heater</Text>
-                            </View>
-                        </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/3.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Patio/Balcony</Text>
-                            </View>
-                        </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/4.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Utilities</Text>
-                            </View>
+                        <View style={[styles.typeBox,{justifyContent:'flex-start'}]} >
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/bath.png")}/>  Bathrooms</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/bath.png")}/>  Bathrooms</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/1.png")}/>  Washer/Dryer</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/1.png")}/>  Washer/Dryer</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/2.png")}/>  Heater</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/2.png")}/>  Heater</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/3.png")}/>  Patio/Balcony</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/4.png")}/>  Utilities</Text>
+                            </TouchableOpacity>
+
                         </View>
                     </View>
                     <View style={styles.filterItem}>
                         <View style={styles.filterPadding}>												
                             <Text style={[styles.filterName,{marginBottom:5}]}>In-Building Amenities </Text>
                         </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/bath.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Bathrooms</Text>
-                            </View>
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/bath.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Bathrooms</Text>
-                            </View>
-                        </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/1.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Washer/Dryer</Text>
-                            </View>
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/1.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Washer/Dryer</Text>
-                            </View>
-                        </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/2.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Heater</Text>
-                            </View>
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/2.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Heater</Text>
-                            </View>
-                        </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/3.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Patio/Balcony</Text>
-                            </View>
-                        </View>
-                        <View style={{flex: 1, flexDirection: 'row',paddingBottom:20}} >
-                            <View style={[styles.aminitiesBoxFilter,{marginLeft:20}]}>
-                                <View style={style.aminitiesBoxFilterHolder}><Image style={styles.aminitiesFilterImg} source={require("../../assets/images/4.png")}/></View>
-                                <Text style={styles.aminitiesBoxFilterText}>Utilities</Text>
-                            </View>
+                        <View style={[styles.typeBox,{justifyContent:'flex-start'}]} >
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/bath.png")}/>  Bathrooms</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/bath.png")}/>  Bathrooms</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/1.png")}/>  Washer/Dryer</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/1.png")}/>  Washer/Dryer</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/2.png")}/>  Heater</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/2.png")}/>  Heater</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/3.png")}/>  Patio/Balcony</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <Text style={this.state.activeState[5] ? styles.aminitiesBoxFilterText : styles.aminitiesBoxFilterTextActive} 
+                                onPress={() => this.buttonPressed(5)}><Image style={styles.imgIcon  } source={require("../../assets/images/4.png")}/>  Utilities</Text>
+                            </TouchableOpacity>
+                            
                         </View>
                     </View>
                 </ScrollView>

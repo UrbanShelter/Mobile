@@ -600,9 +600,8 @@ export default {
     color: '#000',
     fontSize: 24,
     textAlign: 'left',
-    fontWeight: 'bold',
+    fontWeight: '900',
     fontFamily:'Raleway-regular-webfont',
-    fontWeight:'300',
   },
   filterPadding:{
     padding:20,
@@ -614,10 +613,9 @@ filterItem:{
   paddingTop:10,
 },
 typeBox:{
-    flex: 1,
+    flex: 0,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    margin:10,
 
 },
   typeCategoryButton:{
@@ -632,7 +630,7 @@ typeBox:{
     borderRadius:3,
     marginRight:20,
     marginLeft:20,
-    marginBottom:5,
+    marginBottom:10,
   },
   rateButtonActive:{
     color: '#4f3bf6',
@@ -734,9 +732,18 @@ typeBox:{
   },
   aminitiesBoxFilterText:{
     color: '#4A4A4A',
-    fontSize: 13,
-    fontFamily: 'Lato-Bold',
     marginLeft: 5,
+    borderWidth:1,
+    borderColor: '#4f3bf600',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 13,
+    lineHeight:30,
+    paddingLeft:10,
+    paddingRight:10,
+    marginRight:20,
+    marginLeft:20,
+    marginBottom:10,
+    width:120,
   },
   aminitiesFilterImg:{
     width:15,
@@ -962,4 +969,24 @@ smallIcon:{
     borderRadius: 10,
     width: 250,
   },
+  aminitiesBoxFilterTextActive: {
+    color: '#4f3bf6',
+    borderColor: '#4f3bf6',
+    borderWidth: 1,
+    borderRadius: 3,
+    marginLeft: 5,
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 13,
+    lineHeight:30,
+    paddingLeft:10,
+    paddingRight:10,
+    marginRight:20,
+    marginLeft:20,
+    marginBottom:10,
+    width:120,
+  },
+  imgIcon: {
+    width: 36,
+    height:36,
+  }
 };
