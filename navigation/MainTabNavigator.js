@@ -15,8 +15,10 @@ import FilterScreen from '../screens/Account/FilterScreen';
 import ReportScreen from '../screens/Account/ReportScreen';
 import ReviewScreen from '../screens/Account/ReviewScreen';
 import ChattingScreen from '../screens/Account/ChattingScreen';
-import EditprofileScreen from '../screens/Account/EditprofileScreen';
+// import EditprofileScreen from '../screens/Account/EditprofileScreen';
 import LandlordScreen from '../screens/Account/LandlordScreen';
+import UserProfileScreen from '../screens/Account/ProfileOneScreen'
+import EditprofileScreen from '../screens/Account/UserproScreen'
 
 const MainStack = createStackNavigator({
     Search: MainScreen,
@@ -42,46 +44,30 @@ const MainStack = createStackNavigator({
         
     }
 );
-const SaveStack = createStackNavigator({
-    Search: MainScreen,
-    List: ListScreen,
-    Tour: TourScreen,
-    Explore: ExploreScreen,
-    View: ViewScreen,
-    Saved: SavedScreen,
-    Message: MessageScreen,
-    Editprofile: EditprofileScreen,
 
+
+const SaveStack = createStackNavigator({
+    
+    Saved: SavedScreen,
     },{
         initialRouteName: 'Saved',
     }
 );
+
+
 const ProfileStack = createStackNavigator({
-    Search: MainScreen,
-    List: ListScreen,
-    Tour: TourScreen,
-    Explore: ExploreScreen,
-    View: ViewScreen,
-    Saved: SavedScreen,
-    Message: MessageScreen,
     Editprofile: EditprofileScreen,
-  
+    Userpro : UserProfileScreen,
     },{
-        initialRouteName: 'Editprofile',
+        initialRouteName: 'Userpro',
     }
 );
+
+
 const StayStack = createStackNavigator({
     Search: MainScreen,
-    List: ListScreen,
-    Tour: TourScreen,
-    Explore: ExploreScreen,
-    View: ViewScreen,
-    Saved: SavedScreen,
-    Message: MessageScreen,
-    Editprofile: EditprofileScreen,
-  
     },{
-        initialRouteName: 'List',
+        initialRouteName: 'Search',
     }
 );
 const MessageStack = createStackNavigator({
