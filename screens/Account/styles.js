@@ -965,7 +965,7 @@ smallIcon:{
     marginBottom: 15,
   },
   userProCnt: {
-    padding: 20,
+    paddingTop:40,
     borderRadius: 10,
     width: 250,
   },
@@ -988,5 +988,13 @@ smallIcon:{
   imgIcon: {
     width: 36,
     height:36,
+  },
+  imgPro:{
+    flex:1,
+    flexDirection:'row',
+    justifyContent:'center',
+    backgroundColor:'#f2f2f2',
+    width:'100%',
+    position:'relative'
   }
 };
