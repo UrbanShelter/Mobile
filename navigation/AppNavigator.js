@@ -8,7 +8,6 @@ import LoginScreen from '../screens/Signup/LoginScreen';
 import LoginMain from '../screens/Signup/LoginMainScreen';
 import ForgotPass from '../screens/Signup/ForgotPassScreen';
 
-import UserproScreen from '../screens/Account/UserproScreen';
 
 const WelcomeStack = createStackNavigator({
 
@@ -26,8 +25,6 @@ const WelcomeStack = createStackNavigator({
 
 
 export default createSwitchNavigator({	
-
-	UserproScreen: UserproScreen,
 
 	Welcome: WelcomeStack,
 	Main: MainTabNavigator,
