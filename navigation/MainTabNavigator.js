@@ -26,7 +26,12 @@ const MainStack = createStackNavigator({
     View: ViewScreen,
     Saved: SavedScreen,
     Message: MessageScreen,
-    Filter: FilterScreen,
+    Filter: {
+        screen: FilterScreen,
+        navigationOptions: {
+          tabBarVisible: false,
+        }
+    },
     Report: ReportScreen,
     Review: ReviewScreen, 
     Editprofile: EditprofileScreen,
@@ -97,7 +102,7 @@ MainStack.navigationOptions = ({ navigation }) => {
 
     let routeName = navigation.state.routes[navigation.state.index].routeName
 
-    if ( routeName == 'View' || routeName == 'Explore' ) {
+    if ( routeName == 'View' || routeName == 'Filter' ) {
         tabBarVisible = false
     }
 
