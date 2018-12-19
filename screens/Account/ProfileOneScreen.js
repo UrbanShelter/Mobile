@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar, TouchableOpacity,TouchableHighlight, TouchableNativeFeedback, ImageBackground, StyleSheet} from "react-native";
 import {Text, Icon } from "native-base";
 import styles from "./styles";
+import { logOut } from './../../service/auth';
 
 
 class ProfileOneScreen extends Component {
@@ -37,7 +38,7 @@ render() {
 				<View style={[styles.userPro,{paddingTop:40}]}>
 					<View style={[styles.userProCnt,]}>
 						<Text style={[styles.headerText,{fontSize:30}]}> John Doe</Text>
-						<TouchableOpacity><Text style={[styles.redText,{marginLeft:10}]}>View and edit profile</Text></TouchableOpacity>
+						<TouchableOpacity onPress= { () => {this.props.navigation.navigate('Editprofile')}}><Text style={[styles.redText,{marginLeft:10}]}>View and edit profile</Text></TouchableOpacity>
 					</View>   
 					<Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/> 
 				</View>
@@ -75,7 +76,7 @@ render() {
                         </View>
                     </TouchableNativeFeedback>
 
-                    <TouchableNativeFeedback>
+                    <TouchableNativeFeedback  onPress={()=>logOut()} >
                         <View style={[styles.hrBox,{padding:20}]}>
                             <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Log Out</Text>			
                         </View>

@@ -62,6 +62,7 @@ export async function signIn(email , password) {
 export async function logOut(){
     firebase.auth().signOut().then(function() {
         console.log('Signed Out');
+        Expo.SecureStore.deleteItemAsync('uId');
         this.props.navigation.navigate("Login");
     }, function(error) {
         console.error('Sign Out Error', error);
