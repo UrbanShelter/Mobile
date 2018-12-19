@@ -76,7 +76,7 @@ class ListScreen extends Component {
 			}
 		} else {
 			savedItemsState.push(index);
-			// this.setState({ savedState: savedItemsState });
+			this.setState({ savedState: savedItemsState });
 			updateObj = {
 				saved : this.state.savedState
 			};
