@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, View, ScrollView, StatusBar, TouchableOpacity,TouchableHighlight, TouchableNativeFeedback, ImageBackground, StyleSheet} from "react-native";
+import { Image, View, ScrollView, StatusBar, TouchableOpacity, ImageBackground, StyleSheet} from "react-native";
 import {Text, Icon } from "native-base";
 import styles from "./styles";
 import { logOut } from './../../service/auth';
@@ -35,52 +35,52 @@ render() {
 
 
             <ScrollView showsVerticalScrollIndicator={false}>
-				<View style={[styles.userPro,{paddingTop:40}]}>
-					<View style={[styles.userProCnt,]}>
+				<View style={[styles.userPro,{paddingTop:50,position:'relative'}]}>
+					<View style={[styles.userProCnt]}>
 						<Text style={[styles.headerText,{fontSize:30}]}> John Doe</Text>
 						<TouchableOpacity onPress= { () => {this.props.navigation.navigate('Editprofile')}}><Text style={[styles.redText,{marginLeft:10}]}>View and edit profile</Text></TouchableOpacity>
 					</View>   
-					<Image style={[styles.reviewsBoxImg,{marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/> 
+					<Image style={[styles.reviewsBoxImg,{right:0,top:'90%',position:'absolute'}]} source={require("../../assets/images/profile.jpg")}/> 
 				</View>
 
 				<View style={[{padding:20}]}>
-                    <TouchableNativeFeedback>
-                        <View style={[styles.hrBox,{padding:20}]}>
+                    <TouchableOpacity>
+                        <View style={[styles.hrBox]}>
                             <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Invite Friends</Text>			
                         </View>
-                    </TouchableNativeFeedback>
+                    </TouchableOpacity>
 
-                    <TouchableNativeFeedback>
-                        <View style={[styles.hrBox,{padding:20,position:'relative'}]}>
+                    <TouchableOpacity>
+                        <View style={[styles.hrBox,{position:'relative'}]}>
                             <Text style={[styles.hrBoxHeading,{paddingTop:10}]}>Coupons & Credits</Text>	
                             <Text  style={[styles.PrecautionsText,{color:'#4a4a4a'}]}>Give $30, get $15</Text>
                             <Text style={[styles.redText,{fontSize:24,position:'absolute',right:10,top:'50%'}]}>$30</Text>			
                         </View>
-                    </TouchableNativeFeedback>
+                    </TouchableOpacity>
 
-                    <TouchableNativeFeedback>
-                        <View style={[styles.hrBox,{padding:20}]}>
+                    <TouchableOpacity>
+                        <View style={[styles.hrBox]}>
                             <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Settings</Text>			
                         </View>
-                    </TouchableNativeFeedback>
+                    </TouchableOpacity>
 
-                    <TouchableNativeFeedback>
-                        <View style={[styles.hrBox,{padding:20}]}>
+                    <TouchableOpacity>
+                        <View style={[styles.hrBox]}>
                             <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Get Help</Text>			
                         </View>
-                    </TouchableNativeFeedback>
+                    </TouchableOpacity>
 
-                    <TouchableNativeFeedback>
-                        <View style={[styles.hrBox,{padding:20}]}>
+                    <TouchableOpacity>
+                        <View style={[styles.hrBox]}>
                             <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Give Feedback</Text>			
                         </View>
-                    </TouchableNativeFeedback>
+                    </TouchableOpacity>
 
-                    <TouchableNativeFeedback  onPress={()=>logOut()} >
-                        <View style={[styles.hrBox,{padding:20}]}>
+                    <TouchableOpacity  onPress={()=>logOut()} >
+                        <View style={[styles.hrBox]}>
                             <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Log Out</Text>			
                         </View>
-                    </TouchableNativeFeedback>
+                    </TouchableOpacity>
 
 				</View>
             </ScrollView>

@@ -963,9 +963,9 @@ smallIcon:{
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginBottom: 15,
+    padding:20,
   },
   userProCnt: {
-    paddingTop:40,
     borderRadius: 10,
     width: 250,
   },
