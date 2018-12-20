@@ -31,6 +31,7 @@ class ListScreen extends Component {
 		var properties = [];
 		var MainData = {};
 		var userId = await Expo.SecureStore.getItemAsync('uId');
+		
 		this.setState({userId :userId});
 		var userDetails = await getData('users', userId);
 		if(typeof userDetails.doc.saved !== 'undefined' || userDetails.doc.saved.length > 0) {
@@ -56,6 +57,42 @@ class ListScreen extends Component {
 		});
 		this.setState({properties : properties });
 		this.setState({loading : false });
+	}
+
+
+
+	async componentWillReceiveProps (nextProps) {
+
+		this.setState({loading : true });
+		this.setState({conditions : nextProps.navigation.getParam('condition')});
+		this.setState({properties : [] });
+		var properties = [];
+		var MainData = {};
+		var userId = await Expo.SecureStore.getItemAsync('uId');
+		
+		this.setState({userId :userId});
+		var userDetails = await getData('users', userId);
+		
+		var propertyRef = db.collection("property")
+		if(typeof this.state.conditions != 'undefined'){
+			this.state.conditions.forEach ( function (element) {
+				propertyRef = propertyRef.where(element.name, element.operator, element.value)
+				console.log(element.name, element.operator, element.value)
+			})
+		}
+		await propertyRef.get().then((querySnapshot) => {
+			querySnapshot.forEach(function(doc) {	
+				MainData = doc.data();
+				MainData.id = doc.id;
+				properties.push(MainData);
+
+			});
+		}).catch(function(error) {
+			console.log("Error getting documents: ", error);
+		});
+		this.setState({properties : properties });
+		this.setState({loading : false });
+		
 	}
 
 
