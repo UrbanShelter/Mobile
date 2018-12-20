@@ -93,15 +93,17 @@ class FilterScreen extends React.Component {
                     operator : '>=',
                     value : '5'
                 };
+                conditions.push(typeObj);
             } else {
                 let typeObj = {
                     name : 'rooms.bedroom',
                     operator : '==',
                     value : this.state.bedroom
                 };
+                conditions.push(typeObj);
             }
              
-            conditions.push(typeObj);
+            
         }
 
 
@@ -112,15 +114,16 @@ class FilterScreen extends React.Component {
                     operator : '>=',
                     value : '5'
                 }; 
+                conditions.push(typeObj);
             } else {
                 let typeObj = {
                     name : 'rooms.bathroom',
                     operator : '==',
                     value : this.state.bathroom
                 }; 
+                conditions.push(typeObj);
             }
             
-            conditions.push(typeObj);
         }
 
         if (this.state.buildingAminity != '') {
@@ -140,9 +143,12 @@ class FilterScreen extends React.Component {
             }; 
             conditions.push(typeObj);
         }
-
-        this.props.navigation.navigate('List',{conditions: conditions});
+        console.log(conditions);
+        this.props.navigation.navigate('List',{condition: conditions});
     }
+
+    
+
 
 
 

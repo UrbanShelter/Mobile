@@ -16,6 +16,12 @@ class ProfileOneScreen extends Component {
 			properties : []
 		}		
     }
+
+
+    logout = () => {
+        logOut();
+        this.props.navigation.navigate("Login");
+    }
     
 render() {
     return (
@@ -76,7 +82,7 @@ render() {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity  onPress={()=>logOut()} >
+                    <TouchableOpacity  onPress={this.logout} >
                         <View style={[styles.hrBox]}>
                             <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Log Out</Text>			
                         </View>
