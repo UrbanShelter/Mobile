@@ -40,8 +40,8 @@ class SavedScreen extends Component {
 	render() {
         return(
 			<View style={styles.HomeScreen}>			
-				<View style={[styles.relativeHeader,{marginBottom:20}]}>
-                    <View style={styles.signinbg}>					
+				<View style={[styles.relativeHeader,{marginTop:0,paddingLeft:0}]}>
+                    <View style={[styles.signinbg,{paddingTop:0}]}>					
                         <StatusBar backgroundColor={'transparent'} translucent />
                         <Text style={styles.headtext}>Saved</Text>
                     </View>
@@ -127,7 +127,7 @@ class SavedScreen extends Component {
 						</View> 
 					</View>
 					)}
-+                </ScrollView>
+                </ScrollView>
             </View>
         );
     }

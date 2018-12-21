@@ -15,10 +15,10 @@ import FilterScreen from '../screens/Account/FilterScreen';
 import ReportScreen from '../screens/Account/ReportScreen';
 import ReviewScreen from '../screens/Account/ReviewScreen';
 import ChattingScreen from '../screens/Account/ChattingScreen';
-// import EditprofileScreen from '../screens/Account/EditprofileScreen';
 import LandlordScreen from '../screens/Account/LandlordScreen';
-import UserProfileScreen from '../screens/Account/ProfileOneScreen'
-import EditprofileScreen from '../screens/Account/UserproScreen'
+import UserProfileScreen from '../screens/Account/ProfileOneScreen';
+import EditprofileScreen from '../screens/Account/UserproScreen';
+import StayOneScreen from '../screens/Account/StayOneScreen';
 
 const MainStack = createStackNavigator({
     Search: MainScreen,
@@ -38,6 +38,7 @@ const MainStack = createStackNavigator({
     Review: ReviewScreen, 
     Editprofile: EditprofileScreen,
     Landlord : LandlordScreen,
+    StayOne : StayOneScreen,
   
     },{
         initialRouteName: 'Search',
@@ -66,8 +67,9 @@ const ProfileStack = createStackNavigator({
 
 const StayStack = createStackNavigator({
     Search: MainScreen,
+    StayOne: StayOneScreen,
     },{
-        initialRouteName: 'Search',
+        initialRouteName: 'StayOne',
     }
 );
 const MessageStack = createStackNavigator({

@@ -179,7 +179,7 @@ class ListScreen extends Component {
 			);
 		} else {
 			return (
-				<View style={styles.HomeScreen}>			
+				<View style={[styles.HomeScreen]}>			
 					<StatusBar backgroundColor="#fff" barStyle="dark-content"/>
 					<View style={[styles.relativeHeader,{paddingLeft:0,paddingRight:0}]}>
 						<View style={styles.searchbar}>
@@ -215,7 +215,7 @@ class ListScreen extends Component {
 								</View>
 								<View style={{position:'relative'}}>	
 									<TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})}><Image style={styles.homeImg} source={{uri:data.image}}/></TouchableWithoutFeedback>	
-									<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30}]}>	
+									<View style={[styles.whiteshadow,styles.boxShadow,{paddingLeft:20}]}>	
 											<View style={[styles.Buttonpr,{position:'relative'}]}>
 												<View style={styles.priceBar}></View>
 												<Text style={styles.priceName}>${data.rent}/{data.rentUnit}</Text>									
