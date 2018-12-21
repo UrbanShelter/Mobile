@@ -25,7 +25,7 @@ export default {
     paddingLeft:20,
     paddingRight:20,
     borderWidth:0,
-    marginTop:20,
+    marginTop:27,
     flex: 0,
     flexDirection: 'row',
     justifyContent:'space-between',
@@ -579,13 +579,13 @@ export default {
     maxWidth:'95%'   
   },
   whiteshadow:{
-    borderRadius: 10,
-    width:'95%',
+    borderRadius: 8,
+    borderTopLeftRadius: 0,
+    width:'90%',
     padding:10,
     paddingLeft:20,
     backgroundColor:'#fff',
     top:-50,
-    left:-10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.6,
@@ -783,7 +783,7 @@ typeBox:{
   },
   priceBar:{
     backgroundColor: '#4F3BF6',
-    height:35,
+    height:45,
     width:5,
     left:-20,
     position:'absolute',
@@ -817,7 +817,8 @@ typeBox:{
     textAreaContainer: {
     borderColor: '#f2f2f2',
     borderWidth: 1,
-    padding: 5
+    padding: 10,
+    paddingLeft:20,
   },
   textArea: {
     height: 150,
@@ -961,13 +962,12 @@ smallIcon:{
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
     marginBottom: 15,
     padding:20,
+    paddingLeft:0,
   },
   userProCnt: {
     borderRadius: 10,
-    width: 250,
   },
   aminitiesBoxFilterTextActive: {
     color: '#4f3bf6',
@@ -996,5 +996,50 @@ smallIcon:{
     backgroundColor:'#f2f2f2',
     width:'100%',
     position:'relative'
-  }
+  },
+  exploreBtn:{
+    color:'#4f3bf6',
+    fontWeight:'600',
+    borderColor: '#a79dfa',
+    borderWidth: 2,
+    lineHeight:35,
+    width: '45%',
+    textAlign:'center',
+    marginTop:10,
+    borderRadius:5,
+    fontSize:15,
+  },
+  payrentBtn: {
+    backgroundColor: '#4f3bf6',
+    padding: 10,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+  },
+  withdrawBtn:{
+    fontSize:15,
+    color: '#c4220d',
+    borderColor: '#c4220d',
+    borderRadius:3,
+    borderWidth:1,
+    paddingLeft:15,
+  },
+    mailsend:{
+    width:69,
+    height:52,
+    marginBottom:10
+  },
+  recovery:{
+    fontSize:14,
+    color:'#000000',
+    fontWeight:'700',
+    fontFamily:'Lato-Bold',
+    marginBottom:10,
+  },
+  recoveryDes:{
+    color:'#98a8bd',
+    fontFamily:'Lato-regular-webfont',
+    fontWeight:'400',
+    fontSize:12,
+    textAlign:'center',
+  },
 };

@@ -34,14 +34,21 @@ render() {
 
 
             <ScrollView showsVerticalScrollIndicator={false}>
+				<View style={[styles.userPro,{paddingTop:20,position:'relative'}]}>
+					<View style={[styles.userProCnt]}>
+						<Text style={[styles.headerText,{fontSize:30}]}>John Doe</Text>
+						<Text style={[styles.PrecautionsText]}> Waterloo, Canada</Text>
+					</View>   
+					<Image style={[styles.reviewsBoxImg,{right:10,top:'50%',position:'absolute'}]} source={require("../../assets/images/profile.jpg")}/> 
+				</View>
 				<View style={[styles.listBody]}>
-					<View style={[styles.userPro]}>
-						<View style={[styles.userProCnt,]}>
+					{/* <View style={[styles.userPro]}>
+						<View style={[styles.userProCnt]}>
 							<Text style={[styles.headerText,{fontSize:30}]}> John Doe</Text>
-							<Text style={[styles.PrecautionsText,{marginLeft:10}]}>Waterloo, Canada</Text>
+							<Text style={[styles.PrecautionsText]}>Waterloo, Canada</Text>
 						</View>   
-						<Image style={[styles.reviewsBoxImg,{marginTop:20,marginLeft:20}]} source={require("../../assets/images/profile.jpg")}/> 
-					</View>
+						<Image style={[styles.reviewsBoxImg]} source={require("../../assets/images/profile.jpg")}/> 
+					</View> */}
 					<View>
 						<Text style={[styles.PrecautionsText,{fontSize:16}]}>This is the information that your landlord and roommates can read about you. It is advised to keep it accurate and up-to-date.</Text>
 					</View>
