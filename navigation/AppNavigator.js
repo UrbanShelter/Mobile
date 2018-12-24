@@ -7,6 +7,8 @@ import SignupScreenTwo from '../screens/Signup/SignupScreenTwo';
 import LoginScreen from '../screens/Signup/LoginScreen';
 import LoginMain from '../screens/Signup/LoginMainScreen';
 import ForgotPass from '../screens/Signup/ForgotPassScreen';
+import StayOneScreen from '../screens/Account/StayOneScreen';
+
 
 const WelcomeStack = createStackNavigator({
 
@@ -24,6 +26,8 @@ const WelcomeStack = createStackNavigator({
 
 
 export default createSwitchNavigator({	
+
+	//StayOneScreen: StayOneScreen,
 
 	Welcome: WelcomeStack,
 	Main: MainTabNavigator,

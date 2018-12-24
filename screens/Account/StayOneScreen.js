@@ -25,7 +25,7 @@ render() {
                     <Text style={[styles.headtext,{fontSize:30}]}>Stay</Text>
                 </View>
                 <View style={styles.flexOneline}>							
-                    <TouchableOpacity><Text style={[styles.redText,{marginLeft:10,fontWeight:'600'}]}>View Applications</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate("Application")}><Text style={[styles.redText,{marginLeft:10,fontWeight:'600'}]}>View Applications</Text></TouchableOpacity>
                 </View>	
             </View>
 
@@ -33,11 +33,11 @@ render() {
 
             {/*-----------For No Stays---------------*/}
 
-                <View style={[styles.listBody]}>
+                {/* <View style={[styles.listBody]}>
                     <Text style={[styles.homePropertyName,{fontSize:20,paddingBottom:10}]}>No Current Stays</Text>
                     <Text>Start looking for your new home!</Text>
                     <TouchableOpacity><Text style={[styles.exploreBtn]}>Explore Homes</Text></TouchableOpacity>
-                </View>
+                </View> */}
 
             {/*------------For Current Stays--------------*/}
 
@@ -56,7 +56,7 @@ render() {
                                     <Text style={styles.homePropertyName}>85 Young St • Downtown Kitchener, ON</Text>
                                 </View>
                                 <Text style={[styles.priceName,{lineHeight:20,paddingLeft:20,paddingBottom:10}]}>Last Paid: October 2nd</Text>
-                                <TouchableOpacity>
+                                <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Rent")}>
                                     <View style={[styles.payrentBtn]}>
                                         <Text style={[{color:'#fff',textAlign:'center',fontSize:16,lineHeight:15}]}>Pay Rent Amount</Text>
                                         <Text style={[{color:'#fff',textAlign:'center',fontSize:13,lineHeight:15}]}>Next Due: November 2nd</Text>
