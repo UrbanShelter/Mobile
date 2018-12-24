@@ -19,6 +19,8 @@ import LandlordScreen from '../screens/Account/LandlordScreen';
 import UserProfileScreen from '../screens/Account/ProfileOneScreen';
 import EditprofileScreen from '../screens/Account/UserproScreen';
 import StayOneScreen from '../screens/Account/StayOneScreen';
+import ApplicationScreen from '../screens/Account/ApplicationScreen';
+import RentPaymentScreen from '../screens/Account/RentPaymentScreen';
 
 const MainStack = createStackNavigator({
     Search: MainScreen,
@@ -39,6 +41,8 @@ const MainStack = createStackNavigator({
     Editprofile: EditprofileScreen,
     Landlord : LandlordScreen,
     StayOne : StayOneScreen,
+    Application : ApplicationScreen,
+    Rent: RentPaymentScreen,
   
     },{
         initialRouteName: 'Search',
@@ -66,7 +70,6 @@ const ProfileStack = createStackNavigator({
 
 
 const StayStack = createStackNavigator({
-    Search: MainScreen,
     StayOne: StayOneScreen,
     },{
         initialRouteName: 'StayOne',
@@ -144,6 +147,7 @@ const MainTabNavigator = createBottomTabNavigator({
             tabBarOptions: {
             activeTintColor: '#4f3bf6',
             showLabel: true,
+
             },
         }
     },
