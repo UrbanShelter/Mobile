@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, View, ScrollView, StatusBar, TouchableOpacity,TouchableWithoutFeedback, ImageBackground, StyleSheet} from "react-native";
+import { Image, View, ScrollView, StatusBar, TouchableOpacity } from "react-native";
 import {Text, Icon } from "native-base";
 import styles from "./styles";
 
@@ -18,10 +18,10 @@ class StayOneScreen extends Component {
     
 render() {
     return (
-        <View>					
+        <View style={[styles.HomeScreen,{padding:0,paddingTop:0}]}>					
             <StatusBar backgroundColor="#fff" barStyle="light-content"/>
-            <View style={[styles.relativeHeader,{paddingLeft:0}]}>
-                <View style={[styles.signinbg,{paddingTop:20}]}>					
+            <View style={[styles.relativeHeader,{paddingLeft:0,paddingBottom:0}]}>
+                <View style={[styles.signinbg,{paddingTop:0}]}>					
                     <Text style={[styles.headtext,{fontSize:30}]}>Stay</Text>
                 </View>
                 <View style={styles.flexOneline}>							
@@ -29,12 +29,12 @@ render() {
                 </View>	
             </View>
 
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} >
 
             {/*-----------For No Stays---------------*/}
 
                 {/* <View style={[styles.listBody]}>
-                    <Text style={[styles.homePropertyName,{fontSize:20,paddingBottom:10}]}>No Current Stays</Text>
+                    <Text style={[styles.homePropertyName,{fontSize:20,paddingBottom:20}]}>No Current Stays</Text>
                     <Text>Start looking for your new home!</Text>
                     <TouchableOpacity><Text style={[styles.exploreBtn]}>Explore Homes</Text></TouchableOpacity>
                 </View> */}
@@ -101,16 +101,6 @@ render() {
                             </View>							
                         </View>
                     </View>
-                    <View style={[styles.hrBox,{borderBottomWidth:0}]}>
-                        <View style={[styles.reviewsBox,{position:'relative',paddingTop:10}]}>									
-                            <Image style={styles.reviewImg} source={require("../../assets/images/flat-with-yellow.png")}/>
-                            <View>
-                                <Text style={[styles.homePropertyName, {fontSize: 16 }]}>85 Young St • Downtown</Text>
-                                <Text style={[styles.homePropertyName, {fontSize: 16 }]}>Kitchener, ON</Text>
-                                <Text style={styles.redText}>November 1st - February 3rd</Text>
-                            </View>							
-                        </View>
-                    </View>
                 </View>
             </ScrollView>
         </View>
@@ -118,15 +108,15 @@ render() {
     }
 }
 
-const style = StyleSheet.create({
-	container: {
-	  flex: 1,
-	  justifyContent: 'center'
-	},
-	horizontal: {
-	  flexDirection: 'row',
-	  justifyContent: 'space-around',
-	  padding: 10
-	}
-  })
+// const style = StyleSheet.create({
+// 	container: {
+// 	  flex: 1,
+// 	  justifyContent: 'center'
+// 	},
+// 	horizontal: {
+// 	  flexDirection: 'row',
+// 	  justifyContent: 'space-around',
+// 	  padding: 10
+// 	}
+//   })
 export default StayOneScreen;

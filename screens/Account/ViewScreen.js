@@ -4,8 +4,9 @@ import {Text, Icon } from "native-base";
 import styles from "./styles";
 import {MapView} from 'expo';
 import {db} from '../../service/auth';
+import StarRating from 'react-native-star-rating';
 
-class ListingPage extends Component {
+class ViewScreenPage extends Component {
 	static navigationOptions = {
 		header: null,
 	};
@@ -18,26 +19,25 @@ class ListingPage extends Component {
 		}
 		
 	}
-
-
-
-
 	async componentDidMount() {
 		console.log(this.state.propertyId);
 		
 		var property = {}; 
 		await db.collection("property").doc(this.state.propertyId).get().then((querySnapshot) => {
-			this.setState({property : querySnapshot.data()});
+			property = querySnapshot.data();
+			property.id = this.state.propertyId;
+			console.log("property=>",property);
 		}).catch(function(error) {
 			console.log("Error getting documents: ", error);
 		});
 		
-		
+		this.setState({property: property});
 		this.setState({loading : false });
 	}
 
 
 	render() {
+		const {goBack} = this.props.navigation
 
 		if(this.state.loading == true ) {
 			return (
@@ -51,7 +51,7 @@ class ListingPage extends Component {
 				<View style={styles.ListScreen}>					
 					<StatusBar backgroundColor="blue" barStyle="light-content"/>
 					<View style={styles.absoluteHeader}>
-						<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
+						<TouchableOpacity onPress={() => goBack()} >
 							<Image style={styles.headerImg} source={require("../../assets/images/arrowWhite.png")}/>
 						</TouchableOpacity>
 						<View style={styles.flexOneline}>
@@ -71,14 +71,14 @@ class ListingPage extends Component {
 							</View>
 							<View style={styles.propertDesOuter}>
 								<View>
-									<Text style={styles.homePropertyName}>1 Victoria St S • Downtown, Kitchener, US</Text>
+									<Text style={styles.homePropertyName}>{property.location.address} • {property.location.city}, {property.location.state}, {property.location.countryCode}</Text>
 								</View>
 							</View>
 
 							<View>
 								<ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
 								{
-									property.available.map ( (data , key) => {
+									property.available.map((data, key) => {
 										return (
 											<View key={key} style={styles.AvailablityBox}>
 												<View style={styles.AvailablityImgHolder}>
@@ -86,9 +86,9 @@ class ListingPage extends Component {
 													<Text style={styles.AvailablityImgText}>{data.type}</Text>
 												</View>
 												<Text style={styles.AvailablitySubHead}>{data.name}</Text>
-												<Text style={styles.listText}>${data.rent}</Text>
+												<Text style={styles.listText}>$ { data.rent }</Text>
 											</View>
-										)
+										);
 									})
 								}
 								</ScrollView>
@@ -96,11 +96,11 @@ class ListingPage extends Component {
 							<View style={[styles.homeFacilityOuter,{justifyContent:'flex-start',}]}>
 								<View style={styles.homeFacilityFlex}>
 									<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
-									<Text style={[styles.countText,{marginRight:5}]}>2 Beds</Text>
+									<Text style={[styles.countText,{marginRight:5}]}>{property.rooms.bedroom}</Text>
 								</View>
 								<View style={styles.homeFacilityFlex}>
 									<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
-									<Text style={[styles.countText,{marginRight:5}]}>2 Baths</Text>
+									<Text style={[styles.countText,{marginRight:5}]}>{property.rooms.bathroom}</Text>
 								</View>	
 								<View style={styles.homeFacilityFlex}>
 									<Image style={styles.homeFacilityImg} source={require("../../assets/images/size.png")}/>
@@ -117,12 +117,12 @@ class ListingPage extends Component {
 								<Text style={styles.hrBoxHeading}>In-Unit Amenities</Text>
 								<View style={styles.aminitiesBox}>
 								{
-									property.amenities.inBuilding.map( (animity , animityKey) => {
+									property.amenities.inBuilding.map((animity , animityKey) => {
 										return (
 											<View key = {animityKey} style={styles.aminitiesBoxHoolder}>
 												<Text style={styles.aminitiesText}>{animity}</Text>
 											</View>
-										)
+										);
 									})
 								}
 								</View>
@@ -131,12 +131,12 @@ class ListingPage extends Component {
 								<Text style={styles.hrBoxHeading}>In-Building Amenities</Text>
 								<View style={styles.aminitiesBox}>
 								{
-									property.amenities.inBuilding.map( (animity , animityKey) => {
+									property.amenities.inSuite.map( (animity , animityKey) => {
 										return (
 											<View key = {animityKey} style={styles.aminitiesBoxHoolder}>
 												<Text style={styles.aminitiesText}>{animity}</Text>
 											</View>
-										)
+										);
 									})
 								}
 								</View>
@@ -181,14 +181,20 @@ class ListingPage extends Component {
 								</Text>
 								<View style={styles.reviewRating} >
 									<TouchableOpacity  onPress={()=> {this.props.navigation.navigate("Review")}}>
-										<Text style={styles.redText}>View all 86 reviews</Text>
+										<Text style={styles.redText}>View all {property.review.length} reviews</Text>
 									</TouchableOpacity>
 									<View style={styles.ratings}>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
-										<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<StarRating
+											disabled={true}
+											emptyStar={'ios-star-outline'}
+											fullStar={'ios-star'}
+											halfStar={'ios-star-half'}
+											iconSet={'Ionicons'}
+											maxStars={5}
+											rating={property.rating}
+											fullStarColor={'#4f3bf6'}
+											starSize={15}
+										/>
 									</View>
 								</View>					
 							</View>
@@ -200,12 +206,15 @@ class ListingPage extends Component {
 							</View>
 							<View style={styles.hrBox}>
 								<Text style={styles.hrBoxHeading}>Landlord</Text>
-								<View style={styles.reviewsBox}>									
+								<View style={[styles.reviewsBox,{position:'relative'}]}>									
 									<Image style={styles.reviewsBoxImg} source={require("../../assets/images/profile.jpg")}/>
 									<View>
 										<Text style={styles.reviewsBoxHeading}>Jeffery Petrov</Text>
 										<Text style={styles.PrecautionsText}>Kitchener, ON</Text>
 									</View>
+									<TouchableOpacity style={[{position:'absolute', right:10}]}>
+										<Text style={[styles.contactBtn]}>Contact</Text>
+									</TouchableOpacity>
 								</View>
 								<View>
 								<Text style={styles.PrecautionsText}>
@@ -215,11 +224,17 @@ class ListingPage extends Component {
 								<View style={styles.reviewRating}>
 									<Text style={[styles.redText,{color:'#4A4A4A',fontFamily: 'Lato-Bold'}]}>View 2 reccomendations</Text>
 									<View style={styles.ratings}>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-										<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
-										<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
+										<StarRating
+											disabled={true}
+											emptyStar={'ios-star-outline'}
+											fullStar={'ios-star'}
+											halfStar={'ios-star-half'}
+											iconSet={'Ionicons'}
+											maxStars={5}
+											rating={property.rating}
+											fullStarColor={'#4f3bf6'}
+											starSize={15}
+										/>
 									</View>
 								</View>					
 							</View>
@@ -232,16 +247,22 @@ class ListingPage extends Component {
 					<View style={styles.availablity}>
 						<View>
 							<View style={styles.flexBox}>
-								<Text style={styles.availablityMonth}>1200/</Text>
-								<Text style={styles.availablityPrefix}>Month</Text>
+								<Text style={styles.availablityMonth}>{property.rent}/</Text>
+								<Text style={styles.availablityPrefix}>{property.rentUnit}</Text>
 							</View>
 							<View style={styles.ratings}>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>
-								<Icon name='ios-star' style={{fontSize: 14, color: '#4F3BF6'}}/>									
-								<Icon name='ios-star-half' style={{fontSize: 14, color: '#4F3BF6'}}/>
-								<View><Text style={styles.countText}>(86)</Text></View>
+								<StarRating
+									disabled={true}
+									emptyStar={'ios-star-outline'}
+									fullStar={'ios-star'}
+									halfStar={'ios-star-half'}
+									iconSet={'Ionicons'}
+									maxStars={5}
+									rating={property.rating}
+									fullStarColor={'#4f3bf6'}
+									starSize={15}
+								/>
+								<View><Text style={styles.countText}>({property.review.length})</Text></View>
 							</View>
 						</View>
 						<View style={[styles.priceButton,{height:'auto'}]}>
@@ -267,5 +288,5 @@ const style = StyleSheet.create({
 	}
 });
 
-export default ListingPage;
+export default ViewScreenPage;
 

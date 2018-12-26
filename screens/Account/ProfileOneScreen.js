@@ -19,40 +19,28 @@ class ProfileOneScreen extends Component {
 
 
     logout = () => {
-        logOut();
         this.props.navigation.navigate("Login");
+        logOut();
+        // this.props.navigation.navigate("Login");
     }
     
 render() {
     return (
         <View style={styles.ListScreen}>					
             <StatusBar backgroundColor="#fff" barStyle="light-content"/>
-			{/* <View>
-				<View style={[styles.relativeHeader,styles.boxShadow]}>
-					<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
-						<Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
-					</TouchableOpacity>
-					<Text style={[styles.headerText,{fontWeight:'600'}]}>Message</Text>
-					<View style={styles.flexOneline}>
-						<Image style={[styles.headerImg,{marginLeft:10}]} source={require("../../assets/images/share-black.png")}/>
-					</View>	
-				</View>
-			</View> */}
-
-
             <ScrollView showsVerticalScrollIndicator={false}>
 				<View style={[styles.userPro,{paddingTop:50,position:'relative'}]}>
 					<View style={[styles.userProCnt]}>
-						<Text style={[styles.headerText,{fontSize:30}]}> John Doe</Text>
-						<TouchableOpacity onPress= { () => {this.props.navigation.navigate('Editprofile')}}><Text style={[styles.redText,{marginLeft:10}]}>View and edit profile</Text></TouchableOpacity>
+						<Text style={[styles.headerText,{fontSize:30}]}>John Doe</Text>
+						<TouchableOpacity onPress= { () => {this.props.navigation.navigate('Editprofile')}}><Text style={[styles.redText,{marginLeft:0}]}>View and edit profile</Text></TouchableOpacity>
 					</View>   
 					<Image style={[styles.reviewsBoxImg,{right:0,top:'90%',position:'absolute'}]} source={require("../../assets/images/profile.jpg")}/> 
 				</View>
 
-				<View style={[{padding:20}]}>
+				<View style={[{padding:20,paddingTop:0}]}>
                     <TouchableOpacity>
                         <View style={[styles.hrBox]}>
-                            <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Invite Friends</Text>			
+                            <Text style={[styles.hrBoxHeading,{paddingBottom:0,paddingTop:10}]}>Invite Friends</Text>			
                         </View>
                     </TouchableOpacity>
 
@@ -66,25 +54,25 @@ render() {
 
                     <TouchableOpacity>
                         <View style={[styles.hrBox]}>
-                            <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Settings</Text>			
+                            <Text style={[styles.hrBoxHeading,{paddingBottom:0,paddingTop:10}]}>Settings</Text>			
                         </View>
                     </TouchableOpacity>
 
                     <TouchableOpacity>
                         <View style={[styles.hrBox]}>
-                            <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Get Help</Text>			
+                            <Text style={[styles.hrBoxHeading,{paddingBottom:0,paddingTop:10}]}>Get Help</Text>			
                         </View>
                     </TouchableOpacity>
 
                     <TouchableOpacity>
                         <View style={[styles.hrBox]}>
-                            <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Give Feedback</Text>			
+                            <Text style={[styles.hrBoxHeading,{paddingBottom:0,paddingTop:10}]}>Give Feedback</Text>			
                         </View>
                     </TouchableOpacity>
 
                     <TouchableOpacity  onPress={this.logout} >
                         <View style={[styles.hrBox]}>
-                            <Text style={[styles.hrBoxHeading,{paddingBottom:10,paddingTop:10}]}>Log Out</Text>			
+                            <Text style={[styles.hrBoxHeading,{paddingBottom:0,paddingTop:10}]}>Log Out</Text>			
                         </View>
                     </TouchableOpacity>
 

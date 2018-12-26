@@ -1,8 +1,6 @@
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import {Icon} from 'native-base';
 import React, { Component } from "react";
-
-
 import MainScreen from '../screens/Account/MainScreen';
 import ListScreen from '../screens/Account/ListScreen';
 import ViewScreen from '../screens/Account/ViewScreen';
@@ -40,7 +38,7 @@ const MainStack = createStackNavigator({
     Review: ReviewScreen, 
     Editprofile: EditprofileScreen,
     Landlord : LandlordScreen,
-    StayOne : StayOneScreen,
+    Stayone : StayOneScreen,
     Application : ApplicationScreen,
     Rent: RentPaymentScreen,
   
@@ -70,9 +68,9 @@ const ProfileStack = createStackNavigator({
 
 
 const StayStack = createStackNavigator({
-    StayOne: StayOneScreen,
+    Stayone: StayOneScreen,
     },{
-        initialRouteName: 'StayOne',
+        initialRouteName: 'Stayone',
     }
 );
 const MessageStack = createStackNavigator({

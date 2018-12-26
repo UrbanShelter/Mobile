@@ -74,7 +74,7 @@ class LoginScreenTwo extends Component {
 						<Text style={styles.headescriptionText2}>LOG IN WITH EMAIL</Text>
 						<View style={{width:'100%'}}>
 							<Item style={styles.borderInput}>
-								<Input style={styles.inputStyle} placeholder="Email Address" onChangeText={(text) => this.setState({email:text})} keyboardType="email-address" placeholderTextColor="#9b9b9b" />
+								<Input type="email" style={styles.inputStyle} placeholder="Email Address" onChangeText={(text) => this.setState({email:text})} keyboardType="email-address" placeholderTextColor="#9b9b9b" />
 							</Item>
 							<Item style={styles.borderInput}>
 								<Input style={styles.inputStyle} placeholder="Password" onChangeText={(text) => this.setState({password:text})} secureTextEntry={true} placeholderTextColor="#9b9b9b" />
