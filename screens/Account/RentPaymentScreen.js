@@ -20,6 +20,7 @@ class RentPaymentScreen extends Component {
 
     
     render() {
+        const {goBack} = this.props.navigation
         if(this.state.loading == true ) {
             return (
                 <View style={[style.container, style.horizontal]}>
@@ -32,7 +33,7 @@ class RentPaymentScreen extends Component {
                     <StatusBar backgroundColor="#fff" barStyle="light-content"/>
                     <View>
                         <View style={[styles.relativeHeader,styles.boxShadow]}>
-                            <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
+                            <TouchableOpacity onPress={() => goBack()}>
                                 <Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
                             </TouchableOpacity>
                             <Text style={[styles.headerText,{fontWeight:'600'}]}>Rent Payment History</Text>
@@ -123,7 +124,7 @@ class RentPaymentScreen extends Component {
                                 We have sent you rent receipt to expample@test.com. If you did not receive the email please request help via profile. 
                             </Text>
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => goBack()}>
                             <View style={[styles.payrentBtn]}>
                                 <Text style={[{color:'#fff',textAlign:'center',fontSize:16,lineHeight:35}]}>RETURN</Text>
                             </View>

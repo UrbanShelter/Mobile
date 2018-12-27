@@ -30,7 +30,7 @@ class SavedScreen extends Component {
 			let uData = await db.collection("users").doc(uId).get()
 			this.setState({users : uData.data()});
 
-			this.state.users.saved.forEach(data => {
+			await this.state.users.saved.forEach(data => {
 				db.collection("property").doc(data).get().then((querySnapshot) => {
 					savedData = querySnapshot.data();
 					savedData.id = data;
@@ -69,70 +69,8 @@ class SavedScreen extends Component {
 							<Text style={[styles.listText,{fontSize:20,}]}>Today </Text>
 							<View elevation={1} style={styles.bar}></View>
 						</View>
-					{/* {this.state.properties.map((data, key) => 
-						<View key={key}>
-							<View style={styles.homeImgCat}>
-								<View style={styles.imgeOver}>
-									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
-									<TouchableOpacity>
-										<Icon style={this.state.savedState[0] ? styles.savedBtn : styles.savedBtnActive} 
-										onPress={() => this.savedBtn(0)}
-										name={this.state.savedState[0] ? "ios-heart-outline" : "ios-heart"}/>
-									</TouchableOpacity>
-								</View>
-								<View style={{position:'relative'}}>	
-									<TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})}><Image style={styles.homeImg} source={{uri:data.image}}/></TouchableWithoutFeedback>	
-									<View elevation={5} style={[styles.whiteshadow,{paddingLeft:30,}]}>	
-											<View style={[styles.Buttonpr,{position:'relative'}]}>
-												<View style={styles.priceBar}></View>
-												<Text style={styles.priceName}>${data.rent}/{data.rentUnit}</Text>									
-											</View>					
-										<View style={styles.propertDesOuter}>								
-											<View>
-												<TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate("View",{propertyId : data.id})} >
-													<Text style={styles.homePropertyName}>dfhadfghfDShDSFhaHaf</Text>
-												</TouchableWithoutFeedback>
-											</View>
-										</View>
-										<View style={styles.homeCategoryBox}>
-										</View>
-										<View style={styles.homeFacilityOuter}>
-											<View style={styles.ratings}>
-												<StarRating
-													disabled={true}
-													emptyStar={'ios-star-outline'}
-													fullStar={'ios-star'}
-													halfStar={'ios-star-half'}
-													iconSet={'Ionicons'}
-													maxStars={5}
-													rating={3}
-													fullStarColor={'#4f3bf6'}
-													starSize={15}
-												/>
-												<View><Text style={styles.countText}>(86)</Text></View>
-											</View>
-											
-											<View style={styles.homeFacilityFlex}>
-												<Image style={styles.homeFacilityImg} source={require("../../assets/images/bed.png")}/>
-												<Text style={styles.countText}>2 Beds</Text>
-											</View>
-											<View style={styles.homeFacilityFlex}>
-												<Image style={styles.homeFacilityImg} source={require("../../assets/images/bath.png")}/>
-												<Text style={styles.countText}>2 Baths</Text>
-											</View>	
 
-											<View style={styles.homeFacilityFlex}>
-												<Text style={styles.countText}>fghdf</Text>
-											</View>
-
-										</View>
-									</View>
-								</View>
-							</View> 
-						</View>
-						)} */}
 						{this.state.properties.map(( data, key ) => 
-						
 						<View key={key}>
 							<View style={styles.homeImgCat}>
 								<View style={styles.imgeOver}>

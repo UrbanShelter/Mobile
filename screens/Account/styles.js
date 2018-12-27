@@ -11,6 +11,12 @@ export default {
     paddingTop: 25,
     backgroundColor: '#fff'
   },
+  filterScreen:{
+    flex: 1,
+    padding: 0,
+    paddingTop: 0,
+    backgroundColor: '#fff'
+  },
   ExploreScreen:{
     flex: 1,
     paddingTop: 25,
@@ -672,6 +678,31 @@ typeBox:{
     marginBottom:15,
     borderRadius:3
   },
+  calenderBtn:{
+    color: '#4A4A4A',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 12,
+    borderWidth:1,
+    borderColor: '#f2f2f2', 
+    lineHeight:35,
+    width:75,
+    textAlign: 'center',
+    marginBottom:15,
+    borderRadius:3
+  },
+  calenderBtnActive:{
+    color: '#fff',
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 12,
+    borderWidth:1,
+    borderColor: '#4f3bf6', 
+    backgroundColor:'#4f3bf6',
+    lineHeight:35,
+    width:75,
+    textAlign: 'center',
+    marginBottom:15,
+    borderRadius:3
+  },
   roomsfiltersBtn:{
     color: '#4A4A4A',
     fontFamily: 'Lato-regular-webfont',
@@ -738,12 +769,32 @@ typeBox:{
     fontFamily: 'Lato-regular-webfont',
     fontSize: 13,
     lineHeight:30,
-    paddingLeft:10,
+    paddingLeft: Platform.OS === 'ios' ? 0 : 10,
     paddingRight:10,
     marginRight:20,
     marginLeft:20,
     marginBottom:10,
-    width:120,
+    width: 100,
+    paddingTop: Platform.OS === 'ios' ? 2:0,
+    paddingBottom: Platform.OS === 'ios' ? 2:0
+  },
+  aminitiesBoxFilterTextActive: {
+    color: '#4f3bf6',
+    borderColor: '#4f3bf6',
+    borderWidth: 1,
+    borderRadius: 3,
+    marginLeft: 5,
+    fontFamily: 'Lato-regular-webfont',
+    fontSize: 13,
+    lineHeight:30,
+    paddingLeft: Platform.OS === 'ios' ? 0 : 10,
+    paddingRight:10,
+    marginRight:20,
+    marginLeft:20,
+    marginBottom:10,
+    width: 100,
+    paddingTop: Platform.OS === 'ios' ? 2:0,
+    paddingBottom: Platform.OS === 'ios' ? 2:0
   },
   aminitiesFilterImg:{
     width:15,
@@ -969,25 +1020,9 @@ smallIcon:{
   userProCnt: {
     borderRadius: 10,
   },
-  aminitiesBoxFilterTextActive: {
-    color: '#4f3bf6',
-    borderColor: '#4f3bf6',
-    borderWidth: 1,
-    borderRadius: 3,
-    marginLeft: 5,
-    fontFamily: 'Lato-regular-webfont',
-    fontSize: 13,
-    lineHeight:30,
-    paddingLeft:10,
-    paddingRight:10,
-    marginRight:20,
-    marginLeft:20,
-    marginBottom:10,
-    width:120,
-  },
   imgIcon: {
-    width: 36,
-    height:36,
+    width: Platform.OS === 'ios'? 12 : 36,
+    height: Platform.OS === 'ios'? 12 : 36,   
   },
   imgPro:{
     flex:1,
@@ -1051,5 +1086,13 @@ smallIcon:{
     paddingLeft:15,
     paddingRight:15,
     borderRadius:3,
+  },
+  searchBtn:{
+    color: '#fff',
+    backgroundColor: '#4f3bf6',
+    fontSize:18,
+    lineHeight:65,
+    justifyContent: 'center',
+    textAlign: 'center'
   }
 };
