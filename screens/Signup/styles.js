@@ -104,7 +104,8 @@ export default {
   arrowBtn:{
     width:18,
     height:16,
-    marginBottom:20
+    marginBottom:20,
+    padding:10
   },
   mailsend:{
     width:69,

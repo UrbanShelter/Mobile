@@ -19,7 +19,7 @@ class ProfileOneScreen extends Component {
 
 
     logout = () => {
-        this.props.navigation.navigate("Login");
+        //this.props.navigation.navigate("Login");
         logOut();
         // this.props.navigation.navigate("Login");
     }

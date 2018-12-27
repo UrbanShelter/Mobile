@@ -7,6 +7,9 @@ import LoginScreen from '../screens/Signup/LoginScreen';
 import LoginMain from '../screens/Signup/LoginMainScreen';
 import ForgotPass from '../screens/Signup/ForgotPassScreen';
 
+import FilterScreen from '../screens/Account/FilterScreen';
+import ApplicationScreen from '../screens/Account/ApplicationScreen';
+
 
 const WelcomeStack = createStackNavigator({
 

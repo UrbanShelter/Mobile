@@ -278,20 +278,69 @@ class ListScreen extends Component {
 						)}
 					</ScrollView>
 
-					<PopupDialog width={300} show={this.state.visible} ref={(popupDialog) => { this.popupDialogFrom = popupDialog; }}>
-						<View style={{flex:1,justifyContent:'center',alignItems:'center',padding:15,paddingTop:25}}>							 
-							<Text style={styles.recovery}>TERMS & CONDITIONS</Text>
-							<Text style={styles.recoveryDes}>
-								By clicking ‘accept’ button you agree to the UrbanShelter <Text style={styles.btex}> Terms and Conditions & </Text>  
-								<Text style={styles.btex}> Privacy Policy </Text>
-							</Text>
+					<PopupDialog width={300} height={360} show={this.state.visible} ref={(popupDialog) => { this.popupDialogFrom = popupDialog; }}>
+						<View style={[{borderBottomWidth:1,borderBottomColor:'#f2f2f2',padding:10,flex:0,flexDirection:'row',justifyContent:'space-between'}]}>
+							<Text style={[styles.headtext,{padding:10}]}>From</Text>
+							<View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
+								<TouchableOpacity><Icon style={{color:'#4f3bf6',padding:10}} name="ios-arrow-back"/></TouchableOpacity>
+								<TouchableOpacity><Icon style={{color:'#4f3bf6',padding:10}} name="ios-arrow-forward"/></TouchableOpacity>
+								<Text style={[styles.headtext,{padding:10,color:'#4f3bf6'}]}> 2018</Text>
+							</View>
 						</View>
-						<View style={{flex: 1, flexDirection: 'row',marginTop:16}}>
-							<TouchableOpacity onPress={()=>this.setState({visible:false})}><Image style={styles.btnAceptDecline} source={require("../../assets/images/decline.png")}/></TouchableOpacity>
-							<TouchableOpacity onPress={() => {
-								this.setState({loader : true});
-								this.registerUser();
-								}}><Image style={styles.btnAceptDecline} source={require("../../assets/images/accept.png")}/></TouchableOpacity>
+						<View style={[styles.typeBox,{padding:10}]}>
+							<View style={[styles.quickfilters]}>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[0] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(0)}>Jan</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[1] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(1)}>Feb</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[2] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(2)}>Mar</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[3] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(3)}>April</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={this.state.activeState[4] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(4)}>May</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(5)}>June</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(5)}>July</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(5)}>Aug</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(5)}>Sept</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(5)}>Oct</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(5)}>Nov</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
+                                    onPress={() => this.buttonPressed(5)}>Dec</Text>
+                                </TouchableOpacity>
+							</View>
+						</View>
+						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10,paddingBottom:10}]}>
+							<TouchableOpacity><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
 					</PopupDialog>
 

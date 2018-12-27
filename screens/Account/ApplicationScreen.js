@@ -20,6 +20,7 @@ class ApplicationScreen extends Component {
 
     
     render() {
+        const {goBack} = this.props.navigation
         if(this.state.loading == true ) {
             return (
                 <View style={[style.container, style.horizontal]}>
@@ -32,7 +33,7 @@ class ApplicationScreen extends Component {
                     <StatusBar backgroundColor="#fff" barStyle="light-content"/>
                     <View>
                         <View style={[styles.relativeHeader,styles.boxShadow]}>
-                            <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
+                            <TouchableOpacity onPress={() => goBack()}>
                                 <Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
                             </TouchableOpacity>
                             <Text style={[styles.headerText,{fontWeight:'600'}]}>Application</Text>
@@ -87,14 +88,10 @@ class ApplicationScreen extends Component {
                                 Are you sure you want to withdraw this application?
                             </Text>
                         </View>
-                        <View style={[{flexDirection:'row',flex:1,}]}>
-                            <TouchableOpacity>
-                                    <Text style={[{color:'#fff',textAlign:'center',fontSize:16,lineHeight:35,backgroundColor:'#4f3bf6'}]}>DECLINE</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                    <Text style={[{color:'#fff',textAlign:'center',fontSize:16,lineHeight:35,backgroundColor:'#4f3bf6'}]}>ACCEPT</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <View style={{flex: 1, flexDirection: 'row',marginTop:16,position:'relative',marginBottom:-60}}>
+							<TouchableOpacity><Image style={styles.btnAceptDecline} source={require("../../assets/images/decline.png")}/></TouchableOpacity>
+							<TouchableOpacity><Image style={[styles.btnAceptDecline,{borderBottomRightRadius:3}]} source={require("../../assets/images/accept.png")}/></TouchableOpacity>
+						</View>
                     </PopupDialog>
 
                 </View>

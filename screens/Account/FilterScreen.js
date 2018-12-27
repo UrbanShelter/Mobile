@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Image, View, ScrollView, TouchableOpacity, StyleSheet} from "react-native";
 import { Text } from "native-base";
 import styles from "./styles";
-//    "react-native-range-slider": "^0.1.1",
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
 class FilterScreen extends React.Component {
 	static navigationOptions = {
@@ -12,7 +12,8 @@ class FilterScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loading : true,
+            loading : true,
+            values: [200, 800],
             properties : [],
             type: '',
             activeState : [false],
@@ -25,6 +26,12 @@ class FilterScreen extends React.Component {
         }		
 
     }
+
+        multiSliderValuesChange = (values) => {
+            this.setState({
+                values,
+            });
+        }
 
     
     componentWillMount () {
@@ -152,14 +159,15 @@ class FilterScreen extends React.Component {
 
 
 	render() {
+        const {goBack} = this.props.navigation
         return(
-			<View style={[styles.HomeScreen]}>			
+			<View style={[styles.filterScreen]}>			
 				<View style={[styles.relativeHeader,{marginTop:0,paddingTop:0}]}>
                     <View style={[styles.signinbg,{padding:0}]}>					
                         <Text style={styles.headtext}>Filter</Text>
                     </View>
                     <View style={styles.flexOneline}>							
-                        <TouchableOpacity onPress= {this._crossBtnHandler}><Image style={[styles.headerImg,{marginTop:40}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
+                        <TouchableOpacity onPress={() => goBack()}><Image style={[styles.headerImg,{marginTop:40}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
                     </View>	
 				</View>
                 <ScrollView showsVerticalScrollIndicator={false} scrollEnabled={this.state.scrollEnabled}>
@@ -168,8 +176,33 @@ class FilterScreen extends React.Component {
                             <Text style={[styles.filterName,{marginBottom:5}]}>Price </Text>
                         </View>
                         <View>
-                            <View style={{flex: 1, flexDirection: 'row'}}>
-
+                            <View style={[{flex:0, flexDirection: 'row', justifyContent:'space-between',paddingLeft:40,paddingRight:40}]}>
+                                <Text style={styles.redText}>$ {this.state.values[0]}</Text>
+                                <Text style={styles.redText}>${this.state.values[1]}</Text>
+                            </View>
+                            <View style={{flex: 0, flexDirection: 'row', justifyContent:'center'}}>
+                                <MultiSlider
+                                values={[this.state.values[0], this.state.values[1]]}
+                                sliderLength={280}
+                                onValuesChange={this.multiSliderValuesChange}
+                                min={0}
+                                max={1000}
+                                step={1} 
+                                isMarkersSeparated={true}
+                                allowOverlap
+                                trackStyle={{ height: 5 }}
+                                selectedStyle={{ backgroundColor: '#4f3bf6' }}
+                                unselectedStyle={{ backgroundColor: '#ebebeb' }}
+                                markerStyle={{
+                                    backgroundColor: '#4f3bf6',
+                                    height:20,
+                                    width: 20,
+                                    borderColor: '#fff',
+                                    borderWidth:5,
+                                    elevation:2,
+                                    borderRadius:10,
+                                }}
+                                />
                             </View>
                         </View>
                     </View>
@@ -178,7 +211,7 @@ class FilterScreen extends React.Component {
                             <Text style={[styles.filterName,{marginBottom:5}]}>Type </Text>
                         </View>
                         <View>
-                            <View style={styles.typeBox}>
+                            <View style={[styles.typeBox,{paddingLeft:10}]}>
                                 <TouchableOpacity>
                                     <Text style={(this.state.type == 'Apartment') ? styles.rateButtonActive : styles.typeCategoryButton} 
                                     onPress={() => this._typeHandler('Apartment')}> Apartment</Text>
@@ -358,6 +391,7 @@ class FilterScreen extends React.Component {
                         </View>
                     </View>
                 </ScrollView>
+                <TouchableOpacity onPress= {this._crossBtnHandler}><Text style={styles.searchBtn}>Apply</Text></TouchableOpacity>
             </View>
         );
     }

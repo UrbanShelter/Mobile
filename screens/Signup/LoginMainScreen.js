@@ -56,6 +56,7 @@ class LoginScreenTwo extends Component {
 
 
 	render() {
+		const {goBack} = this.props.navigation
 		let loader =  this.state.loader;
 		if(loader == true) {
 			return (
@@ -68,13 +69,13 @@ class LoginScreenTwo extends Component {
 				
 				<View style={styles.signinbg}>					
 					<StatusBar backgroundColor={'transparent'} translucent />
-					<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Login")} ><Image style={styles.arrowBtn} source={require("../../assets/images/arrow.png")}/></TouchableOpacity> 
+					<TouchableOpacity onPress={() => goBack()}><Image style={styles.arrowBtn} source={require("../../assets/images/arrow.png")}/></TouchableOpacity> 
 					<KeyboardAvoidingView behavior="padding" style={{ width: '100%', borderWidth: 0,}}>
 						<Text style={styles.headtext2}>Log In</Text>
 						<Text style={styles.headescriptionText2}>LOG IN WITH EMAIL</Text>
 						<View style={{width:'100%'}}>
 							<Item style={styles.borderInput}>
-								<Input type="email" style={styles.inputStyle} placeholder="Email Address" onChangeText={(text) => this.setState({email:text})} keyboardType="email-address" placeholderTextColor="#9b9b9b" />
+								<Input style={styles.inputStyle} placeholder="Email Address" onChangeText={(text) => this.setState({email:text})} keyboardType="email-address" placeholderTextColor="#9b9b9b" />
 							</Item>
 							<Item style={styles.borderInput}>
 								<Input style={styles.inputStyle} placeholder="Password" onChangeText={(text) => this.setState({password:text})} secureTextEntry={true} placeholderTextColor="#9b9b9b" />
