@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Image, View, ScrollView, TouchableOpacity, StyleSheet} from "react-native";
 import { Text } from "native-base";
 import styles from "./styles";
-
+//    "react-native-range-slider": "^0.1.1",
 
 class FilterScreen extends React.Component {
 	static navigationOptions = {
@@ -20,7 +20,8 @@ class FilterScreen extends React.Component {
             bathroom : '',
             buildingAminity : '',
             suiteAminity : '',
-            conditions : this.props.navigation.getParam('conditions')
+            conditions : this.props.navigation.getParam('conditions'),
+
         }		
 
     }
@@ -147,10 +148,6 @@ class FilterScreen extends React.Component {
         this.props.navigation.navigate('List',{condition: conditions});
     }
 
-    
-
-
-
 
 
 
@@ -162,18 +159,16 @@ class FilterScreen extends React.Component {
                         <Text style={styles.headtext}>Filter</Text>
                     </View>
                     <View style={styles.flexOneline}>							
-                        <TouchableOpacity
-                        onPress= {this._crossBtnHandler}
-                        ><Image style={[styles.headerImg,{marginTop:40}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
+                        <TouchableOpacity onPress= {this._crossBtnHandler}><Image style={[styles.headerImg,{marginTop:40}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
                     </View>	
 				</View>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView showsVerticalScrollIndicator={false} scrollEnabled={this.state.scrollEnabled}>
                     <View style={styles.filterItem}>
                         <View style={styles.filterPadding}>												
                             <Text style={[styles.filterName,{marginBottom:5}]}>Price </Text>
                         </View>
                         <View>
-                            <View style={{flex: 1, flexDirection: 'row',paddingLeft:20}}>
+                            <View style={{flex: 1, flexDirection: 'row'}}>
 
                             </View>
                         </View>
@@ -215,32 +210,28 @@ class FilterScreen extends React.Component {
                         <View style={styles.filterPadding}>												
                             <Text style={[styles.filterName,{marginBottom:5}]}>Bedrooms </Text>
                         </View>
-                        <View style={{flex: 1, flexDirection: 'row'}}>
-                            <View style={styles.typeBox}>
-
-                                
+                        <View>
+                            <View style={[styles.typeBox,{paddingLeft:10}]}>
                                 <TouchableOpacity>
                                     <Text style={(this.state.bedroom == '1' )? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bedRoomHandler('1')}> 1</Text>
+                                    onPress={() => this._bedRoomHandler('1')}>1</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
                                     <Text style={(this.state.bedroom == '2' ) ? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bedRoomHandler('2')}> 2</Text>
+                                    onPress={() => this._bedRoomHandler('2')}>2</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
                                     <Text style={(this.state.bedroom == '3' ) ? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bedRoomHandler('3')}> 3</Text>
+                                    onPress={() => this._bedRoomHandler('3')}>3</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
                                     <Text style={(this.state.bedroom == '4' ) ? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bedRoomHandler('4')}> 4</Text>
+                                    onPress={() => this._bedRoomHandler('4')}>4</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
                                     <Text style={(this.state.bedroom == '5+' ) ? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bedRoomHandler('5+')}> 5+</Text>
+                                    onPress={() => this._bedRoomHandler('5+')}>5+</Text>
                                 </TouchableOpacity>
-
-                                
 						    </View>
                         </View>
                     </View>
@@ -248,27 +239,27 @@ class FilterScreen extends React.Component {
                         <View style={styles.filterPadding}>												
                             <Text style={[styles.filterName,{marginBottom:5}]}>Bathrooms </Text>
                         </View>
-                        <View style={{flex: 1, flexDirection: 'row'}}>
-                            <View style={[styles.typeBox,{marginLeft:10}]}>
+                        <View>
+                            <View style={[styles.typeBox,{paddingLeft:10}]}>
                                 <TouchableOpacity>
                                     <Text style={this.state.bathroom == '1' ? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bathRoomHandler('1')}> 1</Text>
+                                    onPress={() => this._bathRoomHandler('1')}>1</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
                                     <Text style={this.state.bathroom == '2' ? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bathRoomHandler('2')}> 2</Text>
+                                    onPress={() => this._bathRoomHandler('2')}>2</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
                                     <Text style={this.state.bathroom == '3' ? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bathRoomHandler('3')}> 3</Text>
+                                    onPress={() => this._bathRoomHandler('3')}>3</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
                                     <Text style={this.state.bathroom == '4' ? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bathRoomHandler('4')}> 4</Text>
+                                    onPress={() => this._bathRoomHandler('4')}>4</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
                                     <Text style={this.state.bathroom == '5+' ? styles.rateButtonActive : styles.typeCategoryButton} 
-                                    onPress={() => this._bathRoomHandler('5+')}> 5+</Text>
+                                    onPress={() => this._bathRoomHandler('5+')}>5+</Text>
                                 </TouchableOpacity>
 
                               

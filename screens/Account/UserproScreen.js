@@ -17,12 +17,13 @@ class UserproScreen extends Component {
     }
     
 render() {
+	const {goBack} = this.props.navigation
     return (
         <View style={styles.ListScreen}>					
             <StatusBar backgroundColor="#fff" barStyle="light-content"/>
 			<View>
 				<View style={[styles.relativeHeader,styles.boxShadow]}>
-					<TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
+					<TouchableOpacity onPress={() => goBack()}>
 						<Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
 					</TouchableOpacity>
 					<Text style={[styles.headerText,{fontWeight:'600'}]}>Profile</Text>

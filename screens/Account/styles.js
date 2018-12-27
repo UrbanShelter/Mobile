@@ -628,7 +628,7 @@ typeBox:{
     paddingLeft:10,
     paddingRight:10,
     borderRadius:3,
-    marginRight:20,
+    marginRight:10,
     marginLeft:20,
     marginBottom:10,
   },
@@ -642,7 +642,7 @@ typeBox:{
     paddingLeft:10,
     paddingRight:10,
     borderRadius:3,
-    marginRight:20,
+    marginRight:10,
     marginLeft:20,
     marginBottom:5,
 
@@ -1042,4 +1042,14 @@ smallIcon:{
     fontSize:12,
     textAlign:'center',
   },
+  contactBtn:{
+    color: '#4f3bf6',
+    borderWidth: 1,
+    borderColor: '#4f3bf6',
+    fontSize:15,
+    lineHeight:35,
+    paddingLeft:15,
+    paddingRight:15,
+    borderRadius:3,
+  }
 };

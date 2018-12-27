@@ -30,12 +30,14 @@ class ReviewScreen extends Component {
 		}).catch(function(error) {
 			console.log("Error getting documents: ", error);
 		});
-		this.setState({reviews : reviews });
+        this.setState({reviews : reviews });
+        console.log("review=>",reviews);
         this.setState({loading : false });
 	}
     
     
 render() {
+    const {goBack} = this.props.navigation
     if(this.state.loading == true ) {
 			return (
 				<View style={[style.container, style.horizontal]}>
@@ -50,7 +52,7 @@ render() {
                         <StatusBar backgroundColor="#fff" barStyle="light-content"/>
                         <View elevation={5} style={[{borderWidth:0,marginLeft:-5,marginRight:-5}]}>
                             <View style={[styles.relativeHeader,styles.hrBox,{paddingLeft:20,marginTop:30,marginBottom:10}]}>
-                                <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
+                                <TouchableOpacity onPress={() => goBack()} >
                                     <Image style={[styles.headerImg]} source={require("../../assets/images/arrow.png")}/>
                                 </TouchableOpacity>
                                 <View style={styles.flexOneline}>
@@ -61,9 +63,9 @@ render() {
                             <View style={[styles.reviewsBox,{position:'relative',paddingBottom:20}]}>									
                                 <Image style={[styles.reviewImg,{marginLeft:30}]} source={require("../../assets/images/flat-with-yellow.png")}/>
                                 <View>
-                                    <Text style={[styles.homePropertyName, {fontSize: 16 }]}> {data.location.address},</Text>
-                                    <Text style={[styles.homePropertyName, {fontSize: 16 }]}> {data.location.city}, {data.location.countryCode}</Text>
-                                    <Text style={styles.PrecautionsText}>APARTMENT•PRIVATE ROOM</Text>
+                                    <Text style={[styles.homePropertyName, {fontSize: 16 }]}>{data.location.address} • </Text>
+                                    <Text style={[styles.homePropertyName, {fontSize: 16 }]}>{data.location.city}, {data.location.state}, {data.location.countryCode}</Text>
+                                    <Text style={styles.PrecautionsText}> APARTMENT • PRIVATE ROOM</Text>
 
                                     <View style={[styles.ratings,{position:'absolute',bottom:-15}]}>
                                         <StarRating
@@ -77,14 +79,14 @@ render() {
                                         fullStarColor={'#4f3bf6'}
                                         starSize={15}
                                         />
-                                        <View><Text style={styles.countText}>(86)</Text></View>
+                                        <View><Text style={styles.countText}>({data.review.length})</Text></View>
                                     </View>	
                                 </View>	
                             </View>
                         </View>
                         <ScrollView showsVerticalScrollIndicator={false}>
-                            <View style={[styles.listBody,{paddingTop:30}]}>
-                                <Text style={styles.hrBoxHeading}>Property Reviews (86)</Text>
+                            <View style={[styles.listBody,{paddingTop:30,paddingBottom:30}]}>
+                                <Text style={styles.hrBoxHeading}>Property Reviews ({data.review.length})</Text>
 
                                 {data.review.map((tag, tagKey) => {
                                     return (

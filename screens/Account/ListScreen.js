@@ -38,7 +38,7 @@ class ListScreen extends Component {
 			this.setState({savedState : userDetails.doc.saved});
 		}
 		var propertyRef = db.collection("property")
-		console.log(this.state.conditions )
+		//console.log(this.state.conditions)
 		if(typeof this.state.conditions != 'undefined'){
 			this.state.conditions.forEach ( function (element) {
 				propertyRef = propertyRef.where(element.name, element.operator, element.value)
@@ -56,6 +56,7 @@ class ListScreen extends Component {
 			console.log("Error getting documents: ", error);
 		});
 		this.setState({properties : properties });
+		console.log("prop=>", this.state.properties);
 		this.setState({loading : false });
 	}
 
@@ -202,6 +203,7 @@ class ListScreen extends Component {
 							<TouchableOpacity onPress={this.showRooms}><Text style={styles.homeCategoryButton}> Rooms</Text></TouchableOpacity>
 						</View>				
 						<Text style={styles.headtext1}>Home Rentals in Waterloo </Text>
+
 						{this.state.properties.map((data, key) => 
 						<View key={key}>
 							<View style={styles.homeImgCat}>
@@ -247,7 +249,7 @@ class ListScreen extends Component {
 													fullStarColor={'#4f3bf6'}
 													starSize={15}
 												/>
-												<View><Text style={styles.countText}>(86)</Text></View>
+												<View><Text style={styles.countText}>({data.review.length})</Text></View>
 											</View>
 											
 											<View style={styles.homeFacilityFlex}>
@@ -270,7 +272,7 @@ class ListScreen extends Component {
 											}
 										</View>
 									</View>
-								</View>
+								</View> 
 							</View> 
 						</View>
 						)}
@@ -330,7 +332,7 @@ class ListScreen extends Component {
 						</View>
 					</PopupDialog>
 
-					<PopupDialog width={300} height={360} show={this.state.visible} ref={(popupDialog) => { this.popupDialogRooms = popupDialog; }}>
+					<PopupDialog width={300} show={this.state.visible} ref={(popupDialog) => { this.popupDialogRooms = popupDialog; }}>
 						<View style={[{borderBottomWidth:1,borderBottomColor:'#f2f2f2',padding:10}]}>
 							<Text style={[styles.headtext,{padding:10,marginLeft:10}]}>Rooms</Text>
 						</View>
