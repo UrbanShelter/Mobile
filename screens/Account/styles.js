@@ -604,7 +604,7 @@ export default {
 
   headtext: {
     color: '#000',
-    fontSize: 24,
+    fontSize: 18,
     textAlign: 'left',
     fontWeight: '900',
     fontFamily:'Raleway-regular-webfont',
@@ -774,7 +774,7 @@ typeBox:{
     marginRight:20,
     marginLeft:20,
     marginBottom:10,
-    width: 100,
+    width: 120,
     paddingTop: Platform.OS === 'ios' ? 2:0,
     paddingBottom: Platform.OS === 'ios' ? 2:0
   },
@@ -792,7 +792,7 @@ typeBox:{
     marginRight:20,
     marginLeft:20,
     marginBottom:10,
-    width: 100,
+    width: 120,
     paddingTop: Platform.OS === 'ios' ? 2:0,
     paddingBottom: Platform.OS === 'ios' ? 2:0
   },
@@ -1094,5 +1094,5 @@ smallIcon:{
     lineHeight:65,
     justifyContent: 'center',
     textAlign: 'center'
-  }
+  },
 };

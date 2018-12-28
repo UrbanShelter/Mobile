@@ -13,7 +13,7 @@ class FilterScreen extends React.Component {
 		super(props);
 		this.state = {
             loading : true,
-            values: [200, 800],
+            values: [100, 1500],
             properties : [],
             type: '',
             activeState : [false],
@@ -22,21 +22,23 @@ class FilterScreen extends React.Component {
             buildingAminity : '',
             suiteAminity : '',
             conditions : this.props.navigation.getParam('conditions'),
+            minPrice : '',
+            maxPrice : '',
+
 
         }		
 
     }
 
-        multiSliderValuesChange = (values) => {
-            this.setState({
-                values,
-            });
-        }
-
-    
-    componentWillMount () {
-        
+    componentDidMount () {
+        console.log(this.state.conditions);
     }
+
+    multiSliderValuesChange = (values) => {
+        this.setState({minPrice : values[0], maxPrice : values[1]})
+        this.setState({values});
+    }
+
 
     _typeHandler = (index) => {
         if(this.state.type == index) {
@@ -94,6 +96,22 @@ class FilterScreen extends React.Component {
             conditions.push(typeObj);
         }
 
+        if(this.state.minPrice != '') {
+            let typeObj = {
+                name : 'rent',
+                operator : '<=',
+                value : this.state.maxPrice
+            }; 
+            conditions.push(typeObj);
+
+            let typeObj1 = {
+                name : 'rent',
+                operator : '>=',
+                value : this.state.minPrice
+            }; 
+            conditions.push(typeObj1);
+        }
+
         if (this.state.bedroom != '') {
             if(this.state.bedroom == '5+') {
                 let typeObj = {
@@ -137,7 +155,7 @@ class FilterScreen extends React.Component {
         if (this.state.buildingAminity != '') {
             let typeObj = {
                 name : 'amenities.inBuilding',
-                operator : '==',
+                operator : 'array-contains',
                 value : this.state.buildingAminity
             }; 
             conditions.push(typeObj);
@@ -146,7 +164,7 @@ class FilterScreen extends React.Component {
         if (this.state.suiteAminity != '') {
             let typeObj = {
                 name : 'amenities.inSuite',
-                operator : '==',
+                operator : 'array-contains',
                 value : this.state.suiteAminity
             }; 
             conditions.push(typeObj);
@@ -185,8 +203,8 @@ class FilterScreen extends React.Component {
                                 values={[this.state.values[0], this.state.values[1]]}
                                 sliderLength={280}
                                 onValuesChange={this.multiSliderValuesChange}
-                                min={0}
-                                max={1000}
+                                min={100}
+                                max={1500}
                                 step={1} 
                                 isMarkersSeparated={true}
                                 allowOverlap
