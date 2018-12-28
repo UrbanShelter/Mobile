@@ -60,13 +60,10 @@ export async function signIn(email , password) {
 
 
 export async function logOut(){
-    firebase.auth().signOut().then(function() {
-        console.log('Signed Out');
-        Expo.SecureStore.deleteItemAsync('uId');
-        
-    }, function(error) {
-        console.error('Sign Out Error', error);
-    });
+    await firebase.auth().signOut()
+    await Expo.SecureStore.deleteItemAsync('uId');
+    console.log('Signed Out');
+    return true;
 }
 
 

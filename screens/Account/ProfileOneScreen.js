@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Image, View, ScrollView, StatusBar, TouchableOpacity, ImageBackground, StyleSheet} from "react-native";
-import {Text, Icon } from "native-base";
+import {Text} from "native-base";
 import styles from "./styles";
 import { logOut } from './../../service/auth';
 
@@ -18,10 +18,9 @@ class ProfileOneScreen extends Component {
     }
 
 
-    logout = () => {
-        //this.props.navigation.navigate("Login");
-        logOut();
-        // this.props.navigation.navigate("Login");
+    logout = async () => {
+        await logOut();
+        this.props.navigation.navigate("Login");
     }
     
 render() {

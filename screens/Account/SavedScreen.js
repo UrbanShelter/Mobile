@@ -4,6 +4,7 @@ import { Text, Icon } from "native-base";
 import styles from "./styles";
 import { db } from '../../service/auth';
 import StarRating from 'react-native-star-rating';
+import { updateData } from '../../service/service';
 
 
 class SavedScreen extends Component {
@@ -14,35 +15,57 @@ class SavedScreen extends Component {
 		super(props)
 		this.state = {
 			loading : true,
-			properties : [],
+			properties : null,
 			activeState: [false],
-			savedState: [false],
+			savedState: [],
 			uId: '',
 			uData: '',
 		}		
-    }
+		const didBlurSubscription = this.props.navigation.addListener(
+			'willFocus',
+			payload => {
+				console.log(payload)
+				this.refreshPage();
+			}
+		);
+	}
 
-    	async componentWillMount() {
-			var properties = [];
-			var savedData = {};
-			let uId = await Expo.SecureStore.getItemAsync('uId');
-			this.setState({uId : uId});
-			let uData = await db.collection("users").doc(uId).get()
-			this.setState({users : uData.data()});
 
-			await this.state.users.saved.forEach(data => {
-				db.collection("property").doc(data).get().then((querySnapshot) => {
-					savedData = querySnapshot.data();
-					savedData.id = data;
-					properties.push(savedData);
-				}).catch(function (error) {
-					console.log("Error getting documents: ", error);
-				});
+	_unsaveProperty = async (index) => {
+		this.state.savedState.map((val, tmpIndex) => {
+			if (val === index) {
+				let savedItems = this.state.savedState;
+				savedItems.splice(savedItems.indexOf(index), 1);
+				this.setState({ savedState: savedItems });
+				updateObj = {
+					saved : this.state.savedState
+				};
+			} 
+		});
+		await updateData('users',this.state.uId,updateObj);
+		this.refreshPage();
+	}
+
+	refreshPage = async () => {
+		this.setState({ properties : []});
+		this.setState({ loading : true});
+		var savedData = {};
+		let uId = await Expo.SecureStore.getItemAsync('uId');
+		this.setState({uId : uId});
+		let uData = await db.collection("users").doc(uId).get()
+		this.setState({users : uData.data()});
+		this.setState({savedState : this.state.users.saved});
+		this.state.users.saved.forEach(data => {
+			db.collection("property").doc(data).get().then((querySnapshot) => {
+				savedData = querySnapshot.data();
+				savedData.id = data;
+				this.setState({properties :[...this.state.properties, savedData]  });
+			}).catch(function (error) {
+				console.log("Error getting documents: ", error);
 			});
-			this.setState({properties : properties });
-			console.log("Saved==>", this.state.properties);
-			this.setState({loading : false });
-		}
+		});
+		this.setState({loading : false });
+	}
 
 
 	render() {
@@ -53,7 +76,7 @@ class SavedScreen extends Component {
 				</View>
 			);
 		} else {
-        	return(
+			return(
 				<View style={styles.HomeScreen}>			
 					<View style={[styles.relativeHeader,{marginTop:0,paddingLeft:0}]}>
 						<View style={[styles.signinbg,{paddingTop:0}]}>					
@@ -76,9 +99,9 @@ class SavedScreen extends Component {
 								<View style={styles.imgeOver}>
 									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
 									<TouchableOpacity>
-										<Icon style={(this.state.savedState.indexOf(data.id) != -1) ? styles.savedBtnActive : styles.savedBtn} 
-                                    	onPress={() => this.savedBtn(data.id)}
-										name={(this.state.savedState.indexOf(data.id) != -1) ? "ios-heart" : "ios-heart-outline"}/>
+										<Icon style={styles.savedBtnActive} 
+											onPress={() => this._unsaveProperty(data.id)}
+										name={"ios-heart"}/>
 									</TouchableOpacity>
 								</View>
 								<View style={{position:'relative'}}>	
@@ -115,7 +138,7 @@ class SavedScreen extends Component {
 													fullStarColor={'#4f3bf6'}
 													starSize={15}
 												/>
-												<View><Text style={styles.countText}>(86)</Text></View>
+												<View><Text style={styles.countText}>({data.review.length})</Text></View>
 											</View>
 											
 											<View style={styles.homeFacilityFlex}>
@@ -146,7 +169,7 @@ class SavedScreen extends Component {
 				</View>
 			);
 		}
-    }
+	}
 }
 
     const style = StyleSheet.create({

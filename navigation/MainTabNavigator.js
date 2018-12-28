@@ -1,6 +1,6 @@
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import {Icon} from 'native-base';
-import React, { Component } from "react";
+import React from "react";
 import MainScreen from '../screens/Account/MainScreen';
 import ListScreen from '../screens/Account/ListScreen';
 import ViewScreen from '../screens/Account/ViewScreen';
@@ -43,7 +43,7 @@ const MainStack = createStackNavigator({
     Rent: RentPaymentScreen,
   
     },{
-        initialRouteName: 'Search',
+        initialRouteName: 'List',
         
     }
 );

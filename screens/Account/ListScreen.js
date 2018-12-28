@@ -8,7 +8,6 @@ import StarRating from 'react-native-star-rating';
 import { getData , updateData } from '../../service/service'
 
 
-
 class ListScreen extends Component {
 	static navigationOptions = {
 		header: null,
@@ -21,59 +20,41 @@ class ListScreen extends Component {
 			activeState: [false],
 			savedState: [],
 			userId : '',
-			conditions : this.props.navigation.getParam('conditions')
+			conditions : this.props.navigation.getParam('conditions', []),
+			search : ''
 		}		
 		this.buttonPressed = this.buttonPressed.bind(this);
 	}
 
 
 	async componentWillMount() {
-		var properties = [];
-		var MainData = {};
 		var userId = await Expo.SecureStore.getItemAsync('uId');
-		
 		this.setState({userId :userId});
 		var userDetails = await getData('users', userId);
 		if(typeof userDetails.doc.saved !== 'undefined' || userDetails.doc.saved.length > 0) {
 			this.setState({savedState : userDetails.doc.saved});
 		}
-		var propertyRef = db.collection("property")
-		//console.log(this.state.conditions)
-		if(typeof this.state.conditions != 'undefined'){
-			this.state.conditions.forEach ( function (element) {
-				propertyRef = propertyRef.where(element.name, element.operator, element.value)
-				console.log(element.name, element.operator, element.value)
-			})
-		}
-		await propertyRef.get().then((querySnapshot) => {
-			querySnapshot.forEach(function(doc) {	
-				MainData = doc.data();
-				MainData.id = doc.id;
-				properties.push(MainData);
-
-			});
-		}).catch(function(error) {
-			console.log("Error getting documents: ", error);
-		});
-		this.setState({properties : properties });
-		console.log("prop=>", this.state.properties);
-		this.setState({loading : false });
+		this.refreshSearch()
 	}
 
 
+	_handleSearch = async (Text) => {
+		this.setState({search : Text});
+	}
 
 	async componentWillReceiveProps (nextProps) {
-
-		this.setState({loading : true });
 		this.setState({conditions : nextProps.navigation.getParam('condition')});
-		this.setState({properties : [] });
+		console.log(this.state.conditions)	
+		var userId = await Expo.SecureStore.getItemAsync('uId');
+		this.setState({userId :userId});
+		this.refreshSearch();
+	}
+
+	refreshSearch = async () => {
 		var properties = [];
 		var MainData = {};
-		var userId = await Expo.SecureStore.getItemAsync('uId');
-		
-		this.setState({userId :userId});
-		var userDetails = await getData('users', userId);
-		
+		this.setState({loading : true });
+		this.setState({properties : [] });
 		var propertyRef = db.collection("property")
 		if(typeof this.state.conditions != 'undefined'){
 			this.state.conditions.forEach ( function (element) {
@@ -93,7 +74,6 @@ class ListScreen extends Component {
 		});
 		this.setState({properties : properties });
 		this.setState({loading : false });
-		
 	}
 
 
@@ -158,7 +138,29 @@ class ListScreen extends Component {
 	}
 
 
-	
+	searchSubmit = () => {
+		var obj = {
+			name : 'location.address',
+			operator : '>=',
+			value : this.state.search
+		}
+		var conditions = this.state.conditions;
+		if(this.state.conditions.length != 0) {			
+			conditions.map( (element, index) => {
+				if(element.name == 'location.address') {
+					conditions[index] = obj;
+				} else {
+					conditions.push(obj);
+				}
+			});
+		} else {
+			conditions.push(obj);
+		}
+		this.setState({conditions : conditions})
+		this.refreshSearch();
+		console.log(this.state.conditions)
+
+	}
 
 	showFrom = () => {
 		this.popupDialogFrom.show();
@@ -187,11 +189,16 @@ class ListScreen extends Component {
 							<TouchableOpacity>
 								<Image style={styles.headerImg} source={require("../../assets/images/search_inactive.png")}/>
 							</TouchableOpacity>
-							<Input style={[styles.inputStyle,{borderWidth:0,borderColor:'transparent'}]} placeholder="Search Location"  placeholderTextColor="#9b9b9b" />
+							<Input 
+								style={[styles.inputStyle,{borderWidth:0,borderColor:'transparent'}]} 
+								placeholder="Search Location"
+								onChangeText={ (Text) => {this._handleSearch(Text) }}  
+								placeholderTextColor="#9b9b9b"
+								onSubmitEditing={this.searchSubmit} />
 						</View>
 						<View style={styles.flexOneline}>							
 							<TouchableOpacity onPress={()=> {
-								this.props.navigation.navigate("Filter")}} >
+								this.props.navigation.navigate("Filter",{conditions : this.state.conditions})}} >
 								<Image style={[styles.headerImg,{marginLeft:5}]} source={require("../../assets/images/Shape.png")}/>
 							</TouchableOpacity>
 						</View>	
@@ -278,7 +285,7 @@ class ListScreen extends Component {
 						)}
 					</ScrollView>
 
-					<PopupDialog width={300} height={360} show={this.state.visible} ref={(popupDialog) => { this.popupDialogFrom = popupDialog; }}>
+					<PopupDialog width={300} height={370} show={this.state.visible} ref={(popupDialog) => { this.popupDialogFrom = popupDialog; }}>
 						<View style={[{borderBottomWidth:1,borderBottomColor:'#f2f2f2',padding:10,flex:0,flexDirection:'row',justifyContent:'space-between'}]}>
 							<Text style={[styles.headtext,{padding:10}]}>From</Text>
 							<View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
@@ -339,8 +346,8 @@ class ListScreen extends Component {
                                 </TouchableOpacity>
 							</View>
 						</View>
-						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10,paddingBottom:10}]}>
-							<TouchableOpacity><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
+						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2'}]}>
+							<TouchableOpacity><Text style={[{lineHeight:65,color:'#4f3bf6',textAlign:'center',paddingBottom:20}]}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
 					</PopupDialog>
 
@@ -381,7 +388,7 @@ class ListScreen extends Component {
 						</View>
 					</PopupDialog>
 
-					<PopupDialog width={300} show={this.state.visible} ref={(popupDialog) => { this.popupDialogRooms = popupDialog; }}>
+					<PopupDialog width={300} height={350} show={this.state.visible} ref={(popupDialog) => { this.popupDialogRooms = popupDialog; }}>
 						<View style={[{borderBottomWidth:1,borderBottomColor:'#f2f2f2',padding:10}]}>
 							<Text style={[styles.headtext,{padding:10,marginLeft:10}]}>Rooms</Text>
 						</View>
