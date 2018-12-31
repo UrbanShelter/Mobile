@@ -76,10 +76,8 @@ export default {
   headtext1:{
     color: '#000',
     fontSize: 20,
-    marginBottom: 10,
     textAlign: 'left',
     fontFamily: 'Montserrat-SemiBold',
-    marginTop: 10,
   },
   homeCategoryBox:{
     flex: 1,

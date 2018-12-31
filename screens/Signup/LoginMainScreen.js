@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image, View, ToastAndroid, StatusBar, TouchableOpacity, KeyboardAvoidingView, StyleSheet, ActivityIndicator } from "react-native";
 import {  Text, Item, Input } from "native-base";
+import Toast from 'react-native-simple-toast';
 import styles from "./styles";
 import { signIn, logOut } from './../../service/auth';
 
@@ -43,12 +44,14 @@ class LoginScreenTwo extends Component {
 				this.setState({loader:false});
 			}
 			
-		} else if (this.state.email == '' ) {
+		} else if (this.state.email == '') {
 			this.setState({loader:false});
-			ToastAndroid.show('Please Enter Email address', ToastAndroid.SHORT);
+			//ToastAndroid.show('Please Enter Email address', ToastAndroid.SHORT);
+			Toast.show('Please Enter Email address.');
 		} else if (this.state.password == '') {
 			this.setState({loader:false});
-			ToastAndroid.show('Please Enter Password', ToastAndroid.SHORT);
+			Toast.show('Please Enter Password.');
+			//ToastAndroid.show('Please Enter Password', ToastAndroid.SHORT);
 		}
 		
 		

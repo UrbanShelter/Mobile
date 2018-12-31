@@ -41,6 +41,7 @@ class MessageInnerScreen extends Component {
 
 
 render() {
+    const {goBack} = this.props.navigation
     if(this.state.loading == true ) {
         return (
             <View style={[style.container, style.horizontal]}>
@@ -53,7 +54,7 @@ render() {
                 <StatusBar backgroundColor="#fff" barStyle="light-content"/>
                 <View style={styles.boxShadow}>
                     <View style={[styles.relativeHeader]}>
-                        <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
+                        <TouchableOpacity onPress={() => goBack()}>
                             <Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
                         </TouchableOpacity>
                         <Text style={[{fontWeight:'600'}]}>Message</Text>
