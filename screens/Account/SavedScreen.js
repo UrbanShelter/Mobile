@@ -77,31 +77,29 @@ class SavedScreen extends Component {
 			);
 		} else {
 			return(
-				<View style={styles.HomeScreen}>			
-					<View style={[styles.relativeHeader,{marginTop:0,paddingLeft:0}]}>
+				<View style={[styles.HomeScreen,{padding:0,paddingTop:0}]}>	
+					<StatusBar backgroundColor="#fff" barStyle="light-content"/>		
+					<View style={[styles.relativeHeader,{paddingLeft:0,paddingBottom:0}]}>
 						<View style={[styles.signinbg,{paddingTop:0}]}>					
-							<StatusBar backgroundColor={'transparent'} translucent />
-							<Text style={[styles.headtext,{marginTop:10}]}>Saved</Text>
+							<Text style={[styles.headtext,{fontSize:30}]}>Saved</Text>
 						</View>
-						<View style={[styles.flexOneline]}>							
+						<View>							
 							<TouchableOpacity><Image style={[styles.headerImg,{marginTop:0}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
 						</View>	
 					</View>
 					<ScrollView showsVerticalScrollIndicator={false}>
 						<View style={{position:'relative',paddingBottom:30}}>
-							<Text style={[styles.listText,{fontSize:20,}]}>Today </Text>
+							<Text style={[styles.listText,{fontSize:20,paddingLeft:20}]}>Today </Text>
 							<View elevation={1} style={styles.bar}></View>
 						</View>
 
 						{this.state.properties.map(( data, key ) => 
-						<View key={key}>
+						<View key={key} style={[styles.listBody]}>
 							<View style={styles.homeImgCat}>
 								<View style={styles.imgeOver}>
-									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
+									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>{data.roomType}</Text></View>
 									<TouchableOpacity>
-										<Icon style={styles.savedBtnActive} 
-											onPress={() => this._unsaveProperty(data.id)}
-										name={"ios-heart"}/>
+										<Icon style={styles.savedBtnActive} onPress={() => this._unsaveProperty(data.id)} name={"ios-heart"}/>
 									</TouchableOpacity>
 								</View>
 								<View style={{position:'relative'}}>	

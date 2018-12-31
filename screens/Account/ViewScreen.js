@@ -199,8 +199,7 @@ class ViewScreenPage extends Component {
 								</View>					
 							</View>
 							<View style={styles.hrBox}>
-								<TouchableOpacity  onPress={()=> {
-								this.props.navigation.navigate("Report")}} >
+								<TouchableOpacity onPress={()=> {this.props.navigation.navigate("Report")}} >
 									<Text style={[styles.hrBoxHeading,{marginBottom:0}]}> Report this Listing </Text>
 								</TouchableOpacity>
 							</View>
@@ -212,7 +211,7 @@ class ViewScreenPage extends Component {
 										<Text style={styles.reviewsBoxHeading}>Jeffery Petrov</Text>
 										<Text style={styles.PrecautionsText}>Kitchener, ON</Text>
 									</View>
-									<TouchableOpacity style={[{position:'absolute', right:10}]}>
+									<TouchableOpacity onPress={()=> {this.props.navigation.navigate("Chat")}} style={[{position:'absolute', right:10}]} >
 										<Text style={[styles.contactBtn]}>Contact</Text>
 									</TouchableOpacity>
 								</View>

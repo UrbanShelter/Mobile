@@ -20,8 +20,11 @@ class ListScreen extends Component {
 			activeState: [false],
 			savedState: [],
 			userId : '',
-			conditions : this.props.navigation.getParam('conditions', []),
-			search : ''
+			search : '',
+			type: '',
+			bedroom : '',
+			roomType : '',
+            conditions : this.props.navigation.getParam('conditions'),
 		}		
 		this.buttonPressed = this.buttonPressed.bind(this);
 	}
@@ -49,6 +52,72 @@ class ListScreen extends Component {
 		this.setState({userId :userId});
 		this.refreshSearch();
 	}
+	_typeHandler = (index) => {
+        if(this.state.type == index) {
+            this.setState({type : ''})
+        } else {
+            this.setState({type : index})
+        }
+	}
+
+	_bedRoomHandler = (index) =>{
+        if(this.state.bedroom == index) {
+            this.setState({bedroom : ''})
+        } else {
+            this.setState({bedroom : index})
+        }
+	}
+	_roomTypeHandler = (index) =>{
+		if(this.state.roomType == index) {
+			this.setState({roomType : ''})
+		} else {
+			this.setState({roomType : index})
+		}
+	}
+	
+	_crossBtnHandler = () => {
+        var conditions = [];
+        if (this.state.type != '') {
+            let typeObj = {
+                name : 'category',
+                operator : '==',
+                value : this.state.type
+            }; 
+            conditions.push(typeObj);
+		}
+		
+		if (this.state.roomType != '') {
+			let roomTypeObj = {
+				name : 'roomType',
+				operator : '==',
+				value : this.state.roomType
+			};
+			conditions.push(roomTypeObj);
+		}
+
+        if (this.state.bedroom != '') {
+            if(this.state.bedroom == '5+') {
+                let typeObj = {
+                    name : 'rooms.bedroom',
+                    operator : '>=',
+                    value : '5'
+                };
+                conditions.push(typeObj);
+            } else {
+                let typeObj = {
+                    name : 'rooms.bedroom',
+                    operator : '==',
+                    value : this.state.bedroom
+                };
+                conditions.push(typeObj);
+            }
+             
+            
+		}
+		
+        console.log(conditions);
+        this.props.navigation.navigate('List',{condition: conditions});
+    }
 
 	refreshSearch = async () => {
 		var properties = [];
@@ -182,9 +251,9 @@ class ListScreen extends Component {
 			);
 		} else {
 			return (
-				<View style={[styles.HomeScreen]}>			
+				<View style={[styles.HomeScreen,{padding:0,paddingTop:0}]}>			
 					<StatusBar backgroundColor="#fff" barStyle="dark-content"/>
-					<View style={[styles.relativeHeader,{paddingLeft:0,paddingRight:0}]}>
+					<View style={[styles.relativeHeader,{paddingLeft:20,paddingRight:20}]}>
 						<View style={styles.searchbar}>
 							<TouchableOpacity>
 								<Image style={styles.headerImg} source={require("../../assets/images/search_inactive.png")}/>
@@ -203,19 +272,20 @@ class ListScreen extends Component {
 							</TouchableOpacity>
 						</View>	
 					</View>
+
 					<ScrollView showsVerticalScrollIndicator={false}>						
-						<View style={[styles.homeCategoryBox,{marginTop:20}]}>
+						<View style={[styles.homeCategoryBox,{paddingLeft:20}]}>
 							<TouchableOpacity onPress={this.showFrom}><Text style={styles.homeCategoryButton}> From</Text></TouchableOpacity>
 							<TouchableOpacity onPress={this.showHomeType}><Text style={styles.homeCategoryButton}> Home Type</Text></TouchableOpacity>
 							<TouchableOpacity onPress={this.showRooms}><Text style={styles.homeCategoryButton}> Rooms</Text></TouchableOpacity>
 						</View>				
-						<Text style={styles.headtext1}>Home Rentals in Waterloo </Text>
+						<Text style={[styles.headtext1,{paddingLeft:20}]}>Home Rentals in Waterloo </Text>
 
 						{this.state.properties.map((data, key) => 
-						<View key={key}>
+						<View key={key} style={[styles.listBody]}>
 							<View style={styles.homeImgCat}>
 								<View style={styles.imgeOver}>
-									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>Entire Home</Text></View>
+									<View style={styles.privateRoom}><Text style={styles.privateRoomText}>{data.roomType}</Text></View>
 									<TouchableOpacity>
 										<Icon style={(this.state.savedState.indexOf(data.id) != -1) ? styles.savedBtnActive : styles.savedBtn} 
                                     	onPress={() => this.savedBtn(data.id)}
@@ -358,33 +428,33 @@ class ListScreen extends Component {
 						<View style={[styles.typeBox,{padding:10}]}>
 							<View style={[styles.quickfilters]}>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}> Any</Text>
+                                    <Text style={(this.state.type == '') ? styles.quickfiltersBtnActive : styles.quickfiltersBtn} 
+                                    onPress={() => this._typeHandler('')}> Any</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[1] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(1)}> House</Text>
+                                    <Text style={(this.state.type == 'House') ? styles.quickfiltersBtnActive : styles.quickfiltersBtn} 
+                                    onPress={() => this._typeHandler('House')}> House</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[2] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(2)}> Apartment</Text>
+                                    <Text style={(this.state.type == 'Apartment') ? styles.quickfiltersBtnActive : styles.quickfiltersBtn} 
+                                    onPress={() => this._typeHandler('Apartment')}> Apartment</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[3] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(3)}> Dorm</Text>
+                                    <Text style={(this.state.type == 'Dorm') ? styles.quickfiltersBtnActive : styles.quickfiltersBtn} 
+                                    onPress={() => this._typeHandler('Dorm')}> Dorm</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[4] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(4)}> Townhouse</Text>
+                                    <Text style={(this.state.type == 'Townhouse') ? styles.quickfiltersBtnActive : styles.quickfiltersBtn} 
+                                    onPress={() => this._typeHandler('Townhouse')}> Townhouse</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[5] ? styles.quickfiltersBtn : styles.quickfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(5)}> Condo</Text>
+                                    <Text style={(this.state.type == 'Condo') ? styles.quickfiltersBtnActive : styles.quickfiltersBtn} 
+                                    onPress={() => this._typeHandler('Condo')}> Condo</Text>
                                 </TouchableOpacity>
 							</View>
 						</View>	
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
-							<TouchableOpacity><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
+							<TouchableOpacity onPress= {this._crossBtnHandler}><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
 					</PopupDialog>
 
@@ -396,46 +466,50 @@ class ListScreen extends Component {
 						<View style={[styles.typeBox,{padding:10}]}>
 							<View style={[styles.quickfilters]}>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[6] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(6)}> Any</Text>
+                                    <Text style={(this.state.roomType == '') ? styles.roomsfiltersBtnActive : styles.roomsfiltersBtn} 
+                                    onPress={() => this._roomTypeHandler('')}> Any</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[7] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(7)}> Entire House</Text>
+                                    <Text style={(this.state.roomType == 'Entire House') ? styles.roomsfiltersBtnActive : styles.roomsfiltersBtn} 
+                                    onPress={() => this._roomTypeHandler('Entire House')}> Entire House</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[8] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(8)}> Private Rooms</Text>
+                                    <Text style={(this.state.roomType == 'Private Rooms') ? styles.roomsfiltersBtnActive : styles.roomsfiltersBtn} 
+                                    onPress={() => this._roomTypeHandler('Private Rooms')}> Private Rooms</Text>
                                 </TouchableOpacity>
 							</View>
 						</View>	
 						<Text style={[{paddingLeft:20}]}>Bedrooms</Text>
 						<View style={[styles.typeBox,{padding:10}]}>
 							<View style={[styles.quickfilters]}>
+                                {/* <TouchableOpacity>
+                                    <Text style={(this.state.bedroom == 'Studio' ) ? styles.styles.roomsfiltersBtnActive : styles.roomsfiltersBtn} 
+                                    onPress={() => this._bedRoomHandler('Studio')}> Studio</Text>
+                                </TouchableOpacity> */}
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[9] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(9)}> Studio</Text>
+                                    <Text style={(this.state.bedroom == '1' ) ? styles.roomsfiltersBtnActive : styles.roomsfiltersBtn} 
+                                    onPress={() => this._bedRoomHandler('1')}> 1</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[10] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(10)}> 1</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity>
-                                    <Text style={this.state.activeState[10] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(10)}> 2</Text>
+                                    <Text style={(this.state.bedroom == '2' ) ? styles.roomsfiltersBtnActive : styles.roomsfiltersBtn} 
+                                    onPress={() => this._bedRoomHandler('2')}> 2</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[11] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(11)}> 3</Text>
+                                    <Text style={(this.state.bedroom == '3' ) ? styles.roomsfiltersBtnActive : styles.roomsfiltersBtn} 
+                                    onPress={() => this._bedRoomHandler('3')}> 3</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[12] ? styles.roomsfiltersBtn : styles.roomsfiltersBtnActive} 
-                                    onPress={() => this.buttonPressed(12)}> 4</Text>
+                                    <Text style={(this.state.bedroom == '4' ) ? styles.roomsfiltersBtnActive : styles.roomsfiltersBtn} 
+                                    onPress={() => this._bedRoomHandler('4')}> 4</Text>
+                                </TouchableOpacity>
+								<TouchableOpacity>
+                                    <Text style={(this.state.bedroom == '5' ) ? styles.roomsfiltersBtnActive : styles.roomsfiltersBtn} 
+                                    onPress={() => this._bedRoomHandler('5')}> 5</Text>
                                 </TouchableOpacity>
 							</View>
 						</View>	
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
-							<TouchableOpacity><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
+							<TouchableOpacity onPress= {this._crossBtnHandler}><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
 					</PopupDialog>
 					

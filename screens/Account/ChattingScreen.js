@@ -54,19 +54,20 @@ class ChattingScreen extends Component {
 
     
 render() {
+    const {goBack} = this.props.navigation
     return (
         <View style={styles.ListScreen}>					
             <StatusBar backgroundColor="#fff" barStyle="light-content"/>
             <View>
                 <View style={[styles.relativeHeader,styles.boxShadow]}>
-                    <TouchableOpacity  onPress={()=>this.props.navigation.navigate("Home")} >
+                    <TouchableOpacity onPress={() => goBack()} >
                         <Image style={styles.headerImg} source={require("../../assets/images/arrow.png")}/>
                     </TouchableOpacity>
                     <View style={styles.txt}>
                         <Text style={[{fontWeight:'600'}]}>Jeffery Petrov</Text>
                         <Text style={[styles.listText]}>Landlord • 85 Younge St S</Text>
                     </View>
-                    <View style={styles.flexOneline}>
+                    <View>
                         <Image style={[styles.headerImg,{marginLeft:10}]} source={require("../../assets/images/share-black.png")}/>
                     </View>	
                 </View>
