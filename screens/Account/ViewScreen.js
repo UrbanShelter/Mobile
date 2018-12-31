@@ -180,7 +180,7 @@ class ViewScreenPage extends Component {
 									The place was nice and comfy. The landlord was easy to work with. There is a really nice diner down the road. A TV would have been blessed.
 								</Text>
 								<View style={styles.reviewRating} >
-									<TouchableOpacity  onPress={()=> {this.props.navigation.navigate("Review")}}>
+									<TouchableOpacity  onPress={()=> {this.props.navigation.navigate("Review",{propertyId: property.id})}}>
 										<Text style={styles.redText}>View all {property.review.length} reviews</Text>
 									</TouchableOpacity>
 									<View style={styles.ratings}>
@@ -247,8 +247,8 @@ class ViewScreenPage extends Component {
 					<View style={styles.availablity}>
 						<View>
 							<View style={styles.flexBox}>
-								<Text style={styles.availablityMonth}>{property.rent}/</Text>
-								<Text style={styles.availablityPrefix}>{property.rentUnit}</Text>
+								<Text style={styles.availablityMonth}>${property.rent}/{property.rentUnit}</Text>
+								<Text style={styles.availablityPrefix}></Text>
 							</View>
 							<View style={styles.ratings}>
 								<StarRating
