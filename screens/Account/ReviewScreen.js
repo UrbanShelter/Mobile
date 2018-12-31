@@ -14,24 +14,22 @@ class ReviewScreen extends Component {
 		super(props)
 		this.state = {
 			loading : true,
-			reviews : [],
+            property: '',
+            propertyId: this.props.navigation.getParam('propertyId'),
 		}		
 	}
 
 	async componentWillMount() {
-		var reviews = [];
-		var ReviewData = {};
-		await db.collection("property").get().then((querySnapshot) => {
-			querySnapshot.forEach(function(doc) {
-				ReviewData = doc.data();
-				ReviewData.id = doc.id;
-				reviews.push(ReviewData);
-			});
+        console.log("propertyID",this.state.propertyId);
+
+        var property = {};
+		await db.collection("property").doc(this.state.propertyId).get().then((querySnapshot) => {
+			property = querySnapshot.data();
+            console.log("property=>",property);
 		}).catch(function(error) {
 			console.log("Error getting documents: ", error);
-		});
-        this.setState({reviews : reviews });
-        console.log("review=>",reviews);
+        });
+        this.setState({property: property});
         this.setState({loading : false });
 	}
     
@@ -45,10 +43,10 @@ render() {
 				</View>
 			);
 		} else {
+            let property = this.state.property;
             return (
                 <View style={styles.ListScreen}>
-                {this.state.reviews.map((data, key) =>
-                    <View key={key}>	
+                    <View>	
                         <StatusBar backgroundColor="#fff" barStyle="light-content"/>
                         <View elevation={5} style={[{borderWidth:0,marginLeft:-5,marginRight:-5}]}>
                             <View style={[styles.relativeHeader,styles.hrBox,{paddingLeft:20,marginTop:30,marginBottom:10}]}>
@@ -60,41 +58,43 @@ render() {
                                     <Image style={[styles.headerImg,{marginLeft:10}]} source={require("../../assets/images/share-black.png")}/>
                                 </View>	
                             </View>
-                            <View style={[styles.reviewsBox,{position:'relative',paddingBottom:20}]}>									
-                                <Image style={[styles.reviewImg,{marginLeft:30}]} source={require("../../assets/images/flat-with-yellow.png")}/>
-                                <View>
-                                    <Text style={[styles.homePropertyName, {fontSize: 16 }]}>{data.location.address} • </Text>
-                                    <Text style={[styles.homePropertyName, {fontSize: 16 }]}>{data.location.city}, {data.location.state}, {data.location.countryCode}</Text>
-                                    <Text style={styles.PrecautionsText}> APARTMENT • PRIVATE ROOM</Text>
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate("View",{propertyId : property.id})}>
+                                <View style={[styles.reviewsBox,{position:'relative',paddingBottom:20}]} onPress={()=>this.props.navigation.navigate("View",{propertyId : property.id})}>	
+                                    <Image style={[styles.reviewImg,{marginLeft:30}]} source={{uri : property.image}}/>
+                                    <View>
+                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}>{property.location.address}• </Text>
+                                        <Text style={[styles.homePropertyName, {fontSize: 16 }]}>{property.location.city}, {property.location.state}, {property.location.countryCode}</Text>
+                                        <Text style={styles.PrecautionsText}> APARTMENT • PRIVATE ROOM</Text>
 
-                                    <View style={[styles.ratings,{position:'absolute',bottom:-15}]}>
-                                        <StarRating
-                                        disabled={true}
-                                        emptyStar={'ios-star-outline'}
-                                        fullStar={'ios-star'}
-                                        halfStar={'ios-star-half'}
-                                        iconSet={'Ionicons'}
-                                        maxStars={5}
-                                        rating={data.rating}
-                                        fullStarColor={'#4f3bf6'}
-                                        starSize={15}
-                                        />
-                                        <View><Text style={styles.countText}>({data.review.length})</Text></View>
+                                        <View style={[styles.ratings,{position:'absolute',bottom:-15}]}>
+                                            <StarRating
+                                            disabled={true}
+                                            emptyStar={'ios-star-outline'}
+                                            fullStar={'ios-star'}
+                                            halfStar={'ios-star-half'}
+                                            iconSet={'Ionicons'}
+                                            maxStars={5}
+                                            rating={property.rating}
+                                            fullStarColor={'#4f3bf6'}
+                                            starSize={15}
+                                            />
+                                            <View><Text style={styles.countText}>({property.review.length})</Text></View>
+                                        </View>	
                                     </View>	
-                                </View>	
-                            </View>
+                                </View>
+                            </TouchableOpacity>
                         </View>
                         <ScrollView showsVerticalScrollIndicator={false}>
-                            <View style={[styles.listBody,{paddingTop:30,paddingBottom:30}]}>
-                                <Text style={styles.hrBoxHeading}>Property Reviews ({data.review.length})</Text>
+                            <View style={[styles.listBody,{marginTop:20}]}>
+                                <Text style={styles.hrBoxHeading}>Property Reviews ({property.review.length})</Text>
 
-                                {data.review.map((tag, tagKey) => {
+                                {property.review.map((data, key) => {
                                     return (
-                                            <View key={tagKey} style={styles.hrBox}>
+                                            <View key={key} style={[styles.hrBox]}>
                                                 <View style={[styles.reviewsBox,{position:'relative'}]}>									
                                                     <Image style={styles.reviewsBoxImg} source={require("../../assets/images/profile.jpg")}/>
                                                     <View>
-                                                        <Text style={styles.reviewsBoxHeading}>{tag.name}</Text>
+                                                        <Text style={styles.reviewsBoxHeading}>{data.name}</Text>
                                                         <Text style={styles.PrecautionsText}>September 2018</Text>
                                                     </View>
                                                     <View style={[styles.reviewRating,{position:'absolute',right:0, top: 20}]}>
@@ -106,7 +106,7 @@ render() {
                                                             halfStar={'ios-star-half'}
                                                             iconSet={'Ionicons'}
                                                             maxStars={5}
-                                                            rating={tag.rating}
+                                                            rating={data.rating}
                                                             fullStarColor={'#4f3bf6'}
                                                             starSize={15}
                                                             />
@@ -114,16 +114,15 @@ render() {
                                                     </View>
                                                 </View>
                                                 <Text style={[styles.PrecautionsText,{fontSize:16}]}>
-                                                {tag.comment}
+                                                {data.comment}
                                                 </Text>
                                             </View>
-                                        )
+                                        );
                                     })
                                 }
                             </View> 
                         </ScrollView>
                     </View>
-                )}
                 </View> 
             );
         }
