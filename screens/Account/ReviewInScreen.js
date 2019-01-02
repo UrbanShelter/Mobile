@@ -6,7 +6,7 @@ import {db, logOut} from '../../service/auth';
 import StarRating from 'react-native-star-rating';
 
 
-class ReviewScreen extends Component {
+class ReviewInScreen extends Component {
 	static navigationOptions = {
 		header: null,
 	};
@@ -14,39 +14,16 @@ class ReviewScreen extends Component {
 		super(props)
 		this.state = {
 			loading : true,
-            property: '',
-            totalReview: [],
-            propertyId: this.props.navigation.getParam('propertyId'),
+            property: this.props.navigation.getParam('property'),
+            totalReview: this.props.navigation.getParam('data'),
+            
 		}		
 	}
 
 	async componentWillMount() {
-        console.log("propertyID",this.state.propertyId);
-
-        var property = {};
-		await db.collection("property").doc(this.state.propertyId).get().then((querySnapshot) => {
-			property = querySnapshot.data();
-            console.log("property=>",property);
-            this.setState({property: property});
-            var totalReview = [];
-            
-            this.state.property.review.forEach((data) => {
-                console.log(data.uId);
-                db.collection("users").doc(data.uId).get().then((querySnapshot) => {
-                    var reviews = {};
-                    reviews.comment = data.comment;
-                    reviews.rating = data.rating;
-                    reviews.uId = data.uId;
-                    reviews.userInfo = querySnapshot.data();
-                    totalReview.push(reviews);
-                    this.setState({totalReview: totalReview});
-                    console.log("total",this.state.totalReview);
-                })
-            })
-		}).catch(function(error) {
-			console.log("Error getting documents: ", error);
-        });
-        this.setState({loading : false });
+        console.log("totalreview",this.state.totalReview);
+        console.log("prop", this.state.property);
+        this.setState({loading: false});
 	}
     
     
@@ -245,42 +222,36 @@ render() {
                                 </View>
                             </View>
 
-                            {
-                                totalReview.map((data, key) => {
-                                return (
-                                    <TouchableOpacity key={key} onPress={()=>this.props.navigation.navigate("ReviewIn",{data : data,property: property})}>
-                                        <View style={[styles.hrBox]}>
-                                            <View style={[styles.reviewsBox,{}]}>									
-                                                <Image style={styles.reviewsBoxImg} source={{uri: data.userInfo.image}}/>
-                                                <View>
-                                                    <Text style={styles.reviewsBoxHeading}>{data.userInfo.firstName} {data.userInfo.lastName}</Text>
-                                                    <Text style={styles.PrecautionsText}>September 2018</Text>
-                                                </View>
-                                                <View style={[styles.reviewRating,{position:'absolute',right:0, top: 20}]}>
-                                                    <View style={styles.ratings}>
-                                                        <StarRating
-                                                        disabled={true}
-                                                        emptyStar={'ios-star-outline'}
-                                                        fullStar={'ios-star'}
-                                                        halfStar={'ios-star-half'}
-                                                        iconSet={'Ionicons'}
-                                                        maxStars={5}
-                                                        rating={data.rating}
-                                                        fullStarColor={'#4f3bf6'}
-                                                        starSize={15}
-                                                        />
-                                                    </View>
-                                                </View>
-                                            </View>
-                                            <Text style={[styles.PrecautionsText,{fontSize:16}]}>
-                                            {data.comment}
-                                            </Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                    );
-                                })
-                            }
 
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate("Tenant",{uId : totalReview.uId})}>
+                                <View style={[styles.hrBox]}>
+                                    <View style={[styles.reviewsBox,{}]}>									
+                                        <Image style={styles.reviewsBoxImg} source={{uri: totalReview.userInfo.image}}/>
+                                        <View>
+                                            <Text style={styles.reviewsBoxHeading}>{totalReview.userInfo.firstName} {totalReview.userInfo.lastName}</Text>
+                                            <Text style={styles.PrecautionsText}>September 2018</Text>
+                                        </View>
+                                        <View style={[styles.reviewRating,{position:'absolute',right:0, top: 20}]}>
+                                            <View style={styles.ratings}>
+                                                <StarRating
+                                                disabled={true}
+                                                emptyStar={'ios-star-outline'}
+                                                fullStar={'ios-star'}
+                                                halfStar={'ios-star-half'}
+                                                iconSet={'Ionicons'}
+                                                maxStars={5}
+                                                rating={totalReview.rating}
+                                                fullStarColor={'#4f3bf6'}
+                                                starSize={15}
+                                                />
+                                            </View>
+                                        </View>
+                                    </View>
+                                    <Text style={[styles.PrecautionsText,{fontSize:16}]}>
+                                    {totalReview.comment}
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
                         </View> 
                     </ScrollView>
                 </View>
@@ -300,4 +271,4 @@ const style = StyleSheet.create({
 	  padding: 10
 	}
   })
-export default ReviewScreen;
+export default ReviewInScreen;

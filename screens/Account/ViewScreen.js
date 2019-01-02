@@ -16,6 +16,7 @@ class ViewScreenPage extends Component {
 			propertyId : this.props.navigation.getParam('propertyId'),
 			property : '',
 			loading : true,
+			userpro : '',
 		}
 		
 	}
@@ -32,6 +33,15 @@ class ViewScreenPage extends Component {
 		});
 		
 		this.setState({property: property});
+		var userpro = {};
+		db.collection("users").doc(this.state.property.review[0].uId).get().then((querySnapshot) => {
+			userpro = querySnapshot.data();
+			console.log("pro==>",userpro);
+			this.setState({userpro: userpro});
+		}).catch(function (error) {
+			console.log("Error getting documents: ", error);
+		});
+		console.log("userpro==>",this.state.userpro);
 		this.setState({loading : false });
 	}
 
@@ -47,6 +57,7 @@ class ViewScreenPage extends Component {
 			);
 		} else {
 			let property = this.state.property; 
+			let userpro = this.state.userpro;
 			return (
 				<View style={styles.ListScreen}>					
 					<StatusBar backgroundColor="blue" barStyle="light-content"/>
@@ -167,17 +178,18 @@ class ViewScreenPage extends Component {
 									<Image style={styles.mapExplore} source={require("../../assets/images/explore.png")}/>
 								</TouchableOpacity>
 							</View>
+
 							<View style={styles.hrBox}>
 								<Text style={styles.hrBoxHeading}>Property Reviews</Text>
 								<View style={styles.reviewsBox}>									
-									<Image style={styles.reviewsBoxImg} source={require("../../assets/images/profile.jpg")}/>
+									<Image style={styles.reviewsBoxImg} source={{uri: userpro.image}}/>
 									<View>
-										<Text style={styles.reviewsBoxHeading}>Timmothy Hashfields</Text>
+										<Text style={styles.reviewsBoxHeading}>{userpro.firstName} {userpro.lastName}</Text>
 										<Text style={styles.PrecautionsText}>September 2018</Text>
 									</View>
 								</View>
 								<Text style={styles.PrecautionsText}>
-									The place was nice and comfy. The landlord was easy to work with. There is a really nice diner down the road. A TV would have been blessed.
+									{property.review[0].comment}
 								</Text>
 								<View style={styles.reviewRating} >
 									<TouchableOpacity  onPress={()=> {this.props.navigation.navigate("Review",{propertyId: property.id})}}>
@@ -191,13 +203,15 @@ class ViewScreenPage extends Component {
 											halfStar={'ios-star-half'}
 											iconSet={'Ionicons'}
 											maxStars={5}
-											rating={property.rating}
+											rating={property.review[0].rating}
 											fullStarColor={'#4f3bf6'}
 											starSize={15}
 										/>
 									</View>
 								</View>					
 							</View>
+
+
 							<View style={styles.hrBox}>
 								<TouchableOpacity onPress={()=> {this.props.navigation.navigate("Report")}} >
 									<Text style={[styles.hrBoxHeading,{marginBottom:0}]}> Report this Listing </Text>
