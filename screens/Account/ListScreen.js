@@ -23,8 +23,10 @@ class ListScreen extends Component {
 			search : '',
 			type: '',
 			bedroom : '',
+			month : '',
 			roomType : '',
-            conditions : this.props.navigation.getParam('conditions'),
+			conditions : this.props.navigation.getParam('conditions'),
+			year: 2019,
 		}		
 		this.buttonPressed = this.buttonPressed.bind(this);
 	}
@@ -74,6 +76,32 @@ class ListScreen extends Component {
 			this.setState({roomType : index})
 		}
 	}
+	preYear() {
+		year = (this.state.year - 1);
+		this.setState({year: year});
+		console.log(this.state.year);
+	}
+	postYear() {
+		year = (this.state.year + 1);
+		this.setState({year: year});
+		console.log(this.state.year);
+	}
+
+	_fromHandler = (index) => {
+		var month = index;
+		this.setState({month: month});
+		console.log('month', this.state.month);
+		var date = month + '-' + '01' + '-' + this.state.year;
+		date = new Date(date);
+		index = date;
+		console.log('fsf',index);
+		
+		if(this.state.from == index) {
+			this.setState({from: ''})
+		} else {
+			this.setState({from: index})
+		}
+	}
 	
 	_crossBtnHandler = () => {
         var conditions = [];
@@ -93,6 +121,15 @@ class ListScreen extends Component {
 				value : this.state.roomType
 			};
 			conditions.push(roomTypeObj);
+		}
+
+		if ((this.state.from) != '') {
+			let fromObj = {
+				name : 'from',
+				operator : '<=',
+				value: (this.state.from)
+			}
+			conditions.push(fromObj);
 		}
 
         if (this.state.bedroom != '') {
@@ -359,65 +396,65 @@ class ListScreen extends Component {
 						<View style={[{borderBottomWidth:1,borderBottomColor:'#f2f2f2',padding:10,flex:0,flexDirection:'row',justifyContent:'space-between'}]}>
 							<Text style={[styles.headtext,{padding:10}]}>From</Text>
 							<View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
-								<TouchableOpacity><Icon style={{color:'#4f3bf6',padding:10}} name="ios-arrow-back"/></TouchableOpacity>
-								<TouchableOpacity><Icon style={{color:'#4f3bf6',padding:10}} name="ios-arrow-forward"/></TouchableOpacity>
-								<Text style={[styles.headtext,{padding:10,color:'#4f3bf6'}]}> 2018</Text>
+								<TouchableOpacity onPress={() => this.preYear()}><Icon style={{color:'#4f3bf6',padding:10}} name="ios-arrow-back"/></TouchableOpacity>
+								<TouchableOpacity onPress={() => this.postYear()}><Icon style={{color:'#4f3bf6',padding:10}} name="ios-arrow-forward"/></TouchableOpacity>
+								<Text style={[styles.headtext,{padding:10,color:'#4f3bf6'}]}> {this.state.year}</Text>
 							</View>
 						</View>
 						<View style={[styles.typeBox,{padding:10}]}>
 							<View style={[styles.quickfilters]}>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[0] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(0)}>Jan</Text>
+                                    <Text style={(this.state.month == '01') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('01')}>Jan</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[1] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(1)}>Feb</Text>
+                                    <Text style={(this.state.month == '02') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('02')}>Feb</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[2] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(2)}>Mar</Text>
+                                    <Text style={(this.state.month == '03') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('03')}>Mar</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[3] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(3)}>April</Text>
+                                    <Text style={(this.state.month == '04') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('04')}>April</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <Text style={this.state.activeState[4] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(4)}>May</Text>
+                                    <Text style={(this.state.month == '05') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('05')}>May</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(5)}>June</Text>
+                                    <Text style={(this.state.month == '06') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('06')}>June</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(5)}>July</Text>
+                                    <Text style={(this.state.month == '07') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('07')}>July</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(5)}>Aug</Text>
+                                    <Text style={(this.state.month == '08') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('08')}>Aug</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(5)}>Sept</Text>
+                                    <Text style={(this.state.month == '09') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('09')}>Sept</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(5)}>Oct</Text>
+                                    <Text style={(this.state.month == '10') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('10')}>Oct</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(5)}>Nov</Text>
+                                    <Text style={(this.state.month == '11') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('11')}>Nov</Text>
                                 </TouchableOpacity>
 								<TouchableOpacity>
-                                    <Text style={this.state.activeState[5] ? styles.calenderBtn : styles.calenderBtnActive} 
-                                    onPress={() => this.buttonPressed(5)}>Dec</Text>
+                                    <Text style={(this.state.month == '12') ? styles.calenderBtnActive : styles.calenderBtn} 
+                                    onPress={() => this._fromHandler('12')}>Dec</Text>
                                 </TouchableOpacity>
 							</View>
 						</View>
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2'}]}>
-							<TouchableOpacity><Text style={[{lineHeight:65,color:'#4f3bf6',textAlign:'center',paddingBottom:20}]}>SEE RESULTS</Text></TouchableOpacity>
+							<TouchableOpacity onPress= {this._crossBtnHandler}><Text style={[{lineHeight:65,color:'#4f3bf6',textAlign:'center',paddingBottom:20}]}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
 					</PopupDialog>
 
@@ -454,7 +491,7 @@ class ListScreen extends Component {
 							</View>
 						</View>	
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2',padding:10}]}>
-							<TouchableOpacity onPress= {this._crossBtnHandler}><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
+							<TouchableOpacity onPress={this._crossBtnHandler}><Text style={styles.filterBtn}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
 					</PopupDialog>
 

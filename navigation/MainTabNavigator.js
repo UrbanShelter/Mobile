@@ -19,6 +19,8 @@ import EditprofileScreen from '../screens/Account/UserproScreen';
 import StayOneScreen from '../screens/Account/StayOneScreen';
 import ApplicationScreen from '../screens/Account/ApplicationScreen';
 import RentPaymentScreen from '../screens/Account/RentPaymentScreen';
+import ReviewInScreen from '../screens/Account/ReviewInScreen';
+import TenantsScreen from '../screens/Account/TenantsScreen';
 
 const MainStack = createStackNavigator({
     Search: MainScreen,
@@ -36,11 +38,13 @@ const MainStack = createStackNavigator({
     },
     Report: ReportScreen,
     Review: ReviewScreen, 
+    ReviewIn: ReviewInScreen,
     Editprofile: EditprofileScreen,
     Landlord : LandlordScreen,
     Stayone : StayOneScreen,
     Application : ApplicationScreen,
     Rent: RentPaymentScreen,
+    Tenant: TenantsScreen,
   
     },{
         initialRouteName: 'List',
