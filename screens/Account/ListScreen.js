@@ -13,7 +13,7 @@ class ListScreen extends Component {
 		header: null,
 	};
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			loading : true,
 			properties : [],
@@ -24,11 +24,10 @@ class ListScreen extends Component {
 			type: '',
 			bedroom : '',
 			roomType : '',
-            conditions : this.props.navigation.getParam('conditions'),
+            conditions : this.props.navigation.getParam('condition'),
 		}		
 		this.buttonPressed = this.buttonPressed.bind(this);
 	}
-
 
 	async componentWillMount() {
 		var userId = await Expo.SecureStore.getItemAsync('uId');
@@ -39,7 +38,6 @@ class ListScreen extends Component {
 		}
 		this.refreshSearch()
 	}
-
 
 	_handleSearch = async (Text) => {
 		this.setState({search : Text});
