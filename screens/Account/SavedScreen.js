@@ -84,7 +84,7 @@ class SavedScreen extends Component {
 							<Text style={[styles.headtext,{fontSize:30}]}>Saved</Text>
 						</View>
 						<View>							
-							<TouchableOpacity><Image style={[styles.headerImg,{marginTop:0}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
+							<TouchableOpacity onPress={()=>this.props.navigation.navigate("List")}><Image style={[styles.headerImg,{marginTop:0}]} source={require("../../assets/images/cross.png")}/></TouchableOpacity>
 						</View>	
 					</View>
 					<ScrollView showsVerticalScrollIndicator={false}>
