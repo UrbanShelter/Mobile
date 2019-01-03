@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Image, View, ToastAndroid, StatusBar, TouchableOpacity, KeyboardAvoidingView, StyleSheet, ActivityIndicator } from "react-native";
-import {  Text, Item, Input } from "native-base";
-import Toast from 'react-native-simple-toast';
+import { Image, View, StatusBar, TouchableOpacity, KeyboardAvoidingView, StyleSheet, ActivityIndicator } from "react-native";
+import { Text, Item, Input } from "native-base";
+import Toast from 'react-native-whc-toast'
 import styles from "./styles";
 import { signIn, logOut } from './../../service/auth';
 
@@ -32,26 +32,28 @@ class LoginScreenTwo extends Component {
 		if(this.state.email != '' && this.state.password != '') {
 			if(this.state.emailValidation == false) {
 				this.setState({loader:false});
-				ToastAndroid.show('Please Enter valid Email address', ToastAndroid.SHORT);
+				//Toast.show('Please Enter valid Email address.');
+				this.refs.toast.showBottom('Please Enter valid Email address.');
 			} else {
 				const data  = await signIn(this.state.email,this.state.password);
 				await Expo.SecureStore.setItemAsync('uId', data.user.uid);
 				if( data.ack == 1) {
 					this.props.navigation.navigate("Main")
 				} else {
-					ToastAndroid.show('Invalid Login details', ToastAndroid.SHORT);
+					//Toast.show('Invalid Login details.');
+					this.refs.toast.showBottom('Invalid Login details.');
 				}
 				this.setState({loader:false});
 			}
 			
 		} else if (this.state.email == '') {
 			this.setState({loader:false});
-			//ToastAndroid.show('Please Enter Email address', ToastAndroid.SHORT);
-			Toast.show('Please Enter Email address.');
+			//Toast.show('Please Enter Email address.');
+			this.refs.toast.showBottom('Please Enter Email address.');
 		} else if (this.state.password == '') {
 			this.setState({loader:false});
-			Toast.show('Please Enter Password.');
-			//ToastAndroid.show('Please Enter Password', ToastAndroid.SHORT);
+			//Toast.show('Please Enter Password.');
+			this.refs.toast.showBottom('Please Enter Password.');
 		}
 		
 		
@@ -70,7 +72,7 @@ class LoginScreenTwo extends Component {
 		} else {
 			return (
 				
-				<View style={styles.signinbg}>					
+				<View style={styles.signinbg}>				
 					<StatusBar backgroundColor={'transparent'} translucent />
 					<TouchableOpacity onPress={() => goBack()}><Image style={styles.arrowBtn} source={require("../../assets/images/arrow.png")}/></TouchableOpacity> 
 					<KeyboardAvoidingView behavior="padding" style={{ width: '100%', borderWidth: 0,}}>
@@ -93,6 +95,9 @@ class LoginScreenTwo extends Component {
 						{/* <TouchableOpacity  onPress={()=>this.props.navigation.navigate("ForgotPass")}><Text style={styles.footerbtn} uppercase={true}> CLICK HERE </Text></TouchableOpacity> */}
 						<TouchableOpacity  onPress={()=>logOut()}><Text style={styles.footerbtn2} uppercase={true}> CLICK HERE </Text></TouchableOpacity>
 					</View>
+					<View style={styles.container}>
+						<Toast ref="toast"/>
+					</View>	
 				</View>
 					
 			);

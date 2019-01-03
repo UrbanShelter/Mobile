@@ -55,7 +55,7 @@ render() {
     if(this.state.loading == true ) {
 			return (
 				<View style={[style.container, style.horizontal]}>
-					<ActivityIndicator size="large" color="#4F3BF6" />
+					<ActivityIndicator size="large" color="#4f3bf6" />
 				</View>
 			);
 		} else {
@@ -101,11 +101,11 @@ render() {
                         </TouchableOpacity>
                     </View>
                     <ScrollView scrollEnabled={this.state.scrollEnabled} showsVerticalScrollIndicator={false}>
-                        <View style={[styles.listBody,{marginTop:20}]}>
+                        <View style={[styles.listBody,{marginTop:0}]}>
                             <View style={[styles.hrBox]}>
                                 <View style={[styles.reviewsBox,{position:'relative'}]}>	
                                     <View>
-                                        <Text style={[styles.hrBoxHeading,{fontSize:24}]}>Property Reviews ({property.review.length})</Text>
+                                        <Text style={[styles.hrBoxHeading,{fontSize:20}]}>Property Reviews ({property.review.length})</Text>
                                     </View>
                                     <View style={[styles.reviewRating,{position:'absolute',right:0}]}>
                                         <View style={styles.ratings}>
@@ -248,35 +248,40 @@ render() {
                             {
                                 totalReview.map((data, key) => {
                                 return (
-                                    <TouchableOpacity key={key} onPress={()=>this.props.navigation.navigate("ReviewIn",{data : data,property: property})}>
+                                    <View key={key}>
                                         <View style={[styles.hrBox]}>
-                                            <View style={[styles.reviewsBox,{}]}>									
-                                                <Image style={styles.reviewsBoxImg} source={{uri: data.userInfo.image}}/>
-                                                <View>
-                                                    <Text style={styles.reviewsBoxHeading}>{data.userInfo.firstName} {data.userInfo.lastName}</Text>
-                                                    <Text style={styles.PrecautionsText}>September 2018</Text>
-                                                </View>
-                                                <View style={[styles.reviewRating,{position:'absolute',right:0, top: 20}]}>
-                                                    <View style={styles.ratings}>
-                                                        <StarRating
-                                                        disabled={true}
-                                                        emptyStar={'ios-star-outline'}
-                                                        fullStar={'ios-star'}
-                                                        halfStar={'ios-star-half'}
-                                                        iconSet={'Ionicons'}
-                                                        maxStars={5}
-                                                        rating={data.rating}
-                                                        fullStarColor={'#4f3bf6'}
-                                                        starSize={15}
-                                                        />
+                                            <TouchableOpacity onPress={()=>this.props.navigation.navigate("Tenant",{uId : data.uId})}>
+                                                <View style={[styles.reviewsBox,{}]}>									
+                                                    <Image style={styles.reviewsBoxImg} source={{uri: data.userInfo.image}}/>
+                                                    <View>
+                                                        <Text style={styles.reviewsBoxHeading}>{data.userInfo.firstName} {data.userInfo.lastName}</Text>
+                                                        <Text style={styles.PrecautionsText}>September 2018</Text>
+                                                    </View>
+                                                    <View style={[styles.reviewRating,{position:'absolute',right:0, top: 20}]}>
+                                                        <View style={styles.ratings}>
+                                                            <StarRating
+                                                            disabled={true}
+                                                            emptyStar={'ios-star-outline'}
+                                                            fullStar={'ios-star'}
+                                                            halfStar={'ios-star-half'}
+                                                            iconSet={'Ionicons'}
+                                                            maxStars={5}
+                                                            rating={data.rating}
+                                                            fullStarColor={'#4f3bf6'}
+                                                            starSize={15}
+                                                            />
+                                                        </View>
                                                     </View>
                                                 </View>
+                                            </TouchableOpacity>
+                                            <View style={{position:'relative'}}>
+                                                <Text style={[styles.PrecautionsText,{fontSize:15,height:55}]}>
+                                                {data.comment}
+                                                </Text>
+                                                <TouchableOpacity style={{position:'absolute',right:0,bottom:0,paddingLeft:10,zIndex:99,backgroundColor:['#fff']}} onPress={()=>this.props.navigation.navigate("ReviewIn",{data : data,property: property})}><Text style={styles.redText}>...Read More</Text></TouchableOpacity>
                                             </View>
-                                            <Text style={[styles.PrecautionsText,{fontSize:16}]}>
-                                            {data.comment}
-                                            </Text>
                                         </View>
-                                    </TouchableOpacity>
+                                    </View>
                                     );
                                 })
                             }

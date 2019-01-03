@@ -26,6 +26,7 @@ class ListScreen extends Component {
 			month : '',
 			roomType : '',
 			conditions : this.props.navigation.getParam('conditions'),
+			fromConditions : this.props.navigation.getParam('fromConditions'),
 			year: 2019,
 		}		
 		this.buttonPressed = this.buttonPressed.bind(this);
@@ -47,7 +48,7 @@ class ListScreen extends Component {
 
 	async componentWillReceiveProps (nextProps) {
 		this.setState({conditions : nextProps.navigation.getParam('condition')});
-		console.log(this.state.conditions)	
+		console.log(this.state.conditions);	
 		var userId = await Expo.SecureStore.getItemAsync('uId');
 		this.setState({userId :userId});
 		this.refreshSearch();
@@ -60,14 +61,14 @@ class ListScreen extends Component {
         }
 	}
 
-	_bedRoomHandler = (index) =>{
+	_bedRoomHandler = (index) => {
         if(this.state.bedroom == index) {
             this.setState({bedroom : ''})
         } else {
             this.setState({bedroom : index})
         }
 	}
-	_roomTypeHandler = (index) =>{
+	_roomTypeHandler = (index) =>                                {
 		if(this.state.roomType == index) {
 			this.setState({roomType : ''})
 		} else {
@@ -86,22 +87,37 @@ class ListScreen extends Component {
 	}
 
 	_fromHandler = (index) => {
-		var month = index;
-		this.setState({month: month});
-		console.log('month', this.state.month);
-		var date = month + '-' + '01' + '-' + this.state.year;
-		date = new Date(date);
-		index = date;
-		console.log('fsf',index);
 		
-		if(this.state.from == index) {
-			this.setState({from: ''})
+		date = new Date(index + '-' + '01' + '-' + this.state.year);
+		this.setState({month: index});	
+		console.log('Date',date);
+		
+		if(this.state.from == date) {
+			this.setState({from: ''});
 		} else {
-			this.setState({from: index})
+			this.setState({from: date});
 		}
+	}
+
+
+	_fromBtnHandler = () => {
+		var fromConditions = [];
+		if (this.state.month != '') {
+			let fromObj = {
+				name : 'from',
+				operator : '<=',
+				value: this.state.from
+			};
+			fromConditions.push(fromObj);
+		};
+
+		console.log(fromConditions);
+        this.props.navigation.navigate('List',{condition: fromConditions});
+
 	}
 	
 	_crossBtnHandler = () => {
+		this.state.month = null;
         var conditions = [];
         if (this.state.type != '') {
             let typeObj = {
@@ -120,16 +136,6 @@ class ListScreen extends Component {
 			};
 			conditions.push(roomTypeObj);
 		}
-
-		if ((this.state.from) != '') {
-			let fromObj = {
-				name : 'from',
-				operator : '<=',
-				value: (this.state.from)
-			}
-			conditions.push(fromObj);
-		}
-
         if (this.state.bedroom != '') {
             if(this.state.bedroom == '5+') {
                 let typeObj = {
@@ -452,7 +458,7 @@ class ListScreen extends Component {
 							</View>
 						</View>
 						<View style={[{borderTopWidth:1,borderTopColor:'#f2f2f2'}]}>
-							<TouchableOpacity onPress= {this._crossBtnHandler}><Text style={[{lineHeight:65,color:'#4f3bf6',textAlign:'center',paddingBottom:20}]}>SEE RESULTS</Text></TouchableOpacity>
+							<TouchableOpacity onPress= {this._fromBtnHandler}><Text style={[{lineHeight:65,color:'#4f3bf6',textAlign:'center',paddingBottom:20}]}>SEE RESULTS</Text></TouchableOpacity>
 						</View>
 					</PopupDialog>
 

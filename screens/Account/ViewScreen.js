@@ -52,7 +52,7 @@ class ViewScreenPage extends Component {
 		if(this.state.loading == true ) {
 			return (
 				<View style={[style.container, style.horizontal]}>
-					<ActivityIndicator size="large" color="#F55057" />
+					<ActivityIndicator size="large" color="#4f3bf6" />
 				</View>
 			);
 		} else {
@@ -181,13 +181,15 @@ class ViewScreenPage extends Component {
 
 							<View style={styles.hrBox}>
 								<Text style={styles.hrBoxHeading}>Property Reviews</Text>
-								<View style={styles.reviewsBox}>									
-									<Image style={styles.reviewsBoxImg} source={{uri: userpro.image}}/>
-									<View>
-										<Text style={styles.reviewsBoxHeading}>{userpro.firstName} {userpro.lastName}</Text>
-										<Text style={styles.PrecautionsText}>September 2018</Text>
+								<TouchableOpacity onPress={()=>this.props.navigation.navigate("Tenant",{uId : property.review[0].uId})}>
+									<View style={styles.reviewsBox}>									
+										<Image style={styles.reviewsBoxImg} source={{uri: userpro.image}}/>
+										<View>
+											<Text style={styles.reviewsBoxHeading}>{userpro.firstName} {userpro.lastName}</Text>
+											<Text style={styles.PrecautionsText}>September 2018</Text>
+										</View>
 									</View>
-								</View>
+								</TouchableOpacity>
 								<Text style={styles.PrecautionsText}>
 									{property.review[0].comment}
 								</Text>

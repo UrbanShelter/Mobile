@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Image, View,ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, ToastAndroid,
-	ActivityIndicator,Modal} from "react-native";
+import { Image, View,ScrollView, StatusBar,KeyboardAvoidingView, TouchableOpacity, ActivityIndicator,Modal} from "react-native";
 import {Text, Item, Input } from "native-base";
 import styles from "./styles";
+//import Toast from 'react-native-simple-toast';
 import {updateData} from '../../service/service';
 import { logOut } from './../../service/auth';
 import { db, firebaseInstances as firebase } from '../../service/auth';
@@ -135,7 +135,8 @@ class EditprofileScreen extends Component {
 		}
 
 		await updateData("users",storeObj.uId,obj);
-		ToastAndroid.show('Saved.', ToastAndroid.SHORT);
+		//Toast.show('Saved');
+
 	}
 
 	render() {
