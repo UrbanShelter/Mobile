@@ -223,8 +223,9 @@ render() {
                             </View>
 
 
-                            <TouchableOpacity onPress={()=>this.props.navigation.navigate("Tenant",{uId : totalReview.uId})}>
-                                <View style={[styles.hrBox]}>
+                            
+                            <View style={[styles.hrBox]}>
+                                <TouchableOpacity onPress={()=>this.props.navigation.navigate("Tenant",{uId : totalReview.uId})}>
                                     <View style={[styles.reviewsBox,{}]}>									
                                         <Image style={styles.reviewsBoxImg} source={{uri: totalReview.userInfo.image}}/>
                                         <View>
@@ -247,11 +248,11 @@ render() {
                                             </View>
                                         </View>
                                     </View>
-                                    <Text style={[styles.PrecautionsText,{fontSize:16}]}>
-                                    {totalReview.comment}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
+                                </TouchableOpacity>
+                                <Text style={[styles.PrecautionsText,{fontSize:16}]}>
+                                {totalReview.comment}
+                                </Text>
+                            </View>
                         </View> 
                     </ScrollView>
                 </View>

@@ -59,14 +59,27 @@ class FilterScreen extends React.Component {
                     var cat_val = element.value;
                     that.setState({suiteAminity : cat_val});
                 }
+                if(element.operator == '<=' && element.name == 'rent') {
+                    var cat_val = element.value;
+                    that.setState({values : cat_val});
+                    that.state.values[1] = cat_val;
+                }
+                if(element.operator == '>=' && element.name == 'rent') {
+                    var cat_val = element.value;
+                    that.setState({values : cat_val});
+                    that.state.values[0] = cat_val;
+                }
             })
             
+            console.log("hgfjh",this.state.values[0], this.state.values[1]);
         }
         this.setState({loading : false});
+        console.log("hggjhdftrgjfjh", this.state.values[0], this.state.values[1]);
     }
 
     multiSliderValuesChange = (values) => {
-        this.setState({minPrice : values[0], maxPrice : values[1]})
+        console.log("hggjhdftrgjfjh", this.state.values[0], this.state.values[1]);
+        this.setState({minPrice : this.state.values[0], maxPrice : this.state.values[1]})
         this.setState({values});
     }
 
@@ -233,7 +246,7 @@ class FilterScreen extends React.Component {
                             </View>
                             <View>
                                 <View style={[{flex:0, flexDirection: 'row', justifyContent:'space-between',paddingLeft:40,paddingRight:40}]}>
-                                    <Text style={styles.redText}>$ {this.state.values[0]}</Text>
+                                    <Text style={styles.redText}>${this.state.values[0]}</Text>
                                     <Text style={styles.redText}>${this.state.values[1]}</Text>
                                 </View>
                                 <View style={{flex: 0, flexDirection: 'row', justifyContent:'center'}}>

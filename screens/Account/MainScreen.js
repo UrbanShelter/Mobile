@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Image, View, ScrollView, StatusBar, TouchableOpacity, ImageBackground, KeyboardAvoidingView, TextInput, ToastAndroid, AsyncStorage } from "react-native";
-import { Container, Button, H3, Text, Header, Title, Body, Left, Right, Content, Item, Input } from "native-base";
+import { Image, View, ScrollView, StatusBar, TouchableOpacity } from "react-native";
+import { Text, Item, Input } from "native-base";
 import styles from "./styles";
 
 

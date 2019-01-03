@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Image, View, StatusBar, TouchableOpacity, ToastAndroid, ActivityIndicator, StyleSheet, AsyncStorage} from "react-native";
+import { Image, View, StatusBar, TouchableOpacity, ActivityIndicator, StyleSheet, AsyncStorage} from "react-native";
 import {Text, Item, Input } from "native-base";
+import Toast from 'react-native-whc-toast'
 import styles from "./styles";
 import PopupDialog,  { DialogTitle } from 'react-native-popup-dialog';
 import { signUp, logIn } from './../../service/auth';
@@ -59,15 +60,18 @@ class LoginScreen extends Component {
 		}
 		if(this.state.email != '' && this.state.password != '') {
 			if(this.state.emailValidation == false){
-				ToastAndroid.show('Please enter valid Email address', ToastAndroid.SHORT);
+				//Toast.show('Please enter valid Email address.');
+				this.refs.toast.showBottom('Please Enter valid Email address.');
 			}else {
 				this.popupDialog.show();
 			}
 			
 		} else if (this.state.email == '' ) {
-			ToastAndroid.show('Please enter Email address', ToastAndroid.SHORT);
+			//Toast.show('Please enter Email address');
+			this.refs.toast.showBottom('Please Enter Email address.');
 		} else if (this.state.password == '') {
-			ToastAndroid.show('Please Enter Password', ToastAndroid.SHORT);
+			//Toast.show('Please Enter Password');
+			this.refs.toast.showBottom('Please Enter Password.');
 		}
 		
 	}
@@ -81,7 +85,8 @@ class LoginScreen extends Component {
 			this.props.navigation.navigate("SignupTwo",{uid:data.user.uid});
 		} else {
 			this.setState({loader : false});
-			ToastAndroid.show(data.message, ToastAndroid.SHORT);
+			//Toast.show(data.message);
+			this.refs.toast.showBottom(data.message);
 		}
 	}
 
@@ -144,6 +149,9 @@ class LoginScreen extends Component {
 								}}><Image style={styles.btnAceptDecline} source={require("../../assets/images/accept.png")}/></TouchableOpacity>
 						</View>
 					</PopupDialog>
+					<View style={styles.container}>
+						<Toast ref="toast"/>
+					</View>	
 				</View>
 			);
 		}
